@@ -4,8 +4,10 @@ package dataCreation;
 import Product.Category;
 import Product.CategoryType;
 import Product.NutritionFacts;
+import Product.Offer;
 import Product.Product;
 import Product.ProductStatus;
+import java.util.GregorianCalendar;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -101,6 +103,13 @@ public class DataTest implements DataTestLocal {
         Product tiramisu = new Product("Tiramisu", "/WEB-INF/Img/Products/tiramisu.jpg", 4.5f, "Un savoureux mélange café/chocolat");
         Product chocolateMuffin = new Product("Muffin au chocolat", "/WEB-INF/Img/Products/chocolateMuffin.jpg", 4, "Aux pépites de chocolat");
         Product blueberryMuffin = new Product("Muffin aux Myrtilles", "/WEB-INF/Img/Products/blueberryMuffin.jpg", 4, "Parfait avec un thé");
+        
+        
+        // Offer
+        Offer bestSellers = new Offer("Meilleures Ventes", "Une sélection de vos produits préférés", new GregorianCalendar(2019, 01, 26).getTime(), null, 0, "/WEB-INF/Img/Offers/meilleuresVentes.jpg");
+        
+        
+        
         
          
         /*
@@ -211,6 +220,14 @@ public class DataTest implements DataTestLocal {
         desserts.getProducts().add(tiramisu);
         desserts.getProducts().add(chocolateMuffin);
         desserts.getProducts().add(blueberryMuffin);
+        
+        // Product > Offer
+        kofte.getOffers().add(bestSellers);
+        fries.getOffers().add(bestSellers);
+        coca.getOffers().add(bestSellers);
+        chocolateMuffin.getOffers().add(bestSellers);
+        chicken.getOffers().add(bestSellers);
+        american.getOffers().add(bestSellers);
         
         /*
         PERSISTS

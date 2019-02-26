@@ -42,9 +42,14 @@ public class Product implements Serializable {
     
     @ManyToMany
     private Collection<Category> categories;
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Offer> offers;
 
+    
     public Product() {
         categories = new ArrayList<Category>();
+        offers = new ArrayList<Offer>();
     }
 
     public Product(String name, String img, float price, String description) {
@@ -122,6 +127,14 @@ public class Product implements Serializable {
         this.categories = categories;
     }
 
+    public Collection<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(Collection<Offer> offers) {
+        this.offers = offers;
+    }
+
     
     
     
@@ -147,7 +160,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Product.Product[ id=" + id + " ]";
+        return name;
     }
     
 }
