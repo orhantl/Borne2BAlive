@@ -3,6 +3,7 @@ package Product;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Ingredient implements Serializable {
     
     //####################DEPENDENCIES############################
     
-    @ManyToMany
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<Allergen> allergens;
     
     //####################CONSTRUCTORS############################

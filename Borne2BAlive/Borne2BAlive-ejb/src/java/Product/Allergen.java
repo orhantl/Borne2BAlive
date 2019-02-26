@@ -3,6 +3,7 @@ package Product;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Allergen implements Serializable {
@@ -27,6 +29,9 @@ public class Allergen implements Serializable {
     
     @ManyToMany(mappedBy = "allergens", fetch = FetchType.LAZY)
     private Collection<Ingredient> ingredients;
+    
+    //@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    
     
     //####################CONSTRUCTORS############################
 
