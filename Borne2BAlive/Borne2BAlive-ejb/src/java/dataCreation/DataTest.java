@@ -29,15 +29,15 @@ public class DataTest implements DataTestLocal {
         CategoryType typeMenus = new CategoryType("Menus");
         
         // Category
-        Category coldDrinks = new Category("Boissons Fraîches", "Désaltérez-vous avec nos boissons rafraichissantes");
-        Category hotDrinks = new Category("Boissons Chaudes", "Pour bien finir le repas");
-        Category sandwiches = new Category("Sandwichs", "Tous nos sandwichs à la carte et personnalisables");
-        Category sides = new Category("Accompagnements", "Pour les petites faims");
-        Category desserts = new Category("Desserts", "Pour tous les gourmands");
-        Category sauces = new Category("Sauce", "Pour rajouter un peu de pep's à vos plats");
-        Category menuDrinks = new Category("Boissons du Menu", "Désaltérez-vous avec nos boissons rafraichissantes");
-        Category menuSandwiches = new Category("Sandwichs du Menu", "Le plat de résistance");
-        Category menuSides = new Category("Accompagnements du Menu", "Au choix");
+        Category coldDrinks = new Category("Boissons Fraîches", "Désaltérez-vous avec nos boissons rafraichissantes", "/WEB-INF/Img/Categories/coldDrinks.jpg");
+        Category hotDrinks = new Category("Boissons Chaudes", "Pour bien finir le repas", "/WEB-INF/Img/Categories/hotDrinks.jpg");
+        Category sandwiches = new Category("Sandwichs", "Tous nos sandwichs à la carte et personnalisables", "/WEB-INF/Img/Categories/sandwiches.png");
+        Category sides = new Category("Accompagnements", "Pour les petites faims", "/WEB-INF/Img/Categories/sides.jpg");
+        Category desserts = new Category("Desserts", "Pour tous les gourmands", "/WEB-INF/Img/Categories/desserts.jpg");
+        Category sauces = new Category("Sauce", "Pour rajouter un peu de pep's à vos plats", "/WEB-INF/Img/Categories/sauces.png");
+        Category menuDrinks = new Category("Boissons du Menu", "Désaltérez-vous avec nos boissons rafraichissantes", "/WEB-INF/Img/Categories/coldDrinks.jpg");
+        Category menuSandwiches = new Category("Sandwichs du Menu", "Le plat de résistance", "/WEB-INF/Img/Categories/sandwiches.png");
+        Category menuSides = new Category("Accompagnements du Menu", "Au choix", "/WEB-INF/Img/Categories/sides.jpg");
         
         // ProductStatus
         ProductStatus available = new ProductStatus("Disponible", "Le produit peut être commandé");
@@ -67,32 +67,32 @@ public class DataTest implements DataTestLocal {
         NutritionFacts hotChocolateFacts = new NutritionFacts(10.7f, 2.3f, 3.5f, 9.5f, 1, 0, 77);
                 
         // Product
-        Product adana = new Product("Adana Kebab", "", 5, "Plat issu de la cuisine turque qui vient de la ville d'Adana, plus épicé que le kebab standard");
-        Product kofte = new Product("Kofte Kebab", "", 5, "Boulette de viande hachée aux épices. C'est la préparation la plus cuisinée en Turquie.");
-        Product chicken = new Product("Chicken Kebab", "", 5, "Le traditionnel kebab en version poulet");
-        Product merguez = new Product("Merguez Kebab", "", 5, "Le traditionnel kebab en version merguez");
-        Product american = new Product("American Kebab", "", 5, "Le traditionnel kebab en version steak haché");
+        Product adana = new Product("Adana Kebab", "/WEB-INF/Img/Products/adana.jpg", 5, "Plat issu de la cuisine turque qui vient de la ville d'Adana, plus épicé que le kebab standard");
+        Product kofte = new Product("Kofte Kebab", "/WEB-INF/Img/Products/kofte.jpg", 5, "Boulette de viande hachée aux épices. C'est la préparation la plus cuisinée en Turquie.");
+        Product chicken = new Product("Chicken Kebab", "/WEB-INF/Img/Products/chicken.jpg", 5, "Le traditionnel kebab en version poulet");
+        Product merguez = new Product("Merguez Kebab", "/WEB-INF/Img/Products/merguez.jpg", 5, "Le traditionnel kebab en version merguez");
+        Product american = new Product("American Kebab", "/WEB-INF/Img/Products/american.png", 5, "Le traditionnel kebab en version steak haché");
         
-        Product fries = new Product("Frites", "", 2.5f, "Délicieuses et croustillantes");
-        Product potatoes = new Product("Potatoes", "", 2.5f, "Savoureuses et croustillantes");
-        Product saladSmall = new Product("Petite Salade", "", 2.0f, "Un instant frais et léger");
+        Product fries = new Product("Frites", "/WEB-INF/Img/Products/fries.jpg", 2.5f, "Délicieuses et croustillantes");
+        Product potatoes = new Product("Potatoes", "/WEB-INF/Img/Products/potatoes.png", 2.5f, "Savoureuses et croustillantes");
+        Product saladSmall = new Product("Petite Salade", "/WEB-INF/Img/Products/salad.jpg", 2.0f, "Un instant frais et léger");
         
-        Product ketchup = new Product("Ketchup", "", 0.5f, "Aux bonnes tomates gouteuses");
-        Product mayo = new Product("Mayo", "", 0.5f, "Aux oeufs frais");
-        Product mustard = new Product("Moutarde", "", 0.5f, "De Dijon");
-        Product samourai = new Product("Samouraï", "", 0.5f, "Epicée");
-        Product curry = new Product("Curry", "", 0.5f, "Saveur des indes");
+        Product ketchup = new Product("Ketchup", "/WEB-INF/Img/Products/ketchup.jpg", 0.5f, "Aux bonnes tomates gouteuses");
+        Product mayo = new Product("Mayo", "/WEB-INF/Img/Products/mayo.jpg", 0.5f, "Aux oeufs frais");
+        Product mustard = new Product("Moutarde", "/WEB-INF/Img/Products/mustard.jpg", 0.5f, "De Dijon");
+        Product samourai = new Product("Samouraï", "/WEB-INF/Img/Products/samourai.jpg", 0.5f, "Epicée");
+        Product curry = new Product("Curry", "/WEB-INF/Img/Products/curry.png", 0.5f, "Saveur des indes");
         
-        Product coca = new Product("Cocal-Cola", "", 2f, "Always Coca-Cola");
-        Product cocaLight = new Product("Cocal-Cola Light", "", 2f, "Always Coca-Cola");
-        Product cocaZero = new Product("Cocal-Cola Zero", "", 2f, "Always Coca-Cola");
-        Product perrier = new Product("Perrier", "", 2f, "Des bulles désaltérantes");
-        Product water = new Product("Cristaline", "", 1.5f, "A la Cliarefontaine, j'ai bu l'eau Cristaline");
-        Product orangina = new Product("Orangina", "", 2f, "Bien secouer !");
-        Product nestea = new Product("Nestea", "", 2f, "Goût pêche");
-        Product coffee = new Product("Café", "", 1.5f, "Wake up !");
-        Product tea = new Product("Thé", "", 1.5f, "English breakfast");
-        Product hotChocolate = new Product("Chocolat Chaud", "", 2f, "Au lait chaud");
+        Product coca = new Product("Cocal-Cola", "/WEB-INF/Img/Products/coca.jpg", 2f, "Always Coca-Cola");
+        Product cocaLight = new Product("Cocal-Cola Light", "/WEB-INF/Img/Products/cocaLight.png", 2f, "Always Coca-Cola");
+        Product cocaZero = new Product("Cocal-Cola Zero", "/WEB-INF/Img/Products/cocaZero.jpg", 2f, "Always Coca-Cola");
+        Product perrier = new Product("Perrier", "/WEB-INF/Img/Products/perrier.png", 2f, "Des bulles désaltérantes");
+        Product water = new Product("Cristaline", "/WEB-INF/Img/Products/cristaline.jpg", 1.5f, "A la Cliarefontaine, j'ai bu l'eau Cristaline");
+        Product orangina = new Product("Orangina", "/WEB-INF/Img/Products/orangina.jpg", 2f, "Bien secouer !");
+        Product nestea = new Product("Nestea", "/WEB-INF/Img/Products/nestea.png", 2f, "Goût pêche");
+        Product coffee = new Product("Café", "/WEB-INF/Img/Products/coffee.jpg", 1.5f, "Wake up !");
+        Product tea = new Product("Thé", "/WEB-INF/Img/Products/tea.png", 1.5f, "English breakfast");
+        Product hotChocolate = new Product("Chocolat Chaud", "/WEB-INF/Img/Products/hotChocolate.png", 2f, "Au lait chaud");
         
                 
         

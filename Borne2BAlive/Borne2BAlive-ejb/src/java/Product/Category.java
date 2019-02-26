@@ -42,11 +42,7 @@ public class Category implements Serializable {
         products = new ArrayList<Product>();
     }
 
-    public Category(String name, String description) {
-        this();
-        this.name = name;
-        this.description = description;
-    }
+  
     
     
 
