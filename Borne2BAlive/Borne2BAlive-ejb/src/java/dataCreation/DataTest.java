@@ -24,7 +24,7 @@ public class DataTest implements DataTestLocal {
         INSTANCIATION OF OBJECTS
         */
         
-        // Category types
+        // CategoryType
         CategoryType typeCarte = new CategoryType("A la carte");
         CategoryType typeMenus = new CategoryType("Menus");
         
@@ -216,6 +216,9 @@ public class DataTest implements DataTestLocal {
         PERSISTS
         */
         
+        // jAlex : je persiste uniquement les categories car il y a cascade vers CategoryType 
+        // et vers Product qui cascade vers NutritionFacts et ProductStatus
+        // Il faut juste être sûr d'avoir mis chaque produit dans une catégorie, et chaque NutritionFacts dans un produit
         em.persist(coldDrinks);
         em.persist(hotDrinks);
         em.persist(sandwiches);
@@ -228,29 +231,7 @@ public class DataTest implements DataTestLocal {
         
         em.flush();
         
-        em.persist(adana);
-        em.persist(kofte);
-        em.persist(chicken);
-        em.persist(merguez);
-        em.persist(american);
-        em.persist(fries);
-        em.persist(potatoes);
-        em.persist(saladSmall);
-        em.persist(ketchup);
-        em.persist(mayo);
-        em.persist(mustard);
-        em.persist(samourai);
-        em.persist(curry);
-        em.persist(coca);
-        em.persist(cocaLight);
-        em.persist(cocaZero);
-        em.persist(orangina);
-        em.persist(nestea);
-        em.persist(water);
-        em.persist(perrier);
-        em.persist(coffee);
-        em.persist(tea);
-        em.persist(hotChocolate);
+     
         
         
     }
