@@ -1,19 +1,57 @@
 
 package tests;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import order.Location;
+import order.OrderStatus;
+import order.PaymentType;
+import order.VAT;
+
 public class DataTest {
 
     public static void main(String[] args) {
         
-        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Borne2BAlive-ejbPU");
+        EntityManager em = emf.createEntityManager();
         
         // data test here
 
         // Bob peed here
         
 
-        // coucou je suis la ludivine
-        // je suis encore là!!
+        // LUDIVINE
+        
+        // VAT 
+        
+        VAT normale = new VAT(10, "TVA normale");
+        VAT reduite = new VAT(5.5f, "TVA réduite");
+        
+        // LOCATION
+        Location resto = new Location ("sur place");
+        Location takeAway = new Location ("à emporter");
+        
+        
+        //PAYMENT TYPE 
+        
+        PaymentType cb = new PaymentType ("carte bancaire");
+        PaymentType esp = new PaymentType ("espèces");
+        PaymentType tresto = new PaymentType("ticket restaurant");
+        
+        
+        //ORDER STATUS
+        
+        OrderStatus os01 = new OrderStatus ("en cours de préparation");
+        OrderStatus os02 = new OrderStatus ("en attente de règlement");
+        OrderStatus os03 = new OrderStatus ("payée");
+        OrderStatus os04 = new OrderStatus ("prête");
+        OrderStatus os05 = new OrderStatus ("retirée");
+        
+        
+        //ORDER à faire plus tard
+
         
 
 
@@ -22,8 +60,21 @@ public class DataTest {
         
         // jAlex
         
+        em.persist(normale);
+        em.persist(reduite);
+        em.persist(cb);
+        em.persist(esp);
+        em.persist(tresto);
+        em.persist(os01);
+        em.persist(os02);
+        em.persist(os03);
+        em.persist(os04);
         
-        
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        et.commit();
+        em.close();
+        emf.close();
         
         
     }
