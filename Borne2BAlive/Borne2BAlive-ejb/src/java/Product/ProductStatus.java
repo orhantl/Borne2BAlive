@@ -2,63 +2,46 @@
 package Product;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 
 @Entity
-public class Category implements Serializable {
+public class ProductStatus implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, length = 50, unique = true)
+    
+    @Column(unique = true, length = 50)
     private String name;
     
-    @Column(length = 200)
+    @Column(length = 250)
     private String description;
     
-    @Column()
-    private String img;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private CategoryType type;
-    
-    @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "status")
     private Collection<Product> products;
+    
+    
 
-    
-    
-    public Category() {
-        products = new ArrayList<Product>();
+    public ProductStatus() {
     }
 
-    public Category(String name, String description) {
-        this();
+    public ProductStatus(String name, String description) {
         this.name = name;
         this.description = description;
     }
     
     
+    
+    
 
-    public Category(String name, String description, String img) {
-        this();
-        this.name = name;
-        this.description = description;
-        this.img = img;
-    }
-    
-    
-    
     public Long getId() {
         return id;
     }
@@ -83,30 +66,6 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public CategoryType getType() {
-        return type;
-    }
-
-    public void setType(CategoryType type) {
-        this.type = type;
-    }
-
-    public Collection<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Collection<Product> products) {
-        this.products = products;
-    }
-
     
     
     
@@ -120,10 +79,10 @@ public class Category implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Category)) {
+        if (!(object instanceof ProductStatus)) {
             return false;
         }
-        Category other = (Category) object;
+        ProductStatus other = (ProductStatus) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
