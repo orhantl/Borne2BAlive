@@ -1,5 +1,5 @@
-
 package tests;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,8 +19,6 @@ public class DataTest {
         
         // data test here
 
-        // Bob peed here
-        
 
         // LUDIVINE
         
@@ -58,24 +56,8 @@ public class DataTest {
         //AMOS a01
 
         
-        // jAlex
-        
-        em.persist(normale);
-        em.persist(reduite);
-        em.persist(cb);
-        em.persist(esp);
-        em.persist(tresto);
-        em.persist(os01);
-        em.persist(os02);
-        em.persist(os03);
-        em.persist(os04);
-        
-        EntityTransaction et = em.getTransaction();
-        et.begin();
-        et.commit();
-        em.close();
-        emf.close();
-        
+     
+ 
         
     }
     
