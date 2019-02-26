@@ -65,6 +65,10 @@ public class DataTest implements DataTestLocal {
         NutritionFacts oranginaFacts = new NutritionFacts(16.9f, 0, 0, 16.9f, 0, 0, 71);
         NutritionFacts nesteaFacts = new NutritionFacts(4.5f, 0, 0, 4.5f, 0, 0, 18);
         NutritionFacts hotChocolateFacts = new NutritionFacts(10.7f, 2.3f, 3.5f, 9.5f, 1, 0, 77);
+        
+        NutritionFacts tiramisuFacts = new NutritionFacts(37.5f, 12.5f, 3.8f, 21.1f, 1, 0.5f, 280);
+        NutritionFacts chocolateMuffinFacts = new NutritionFacts(54, 16, 4.5f, 33, 1, 0.34f, 377);
+        NutritionFacts blueberryMuffinFacts = new NutritionFacts(55, 18, 4.6f, 35, 1.2f, 0.34f, 3927);
                 
         // Product
         Product adana = new Product("Adana Kebab", "/WEB-INF/Img/Products/adana.jpg", 5, "Plat issu de la cuisine turque qui vient de la ville d'Adana, plus épicé que le kebab standard");
@@ -94,7 +98,9 @@ public class DataTest implements DataTestLocal {
         Product tea = new Product("Thé", "/WEB-INF/Img/Products/tea.png", 1.5f, "English breakfast");
         Product hotChocolate = new Product("Chocolat Chaud", "/WEB-INF/Img/Products/hotChocolate.png", 2f, "Au lait chaud");
         
-                
+        Product tiramisu = new Product("Tiramisu", "/WEB-INF/Img/Products/tiramisu.jpg", 4.5f, "Un savoureux mélange café/chocolat");
+        Product chocolateMuffin = new Product("Muffin au chocolat", "/WEB-INF/Img/Products/chocolateMuffin.jpg", 4, "Aux pépites de chocolat");
+        Product blueberryMuffin = new Product("Muffin aux Myrtilles", "/WEB-INF/Img/Products/blueberryMuffin.jpg", 4, "Parfait avec un thé");
         
          
         /*
@@ -136,6 +142,9 @@ public class DataTest implements DataTestLocal {
         coffee.setStatus(available);
         tea.setStatus(available);
         hotChocolate.setStatus(available);
+        tiramisu.setStatus(available);
+        chocolateMuffin.setStatus(available);
+        blueberryMuffin.setStatus(available);
         
         // Product > NutritionFacts
         adana.setFacts(adanaFacts);
@@ -156,6 +165,9 @@ public class DataTest implements DataTestLocal {
         orangina.setFacts(oranginaFacts);
         nestea.setFacts(nesteaFacts);
         hotChocolate.setFacts(hotChocolateFacts);
+        tiramisu.setFacts(tiramisuFacts);
+        chocolateMuffin.setFacts(chocolateMuffinFacts);
+        blueberryMuffin.setFacts(blueberryMuffinFacts);
         
         // Category > Product
         coldDrinks.getProducts().add(coca);
@@ -196,6 +208,9 @@ public class DataTest implements DataTestLocal {
         menuSides.getProducts().add(fries);
         menuSides.getProducts().add(potatoes);
         menuSides.getProducts().add(saladSmall);
+        desserts.getProducts().add(tiramisu);
+        desserts.getProducts().add(chocolateMuffin);
+        desserts.getProducts().add(blueberryMuffin);
         
         /*
         PERSISTS
@@ -210,7 +225,9 @@ public class DataTest implements DataTestLocal {
         em.persist(menuDrinks);
         em.persist(menuSandwiches);
         em.persist(menuSides);
+        
         em.flush();
+        
         em.persist(adana);
         em.persist(kofte);
         em.persist(chicken);
