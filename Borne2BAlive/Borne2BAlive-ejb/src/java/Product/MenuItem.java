@@ -1,53 +1,40 @@
 
-package order;
+package Product;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
-public class PaymentType implements Serializable {
+public class MenuItem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
+    private float optionPriceApplied;
+
+    public MenuItem() {
+    }
+
     
-    @Column (nullable=false, length=50)
-    private String name;
+    public MenuItem(float optionPriceApplied) {
+        this.optionPriceApplied = optionPriceApplied;
+    }
+
+    public float getOptionPriceApplied() {
+        return optionPriceApplied;
+    }
+
+    public void setOptionPriceApplied(float optionPriceApplied) {
+        this.optionPriceApplied = optionPriceApplied;
+    }
     
-    @ManyToMany (mappedBy="paymentList")
-    private Collection <OrderInfo> orderList;
-
-    public PaymentType() {
-        this.orderList = new ArrayList();
-    }
-
-    public PaymentType(String name) {
-        this.name = name;
-    }
-
-    public Collection<OrderInfo> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(Collection<OrderInfo> orderList) {
-        this.orderList = orderList;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    
     public Long getId() {
         return id;
     }
@@ -66,10 +53,10 @@ public class PaymentType implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PaymentType)) {
+        if (!(object instanceof MenuItem)) {
             return false;
         }
-        PaymentType other = (PaymentType) object;
+        MenuItem other = (MenuItem) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -78,7 +65,7 @@ public class PaymentType implements Serializable {
 
     @Override
     public String toString() {
-        return name;
+        return  id + " : "  + optionPriceApplied;
     }
     
 }

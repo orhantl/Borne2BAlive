@@ -21,14 +21,14 @@ public class VAT implements Serializable {
     @Column (nullable=false)
     private float rate; // exprimé en %
     
-    @Column 
+    @Column (unique=true)
     private String name;
     
-    @OneToMany 
-    private Collection <VAT> VATlist;
+    @OneToMany (mappedBy = "appliedVAT")
+    private Collection <Location> Loclist;
     
     public VAT() {
-        VATlist = new ArrayList();
+        Loclist = new ArrayList();
     }
     
     public VAT(float rate, String name) {
