@@ -2,6 +2,7 @@
 package Product;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,16 +31,19 @@ public class Allergen implements Serializable {
     @ManyToMany(mappedBy = "allergens", fetch = FetchType.LAZY)
     private Collection<Ingredient> ingredients;
     
-    //@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Labelling label;
     
     
     //####################CONSTRUCTORS############################
 
     public Allergen() {
+        ingredients = new ArrayList<>();
     }
 
     public Allergen(String name) {
         this.name = name;
+        ingredients = new ArrayList<>();
     }
     
         
@@ -60,6 +64,16 @@ public class Allergen implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Collection<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Collection<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+    
+    
     
     
     

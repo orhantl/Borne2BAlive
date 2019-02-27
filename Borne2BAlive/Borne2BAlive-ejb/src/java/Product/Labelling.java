@@ -2,11 +2,13 @@
 package Product;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 // Each Allergen object has a labelling (ie the virulence of the IRL allergen)
 // with a factor ranging on a scale from 1 to 3
@@ -25,6 +27,11 @@ public class Labelling implements Serializable {
     
     @Column(nullable = false, length = 2)
     private int level;
+    
+    //####################DEPENDENCIES############################
+    
+    @OneToMany(mappedBy = "label")
+    private Collection<Allergen> allergens;
     
     //####################CONSTRUCTORS############################
 

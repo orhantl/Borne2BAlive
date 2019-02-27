@@ -2,6 +2,7 @@
 package Product;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,18 +38,20 @@ public class Ingredient implements Serializable {
     //####################CONSTRUCTORS############################
     
     public Ingredient(){
-        
+        allergens = new ArrayList<>();
     }
     
     public Ingredient(String name, String img){
         this.name = name;
         this.img = img;
+        allergens = new ArrayList<>();
     }
     
     public Ingredient(String name, String description, String img){
         this.name = name;
         this.description = description;
-        this.img = img;        
+        this.img = img;
+        allergens = new ArrayList<>();
     }
     
     //####################GETTERS & SETTERS#######################
@@ -83,6 +86,14 @@ public class Ingredient implements Serializable {
     
     public void setImg(String img){
         this.img = img;
+    }
+    
+    public Collection<Allergen> getAllergens(){
+        return allergens;
+    }
+    
+    public void setAllergens(Collection<Allergen> allergens){
+        this.allergens = allergens;
     }
     
     //####################################################
