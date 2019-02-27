@@ -35,11 +35,15 @@ public class Category implements Serializable {
     
     @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<Product> products;
+    
+    @ManyToMany(mappedBy = "categories")
+    private Collection<Menu> menus;
 
     
     
     public Category() {
         products = new ArrayList<Product>();
+        menus = new ArrayList<Menu>();
     }
 
   
@@ -101,6 +105,14 @@ public class Category implements Serializable {
 
     public void setProducts(Collection<Product> products) {
         this.products = products;
+    }
+
+    public Collection<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Collection<Menu> menus) {
+        this.menus = menus;
     }
 
     

@@ -3,6 +3,7 @@ package dataCreation;
 
 import Product.Category;
 import Product.CategoryType;
+import Product.Menu;
 import Product.NutritionFacts;
 import Product.Offer;
 import Product.Product;
@@ -77,7 +78,7 @@ public class DataTest implements DataTestLocal {
         Product kofte = new Product("Kofte Kebab", "/WEB-INF/Img/Products/kofte.jpg", 5, "Boulette de viande hachée aux épices. C'est la préparation la plus cuisinée en Turquie.");
         Product chicken = new Product("Chicken Kebab", "/WEB-INF/Img/Products/chicken.jpg", 5, "Le traditionnel kebab en version poulet");
         Product merguez = new Product("Merguez Kebab", "/WEB-INF/Img/Products/merguez.jpg", 5, "Le traditionnel kebab en version merguez");
-        Product american = new Product("American Kebab", "/WEB-INF/Img/Products/american.png", 5, "Le traditionnel kebab en version steak haché");
+        Product american = new Product("American Kebab", "/WEB-INF/Img/Products/american.png", 5.5f, "Le traditionnel kebab en version steak haché");
         
         Product fries = new Product("Frites", "/WEB-INF/Img/Products/fries.jpg", 2.5f, "Délicieuses et croustillantes");
         Product potatoes = new Product("Potatoes", "/WEB-INF/Img/Products/potatoes.png", 2.5f, "Savoureuses et croustillantes");
@@ -108,7 +109,12 @@ public class DataTest implements DataTestLocal {
         // Offer
         Offer bestSellers = new Offer("Meilleures Ventes", "Une sélection de vos produits préférés", new GregorianCalendar(2019, 01, 26).getTime(), null, 0, "/WEB-INF/Img/Offers/meilleuresVentes.jpg");
         
-        
+        // Menus
+        Menu menuAdana = new Menu("Menu Adana", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
+        Menu menuKofte = new Menu("Menu Kofte", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
+        Menu menuChicken = new Menu("Menu Chicken", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
+        Menu menuMerguez = new Menu("Menu Merguez", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
+        Menu menuAmerican = new Menu("Menu American", "", "/WEB-INF/Img/Menus/menu.jpg", 7.5f);
         
         
          
@@ -124,7 +130,6 @@ public class DataTest implements DataTestLocal {
         desserts.setType(typeCarte);
         sauces.setType(typeCarte);
         menuDrinks.setType(typeMenus);
-        menuSandwiches.setType(typeMenus);
         menuSides.setType(typeMenus);
         
         // Product > ProductStatus
@@ -209,11 +214,6 @@ public class DataTest implements DataTestLocal {
         menuDrinks.getProducts().add(nestea);
         menuDrinks.getProducts().add(water);
         menuDrinks.getProducts().add(perrier);
-        menuSandwiches.getProducts().add(adana);
-        menuSandwiches.getProducts().add(kofte);
-        menuSandwiches.getProducts().add(chicken);
-        menuSandwiches.getProducts().add(merguez);
-        menuSandwiches.getProducts().add(american);
         menuSides.getProducts().add(fries);
         menuSides.getProducts().add(potatoes);
         menuSides.getProducts().add(saladSmall);
@@ -229,13 +229,26 @@ public class DataTest implements DataTestLocal {
         chicken.getOffers().add(bestSellers);
         american.getOffers().add(bestSellers);
         
+        // Menu > Category
+        menuAdana.getCategories().add(menuDrinks);
+        menuAdana.getCategories().add(menuSides);
+        menuKofte.getCategories().add(menuDrinks);
+        menuKofte.getCategories().add(menuSides);
+        menuChicken.getCategories().add(menuDrinks);
+        menuChicken.getCategories().add(menuSides);
+        menuMerguez.getCategories().add(menuDrinks);
+        menuMerguez.getCategories().add(menuSides);
+        menuAmerican.getCategories().add(menuDrinks);
+        menuAmerican.getCategories().add(menuSides);
+        
         /*
         PERSISTS
         */
         
-        // jAlex : je persiste uniquement les categories car il y a cascade vers CategoryType 
-        // et vers Product qui cascade vers NutritionFacts et ProductStatus
-        // Il faut juste être sûr d'avoir mis chaque produit dans une catégorie, et chaque NutritionFacts dans un produit
+        // jAlex : je persiste uniquement les categories à la carte et les menus 
+        // car il y a cascade vers les autres classes
+        // Il faut juste être sûr d'avoir mis chaque produit dans une catégorie, chaque NutritionFacts dans un produit
+        // et chaque catégorie de type Menu dans un menu
         em.persist(coldDrinks);
         em.persist(hotDrinks);
         em.persist(sandwiches);
@@ -243,8 +256,12 @@ public class DataTest implements DataTestLocal {
         em.persist(desserts);
         em.persist(sauces);
         em.persist(menuDrinks);
-        em.persist(menuSandwiches);
         em.persist(menuSides);
+        em.persist(menuAdana);
+        em.persist(menuKofte);
+        em.persist(menuChicken);
+        em.persist(menuMerguez);
+        em.persist(menuAmerican);
         
         em.flush();
         
