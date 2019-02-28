@@ -2,11 +2,14 @@
 package order;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class PaymentType implements Serializable {
@@ -18,13 +21,23 @@ public class PaymentType implements Serializable {
     @Column (nullable=false, length=50)
     private String name;
     
-    
+    @ManyToMany (mappedBy="paymentList")
+    private Collection <OrderInfo> orderList;
 
     public PaymentType() {
+        this.orderList = new ArrayList();
     }
 
     public PaymentType(String name) {
         this.name = name;
+    }
+
+    public Collection<OrderInfo> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(Collection<OrderInfo> orderList) {
+        this.orderList = orderList;
     }
 
     public String getName() {

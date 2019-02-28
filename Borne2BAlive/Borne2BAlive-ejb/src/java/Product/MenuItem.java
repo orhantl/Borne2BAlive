@@ -2,19 +2,38 @@
 package Product;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-// CLASSE A CODER, ICI C'EST QUE LE SQUELETTE
 @Entity
 public class MenuItem implements Serializable {
     private static final long serialVersionUID = 1L;
-    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
+    private float optionPriceApplied;
+
+    public MenuItem() {
+    }
+
+    
+    public MenuItem(float optionPriceApplied) {
+        this.optionPriceApplied = optionPriceApplied;
+    }
+
+    public float getOptionPriceApplied() {
+        return optionPriceApplied;
+    }
+
+    public void setOptionPriceApplied(float optionPriceApplied) {
+        this.optionPriceApplied = optionPriceApplied;
+    }
+    
 
     public Long getId() {
         return id;
@@ -46,7 +65,8 @@ public class MenuItem implements Serializable {
 
     @Override
     public String toString() {
-        return "Product.MenuItem[ id=" + id + " ]";
+        return  id + " : "  + optionPriceApplied;
+
     }
     
 }
