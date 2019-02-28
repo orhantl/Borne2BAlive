@@ -1,6 +1,9 @@
 
 package order;
 
+import Account.Account;
+import company.CashRegister;
+import company.Kiosk;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,6 +42,15 @@ public class OrderInfo implements Serializable {
     @ManyToOne (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
     private OrderStatus status;
     
+    @ManyToOne
+    private Account accountSelected;
+    
+    @ManyToOne
+    private CashRegister cashier;
+    
+    @ManyToOne 
+    private Kiosk kiosk;
+    
     @ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
     private Collection <PaymentType> paymentList;
     
@@ -57,6 +69,31 @@ public class OrderInfo implements Serializable {
         this.appliedVAT = appliedVAT;
     }
 
+    public Kiosk getKiosk() {
+        return kiosk;
+    }
+
+    public void setKiosk(Kiosk kiosk) {
+        this.kiosk = kiosk;
+    }
+
+    public CashRegister getCashier() {
+        return cashier;
+    }
+
+    public void setCashier(CashRegister cashier) {
+        this.cashier = cashier;
+    }
+
+    public Account getAccountSelected() {
+        return accountSelected;
+    }
+
+    public void setAccountSelected(Account accountSelected) {
+        this.accountSelected = accountSelected;
+    }
+
+    
     public Collection<Line> getLineList() {
         return lineList;
     }

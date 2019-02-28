@@ -42,6 +42,7 @@ public class Product implements Serializable {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private NutritionFacts facts;
     
+
     @ManyToMany(mappedBy = "products")
     private Collection<Category> categories;
     
@@ -73,9 +74,6 @@ public class Product implements Serializable {
         this.description = description;
     }
     
-    
-    
-
     public Long getId() {
         return id;
     }

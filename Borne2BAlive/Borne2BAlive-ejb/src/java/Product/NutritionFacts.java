@@ -57,11 +57,6 @@ public class NutritionFacts implements Serializable {
         this.kCal = kCal;
     }
     
-    
-    
-    
-    
-    
     public Long getId() {
         return id;
     }
@@ -125,8 +120,14 @@ public class NutritionFacts implements Serializable {
     public void setkCal(float kCal) {
         this.kCal = kCal;
     }
-    
-    
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     @Override
     public int hashCode() {

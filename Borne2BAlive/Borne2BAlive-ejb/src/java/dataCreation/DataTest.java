@@ -364,6 +364,23 @@ public class DataTest implements DataTestLocal {
         l10.setSelectedOrder(o05);
         l11.setSelectedOrder(o05);
         
+
+        // Order > Account
+        
+        o01.setAccountSelected(acc01);
+        o02.setAccountSelected(acc01);
+        
+        // Order > Kiosk
+        
+        o01.setKiosk(borne01);
+        o02.setKiosk(borne01);
+        o03.setKiosk(borne01);
+        o04.setKiosk(borne01);
+        
+        // Order > CashRegister
+        o05.setCashier(caisse);
+                
+
         // Line > Product
         l01.setMenu(menuKofte);
         l01.getMenuItems().add(menuSandwich01);
@@ -381,6 +398,7 @@ public class DataTest implements DataTestLocal {
         l06.getOptionList().add(noIce);
         l01.getOptionList().add(extraPickles);
         
+
         // Labelling > Allergen
         Collection<Allergen> allerBread = bread.getAllergens();
         allerBread.add(glutenThree);

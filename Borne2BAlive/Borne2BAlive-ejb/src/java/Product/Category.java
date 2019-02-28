@@ -33,6 +33,7 @@ public class Category implements Serializable {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private CategoryType type;
     
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<Product> products;
     
