@@ -51,6 +51,7 @@ public class OrderInfo implements Serializable {
     }
 
     public OrderInfo(String queueNumber, Date date, float appliedVAT) {
+        this();
         this.queueNumber = queueNumber;
         this.dateOfOrder = date;
         this.appliedVAT = appliedVAT;

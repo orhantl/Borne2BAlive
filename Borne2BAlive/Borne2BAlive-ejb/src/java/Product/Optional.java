@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import order.Line;
 
 @Entity
-public class Option implements Serializable {
+public class Optional implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +33,12 @@ public class Option implements Serializable {
     private Collection <Line> lineList;
     
 
-    public Option() {
+    public Optional() {
         this.lineList = new ArrayList();
     }
 
-    public Option(String name, int maxQty, float price) {
+    public Optional(String name, int maxQty, float price) {
+        this();
         this.name = name;
         this.maxQty = maxQty;
         this.price = price;
@@ -95,10 +96,10 @@ public class Option implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Option)) {
+        if (!(object instanceof Optional)) {
             return false;
         }
-        Option other = (Option) object;
+        Optional other = (Optional) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

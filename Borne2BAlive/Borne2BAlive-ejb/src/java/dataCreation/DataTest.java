@@ -142,6 +142,18 @@ public class DataTest implements DataTestLocal {
         o03.setStatus(os03);
         o04.setStatus(os04);
         o05.setStatus(os05);
+//        
+//        o01.getLineList().add(l01);
+//        o01.getLineList().add(l02);
+//        o02.getLineList().add(l03);
+//        o02.getLineList().add(l04);
+//        o03.getLineList().add(l05);
+//        o03.getLineList().add(l06);
+//        o04.getLineList().add(l07);
+//        o04.getLineList().add(l08);
+//        o05.getLineList().add(l09);
+//        o05.getLineList().add(l10);
+//        o05.getLineList().add(l11);
         
         l01.setSelectedOrder(o01);
         l02.setSelectedOrder(o01);

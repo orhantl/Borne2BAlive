@@ -1,7 +1,7 @@
 
 package order;
 
-import Product.Option;
+import Product.Optional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +40,7 @@ public class Line implements Serializable {
     private OrderInfo selectedOrder ;
     
     @ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
-    private Collection <Option> optionList;
+    private Collection <Optional> optionList;
     
 
     public Line() {
@@ -48,6 +48,7 @@ public class Line implements Serializable {
     }
 
     public Line(float priceApplied, float optionPriceApplied, int qty, float preTaxPrice, float discount) {
+        this();
         this.priceApplied = priceApplied;
         this.optionPriceApplied = optionPriceApplied;
         this.qty = qty;
@@ -55,11 +56,11 @@ public class Line implements Serializable {
         this.discount = discount;
     }
 
-    public Collection<Option> getOptionList() {
+    public Collection<Optional> getOptionList() {
         return optionList;
     }
 
-    public void setOptionList(Collection<Option> optionList) {
+    public void setOptionList(Collection<Optional> optionList) {
         this.optionList = optionList;
     }
 
