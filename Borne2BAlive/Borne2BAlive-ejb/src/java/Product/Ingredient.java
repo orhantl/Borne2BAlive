@@ -40,7 +40,7 @@ public class Ingredient implements Serializable {
     @ManyToMany(mappedBy = "ingredients")
     private Collection<MenuItem> menuItems;
     
-    @OneToMany
+    @OneToMany(mappedBy = "ingredient")
     private Collection<Optional> options;
 
     //####################CONSTRUCTORS############################

@@ -39,10 +39,14 @@ public class Menu implements Serializable {
     
     @OneToMany(mappedBy = "menu")
     private Collection<Line> lines;
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Offer> offers;
 
     public Menu() {
         categories = new ArrayList<>();
         lines = new ArrayList<>();
+        offers = new ArrayList<>();
     }
 
     public Menu(String name, String description, String img, float price) {
@@ -118,6 +122,14 @@ public class Menu implements Serializable {
 
     public void setLines(Collection<Line> lines) {
         this.lines = lines;
+    }
+
+    public Collection<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(Collection<Offer> offers) {
+        this.offers = offers;
     }
     
     
