@@ -42,8 +42,7 @@ public class NutritionFacts implements Serializable {
     @Column()
     private float kCal; 
     
-    @OneToOne
-    private Product product;
+    
 
     public NutritionFacts() {
     }

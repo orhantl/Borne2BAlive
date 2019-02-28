@@ -1,7 +1,10 @@
 
 package order;
 
+import Product.Menu;
+import Product.MenuItem;
 import Product.Optional;
+import Product.Product;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Line implements Serializable {
@@ -42,9 +46,19 @@ public class Line implements Serializable {
     @ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
     private Collection <Optional> optionList;
     
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+    private Product product;
+    
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+    private Menu menu;
+    
+    @OneToMany(mappedBy = "line", cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+    private Collection<MenuItem> menuItems;
+
 
     public Line() {
         this.optionList = new ArrayList();
+        menuItems = new ArrayList();
     }
 
     public Line(float priceApplied, float optionPriceApplied, int qty, float preTaxPrice, float discount) {
@@ -119,6 +133,33 @@ public class Line implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public Collection<MenuItem> getMenuItems() {
+        return menuItems;
+    }
+
+    public void setMenuItems(Collection<MenuItem> menuItems) {
+        this.menuItems = menuItems;
+    }
+    
+    
+    
 
     @Override
     public int hashCode() {

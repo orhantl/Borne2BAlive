@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import order.Line;
 
 @Entity
@@ -32,6 +33,8 @@ public class Optional implements Serializable {
     @ManyToMany (mappedBy="optionList")
     private Collection <Line> lineList;
     
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Ingredient ingredient;
 
     public Optional() {
         this.lineList = new ArrayList();
@@ -85,6 +88,16 @@ public class Optional implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+    
+    
 
     @Override
     public int hashCode() {
