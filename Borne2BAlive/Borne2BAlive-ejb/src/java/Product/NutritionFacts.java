@@ -121,13 +121,7 @@ public class NutritionFacts implements Serializable {
         this.kCal = kCal;
     }
 
-    public Product getProduct() {
-        return product;
-    }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     @Override
     public int hashCode() {
