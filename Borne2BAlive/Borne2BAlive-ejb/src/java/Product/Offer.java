@@ -47,7 +47,7 @@ public class Offer implements Serializable {
     private Collection<Product> products;
 
     public Offer() {
-        products = new ArrayList<Product>();
+        products = new ArrayList<>();
     }
 
     public Offer(String name, String description, Date startDate, Date endDate, float discount, String img) {

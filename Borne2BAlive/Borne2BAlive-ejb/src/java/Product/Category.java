@@ -33,7 +33,8 @@ public class Category implements Serializable {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private CategoryType type;
     
-    @ManyToMany (cascade ={CascadeType.PERSIST, CascadeType.MERGE})
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<Product> products;
     
     @ManyToMany(mappedBy = "categories")
@@ -42,8 +43,8 @@ public class Category implements Serializable {
     
     
     public Category() {
-        products = new ArrayList<Product>();
-        menus = new ArrayList<Menu>();
+        products = new ArrayList<>();
+        menus = new ArrayList<>();
     }
 
   

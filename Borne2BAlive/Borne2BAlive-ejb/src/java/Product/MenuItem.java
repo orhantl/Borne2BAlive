@@ -2,11 +2,17 @@
 package Product;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import order.Line;
 
 @Entity
 public class MenuItem implements Serializable {
@@ -17,12 +23,23 @@ public class MenuItem implements Serializable {
 
     @Column
     private float optionPriceApplied;
+    
+    @ManyToOne
+    private Product product; 
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Ingredient> ingredients;
+    
+    @ManyToOne
+    private Line line;
 
     public MenuItem() {
+        ingredients = new ArrayList<>();
     }
 
     
     public MenuItem(float optionPriceApplied) {
+        this();
         this.optionPriceApplied = optionPriceApplied;
     }
 
@@ -42,6 +59,33 @@ public class MenuItem implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Collection<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Collection<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Line getLine() {
+        return line;
+    }
+
+    public void setLine(Line line) {
+        this.line = line;
+    }
+    
+    
+    
 
     @Override
     public int hashCode() {
