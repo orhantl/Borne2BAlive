@@ -45,9 +45,13 @@ public class Offer implements Serializable {
     
     @ManyToMany(mappedBy = "offers")
     private Collection<Product> products;
+    
+    @ManyToMany(mappedBy = "offers")
+    private Collection<Menu> menus;
 
     public Offer() {
         products = new ArrayList<>();
+        menus = new ArrayList<>();
     }
 
     public Offer(String name, String description, Date startDate, Date endDate, float discount, String img) {
@@ -124,6 +128,14 @@ public class Offer implements Serializable {
 
     public void setProducts(Collection<Product> products) {
         this.products = products;
+    }
+
+    public Collection<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Collection<Menu> menus) {
+        this.menus = menus;
     }
 
     
