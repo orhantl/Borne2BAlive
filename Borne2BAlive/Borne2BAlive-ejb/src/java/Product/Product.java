@@ -12,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import order.Line;
 
 @Entity
 public class Product implements Serializable {
@@ -40,16 +42,27 @@ public class Product implements Serializable {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private NutritionFacts facts;
     
-    @ManyToMany
+    @ManyToMany(mappedBy = "products")
     private Collection<Category> categories;
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<Offer> offers;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Ingredient> ingredients;
+    
+    @OneToMany(mappedBy = "product")
+    private Collection<Line> lines;
+    
+    @OneToMany(mappedBy = "product")
+    private Collection<MenuItem> menuItems;
     
     public Product() {
-        categories = new ArrayList<Category>();
-        offers = new ArrayList<Offer>();
+        categories = new ArrayList<>();
+        offers = new ArrayList<>();
+        ingredients = new ArrayList<>();
+        lines = new ArrayList<>();
+        menuItems = new ArrayList<>();
     }
 
     public Product(String name, String img, float price, String description) {
@@ -135,6 +148,31 @@ public class Product implements Serializable {
         this.offers = offers;
     }
 
+    public Collection<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Collection<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Collection<Line> getLines() {
+        return lines;
+    }
+
+    public void setLines(Collection<Line> lines) {
+        this.lines = lines;
+    }
+
+    public Collection<MenuItem> getMenuItems() {
+        return menuItems;
+    }
+
+    public void setMenuItems(Collection<MenuItem> menuItems) {
+        this.menuItems = menuItems;
+    }
+
+    
     
     
     
