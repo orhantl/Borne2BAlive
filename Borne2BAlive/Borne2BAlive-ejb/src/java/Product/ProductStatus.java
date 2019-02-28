@@ -1,70 +1,47 @@
 
-package order;
+package Product;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+
 @Entity
-public class Location implements Serializable {
+public class ProductStatus implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column (nullable = false, length= 50, unique=true)
+    @Column(unique = true, length = 50)
     private String name;
     
-    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE })
-    private VAT appliedVAT;
+    @Column(length = 250)
+    private String description;
     
-    @OneToMany (mappedBy= "place")
-    private Collection <OrderInfo> orderList;
+    @OneToMany(mappedBy = "status")
+    private Collection<Product> products;
+    
+    
 
-    public Location() {
-        this.orderList = new ArrayList();
+    public ProductStatus() {
     }
 
-    public Location(String name) {
+    public ProductStatus(String name, String description) {
         this.name = name;
-        
-    }
-
-
-    public Collection<OrderInfo> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(Collection<OrderInfo> orderList) {
-        this.orderList = orderList;
-    }
-
-    
-    public VAT getAppliedVAT() {
-        return appliedVAT;
-    }
-
-    public void setAppliedVAT(VAT appliedVAT) {
-        this.appliedVAT = appliedVAT;
-    }
-
-    
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.description = description;
     }
     
+    
+    
+    
+
     public Long getId() {
         return id;
     }
@@ -73,6 +50,25 @@ public class Location implements Serializable {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -83,10 +79,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof ProductStatus)) {
             return false;
         }
-        Location other = (Location) object;
+        ProductStatus other = (ProductStatus) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -12,53 +12,57 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Category implements Serializable {
+public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, length = 50, unique = true)
+        
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
-    
-    @Column(length = 200)
-    private String description;
     
     @Column()
     private String img;
+        
+    @Column(nullable = false)
+    private float price;
+    
+    @Column(length = 250)
+    private String description;
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private CategoryType type;
+    private ProductStatus status;
     
-    @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Collection<Product> products;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private NutritionFacts facts;
     
-    @ManyToMany(mappedBy = "categories")
-    private Collection<Menu> menus;
+    @ManyToMany
+    private Collection<Category> categories;
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Offer> offers;
 
     
-    
-    public Category() {
-        products = new ArrayList<Product>();
-        menus = new ArrayList<Menu>();
+    public Product() {
+        categories = new ArrayList<Category>();
+        offers = new ArrayList<Offer>();
     }
 
-  
-    
-    
-
-    public Category(String name, String description, String img) {
+    public Product(String name, String img, float price, String description) {
         this();
         this.name = name;
-        this.description = description;
         this.img = img;
+        this.price = price;
+        this.description = description;
     }
     
     
     
+
     public Long getId() {
         return id;
     }
@@ -75,14 +79,6 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getImg() {
         return img;
     }
@@ -91,28 +87,52 @@ public class Category implements Serializable {
         this.img = img;
     }
 
-    public CategoryType getType() {
-        return type;
+    public float getPrice() {
+        return price;
     }
 
-    public void setType(CategoryType type) {
-        this.type = type;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
-    public Collection<Product> getProducts() {
-        return products;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProducts(Collection<Product> products) {
-        this.products = products;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Collection<Menu> getMenus() {
-        return menus;
+    public ProductStatus getStatus() {
+        return status;
     }
 
-    public void setMenus(Collection<Menu> menus) {
-        this.menus = menus;
+    public void setStatus(ProductStatus status) {
+        this.status = status;
+    }
+
+    public NutritionFacts getFacts() {
+        return facts;
+    }
+
+    public void setFacts(NutritionFacts facts) {
+        this.facts = facts;
+    }
+
+    public Collection<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Collection<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Collection<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(Collection<Offer> offers) {
+        this.offers = offers;
     }
 
     
@@ -128,10 +148,10 @@ public class Category implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Category)) {
+        if (!(object instanceof Product)) {
             return false;
         }
-        Category other = (Category) object;
+        Product other = (Product) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
