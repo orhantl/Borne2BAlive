@@ -2,12 +2,14 @@
 package Product;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 // Each Allergen object has a labelling (ie the virulence of the IRL allergen)
@@ -30,17 +32,20 @@ public class Labelling implements Serializable {
     
     //####################DEPENDENCIES############################
     
-    @OneToMany(mappedBy = "label")
-    private Collection<Allergen> allergens;
+    @ManyToMany (mappedBy = "labellings")
+    private Collection<Allergen> allergenLabels;    
     
     //####################CONSTRUCTORS############################
 
     public Labelling() {
+        allergenLabels = new ArrayList<>();
     }
 
     public Labelling(String name, int level) {
+        this();
         this.name = name;
         this.level = level;
+        
     }
     
         
@@ -69,7 +74,16 @@ public class Labelling implements Serializable {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public Collection<Allergen> getAllergenLabels() {
+        return allergenLabels;
+    }
+
+    public void setAllergenLabels(Collection<Allergen> allergens) {
+        this.allergenLabels = allergens;
+    }
     
+        
         
     //#############################################################
 

@@ -31,19 +31,20 @@ public class Allergen implements Serializable {
     @ManyToMany(mappedBy = "allergens", fetch = FetchType.LAZY)
     private Collection<Ingredient> ingredients;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Labelling label;
-    
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Labelling> labellings;
     
     //####################CONSTRUCTORS############################
 
     public Allergen() {
         ingredients = new ArrayList<>();
+        labellings = new ArrayList<>();
     }
 
     public Allergen(String name) {
+        this();
         this.name = name;
-        ingredients = new ArrayList<>();
+        
     }
     
         
@@ -71,6 +72,14 @@ public class Allergen implements Serializable {
 
     public void setIngredients(Collection<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Collection<Labelling> getLabellings() {
+        return labellings;
+    }
+
+    public void setLabellings(Collection<Labelling> labellings) {
+        this.labellings = labellings;
     }
     
     

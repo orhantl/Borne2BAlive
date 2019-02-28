@@ -30,10 +30,15 @@ public class Ingredient implements Serializable {
     @Column(nullable = false, length = 100)
     private String img;
     
+    
+    
     //####################DEPENDENCIES############################
     
     @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<Allergen> allergens;
+    
+
+    
     
     //####################CONSTRUCTORS############################
     
@@ -42,16 +47,18 @@ public class Ingredient implements Serializable {
     }
     
     public Ingredient(String name, String img){
+        this();
         this.name = name;
         this.img = img;
-        allergens = new ArrayList<>();
+        
     }
     
     public Ingredient(String name, String description, String img){
+        this();
         this.name = name;
         this.description = description;
         this.img = img;
-        allergens = new ArrayList<>();
+        
     }
     
     //####################GETTERS & SETTERS#######################
