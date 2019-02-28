@@ -36,7 +36,7 @@ public class DataTest implements DataTestLocal {
     public void createData() {
         
         /*
-        INSTANCIATION OF OBJECTS
+        ****************** INSTANCIATION OF OBJECTS ******************
         */
         
         // CategoryType
@@ -92,61 +92,6 @@ public class DataTest implements DataTestLocal {
         Product merguez = new Product("Merguez Kebab", "/WEB-INF/Img/Products/merguez.jpg", 5, "Le traditionnel kebab en version merguez");
         Product american = new Product("American Kebab", "/WEB-INF/Img/Products/american.png", 5.5f, "Le traditionnel kebab en version steak haché");
         
-        // VAT 
-        
-        VAT normale = new VAT(10, "TVA normale");
-        VAT reduite = new VAT(5.5f, "TVA réduite");
-        
-        // LOCATION
-        Location resto = new Location ("sur place");
-        Location takeAway = new Location ("à emporter");
-        
-        
-        //PAYMENT TYPE 
-        
-        PaymentType cb = new PaymentType ("carte bancaire");
-        PaymentType esp = new PaymentType ("espèces");
-        PaymentType tresto = new PaymentType("ticket restaurant");
-        
-        
-        //ORDER STATUS
-        
-        OrderStatus os01 = new OrderStatus ("en cours de préparation");
-        OrderStatus os02 = new OrderStatus ("en attente de règlement");
-        OrderStatus os03 = new OrderStatus ("payée");
-        OrderStatus os04 = new OrderStatus ("prête");
-        OrderStatus os05 = new OrderStatus ("retirée");
-        
-        
-        // ORDER
-        
-        Date d01 = new GregorianCalendar(2019, 02, 21).getTime();
-        Date d02 = new GregorianCalendar(2019, 02, 22).getTime();
-        Date d03 = new GregorianCalendar(2019, 02, 23).getTime();
-        Date d04 = new GregorianCalendar(2019, 02, 24).getTime();
-        Date d05 = new GregorianCalendar(2019, 02, 25).getTime();
-        System.out.println(d01);
-        
-        OrderInfo o01 = new OrderInfo ("CB21", d01, 10f);
-        OrderInfo o02 = new OrderInfo ("CB22", d01, 5.5f);
-        OrderInfo o03 = new OrderInfo ("CB24", d01, 5.5f);
-        OrderInfo o04 = new OrderInfo ("ESP49", d01, 10f);
-        OrderInfo o05 = new OrderInfo ("ESP30", d01, 10f);
-        
-        // LINE 
-        
-        Line l01 = new Line (0,0,0,0,0);
-        Line l02 = new Line (0,0,0,0,0);
-        Line l03 = new Line (0,0,0,0,0);
-        Line l04 = new Line (0,0,0,0,0);
-        Line l05 = new Line (0,0,0,0,0);
-        Line l06 = new Line (0,0,0,0,0);
-        Line l07 = new Line (0,0,0,0,0);
-        Line l08 = new Line (0,0,0,0,0);
-        Line l09 = new Line (0,0,0,0,0);
-        Line l10 = new Line (0,0,0,0,0);
-        Line l11 = new Line (0,0,0,0,0);
-         
         Product fries = new Product("Frites", "/WEB-INF/Img/Products/fries.jpg", 2.5f, "Délicieuses et croustillantes");
         Product potatoes = new Product("Potatoes", "/WEB-INF/Img/Products/potatoes.png", 2.5f, "Savoureuses et croustillantes");
         Product saladSmall = new Product("Petite Salade", "/WEB-INF/Img/Products/salad.jpg", 2.0f, "Un instant frais et léger");
@@ -171,7 +116,60 @@ public class DataTest implements DataTestLocal {
         Product tiramisu = new Product("Tiramisu", "/WEB-INF/Img/Products/tiramisu.jpg", 4.5f, "Un savoureux mélange café/chocolat");
         Product chocolateMuffin = new Product("Muffin au chocolat", "/WEB-INF/Img/Products/chocolateMuffin.jpg", 4, "Aux pépites de chocolat");
         Product blueberryMuffin = new Product("Muffin aux Myrtilles", "/WEB-INF/Img/Products/blueberryMuffin.jpg", 4, "Parfait avec un thé");
+                
+        // Menus
+        Menu menuAdana = new Menu("Menu Adana", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
+        Menu menuKofte = new Menu("Menu Kofte", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
+        Menu menuChicken = new Menu("Menu Chicken", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
+        Menu menuMerguez = new Menu("Menu Merguez", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
+        Menu menuAmerican = new Menu("Menu American", "", "/WEB-INF/Img/Menus/menu.jpg", 7.5f);
         
+        // VAT 
+        VAT normale = new VAT(10, "TVA normale");
+        VAT reduite = new VAT(5.5f, "TVA réduite");
+        
+        // Location
+        Location resto = new Location ("sur place");
+        Location takeAway = new Location ("à emporter");       
+        
+        //Payment type        
+        PaymentType cb = new PaymentType ("carte bancaire");
+        PaymentType esp = new PaymentType ("espèces");
+        PaymentType tresto = new PaymentType("ticket restaurant");        
+        
+        //Order status        
+        OrderStatus os01 = new OrderStatus ("en cours de préparation");
+        OrderStatus os02 = new OrderStatus ("en attente de règlement");
+        OrderStatus os03 = new OrderStatus ("payée");
+        OrderStatus os04 = new OrderStatus ("prête");
+        OrderStatus os05 = new OrderStatus ("retirée");        
+        
+        // OrderInfo       
+        Date d01 = new GregorianCalendar(2019, 02, 21).getTime();
+        Date d02 = new GregorianCalendar(2019, 02, 22).getTime();
+        Date d03 = new GregorianCalendar(2019, 02, 23).getTime();
+        Date d04 = new GregorianCalendar(2019, 02, 24).getTime();
+        Date d05 = new GregorianCalendar(2019, 02, 25).getTime();
+        
+        OrderInfo o01 = new OrderInfo ("CB21", d01, 10f);
+        OrderInfo o02 = new OrderInfo ("CB22", d01, 5.5f);
+        OrderInfo o03 = new OrderInfo ("CB24", d01, 5.5f);
+        OrderInfo o04 = new OrderInfo ("ESP49", d01, 10f);
+        OrderInfo o05 = new OrderInfo ("ESP30", d01, 10f);
+        
+        // Line        
+        Line l01 = new Line (0,0,0,0,0);
+        Line l02 = new Line (0,0,0,0,0);
+        Line l03 = new Line (0,0,0,0,0);
+        Line l04 = new Line (0,0,0,0,0);
+        Line l05 = new Line (0,0,0,0,0);
+        Line l06 = new Line (0,0,0,0,0);
+        Line l07 = new Line (0,0,0,0,0);
+        Line l08 = new Line (0,0,0,0,0);
+        Line l09 = new Line (0,0,0,0,0);
+        Line l10 = new Line (0,0,0,0,0);
+        Line l11 = new Line (0,0,0,0,0);         
+
         // Ingredient
         Ingredient salade = new Ingredient("Salade", "Et une salade Gaza pour la gazelle ? "
                 + "Quoi ? Oui, c'est de la roquette", "/WEB-INF/Img/Ingredient/Ingredient/salade.jpg");
@@ -224,11 +222,9 @@ public class DataTest implements DataTestLocal {
         Ingredient tiramisu = new Ingredient("Tiramisu", "Dié-té-tique",
                 "/WEB-INF/Img/Ingredient/tiramisu.jpg");
         Ingredient pickle = new Ingredient("Cornichon", "Le bébé du concombre !",
-                "/WEB-INF/Img/Ingredient/cornichon.jpg");
-        
+                "/WEB-INF/Img/Ingredient/cornichon.jpg");        
 
-        // Allergen
-        
+        // Allergen        
         Allergen gluten = new Allergen("Gluten");
         Allergen sesame = new Allergen("Graines de sésame");
         Allergen nut = new Allergen("Fruits à coque");
@@ -246,26 +242,18 @@ public class DataTest implements DataTestLocal {
         Allergen glutenTwo = new Allergen("Gluten");
         Allergen glutenThree = new Allergen("Gluten");
         
-        // Labelling
-        
+        // Labelling        
         Labelling defConOne = new Labelling("Possibilité de traces", 1);
         Labelling defConTwo = new Labelling("Contient des traces", 2);
         Labelling defConThree = new Labelling("Est présent dans le produit", 3);
 
         // Offer
         Offer bestSellers = new Offer("Meilleures Ventes", "Une sélection de vos produits préférés", new GregorianCalendar(2019, 01, 26).getTime(), null, 0, "/WEB-INF/Img/Offers/meilleuresVentes.jpg");
-        
-        // Menus
-        Menu menuAdana = new Menu("Menu Adana", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
-        Menu menuKofte = new Menu("Menu Kofte", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
-        Menu menuChicken = new Menu("Menu Chicken", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
-        Menu menuMerguez = new Menu("Menu Merguez", "", "/WEB-INF/Img/Menus/menu.jpg", 7.0f);
-        Menu menuAmerican = new Menu("Menu American", "", "/WEB-INF/Img/Menus/menu.jpg", 7.5f);
-        
+
 
         
         /*
-        ASSOCIATIONS
+        ****************** ASSOCIATIONS ******************
         */
         
         // Category > CategoryType
@@ -278,16 +266,18 @@ public class DataTest implements DataTestLocal {
         menuDrinks.setType(typeMenus);
         menuSides.setType(typeMenus);
         
-
+        // Location > VAT
         resto.setAppliedVAT(normale);
         takeAway.setAppliedVAT(reduite);
         
+        // Order > Location
         o01.setPlace(resto);
         o02.setPlace(takeAway);
         o03.setPlace(takeAway);
         o04.setPlace(resto);
         o05.setPlace(resto);
         
+        // Order > Payment type
         ArrayList <PaymentType> p01 = new ArrayList();
         p01.add(cb);
         
@@ -302,24 +292,14 @@ public class DataTest implements DataTestLocal {
         o04.setPaymentList(p01);
         o05.setPaymentList(p02);
         
+        // Order > Status
         o01.setStatus(os01);
         o02.setStatus(os02);
         o03.setStatus(os03);
         o04.setStatus(os04);
         o05.setStatus(os05);
-//        
-//        o01.getLineList().add(l01);
-//        o01.getLineList().add(l02);
-//        o02.getLineList().add(l03);
-//        o02.getLineList().add(l04);
-//        o03.getLineList().add(l05);
-//        o03.getLineList().add(l06);
-//        o04.getLineList().add(l07);
-//        o04.getLineList().add(l08);
-//        o05.getLineList().add(l09);
-//        o05.getLineList().add(l10);
-//        o05.getLineList().add(l11);
-        
+
+        // Line > Order        
         l01.setSelectedOrder(o01);
         l02.setSelectedOrder(o01);
         l03.setSelectedOrder(o01);
@@ -331,9 +311,8 @@ public class DataTest implements DataTestLocal {
         l09.setSelectedOrder(o04);
         l10.setSelectedOrder(o05);
         l11.setSelectedOrder(o05);
-        
-        
-
+                
+        // Labelling > Allergen
         Collection<Allergen> allerBread = bread.getAllergens();
             allerBread.add(glutenThree);
             allerBread.add(sesame);
@@ -555,7 +534,6 @@ public class DataTest implements DataTestLocal {
         chocolateMuffin.getOffers().add(bestSellers);
         chicken.getOffers().add(bestSellers);
         american.getOffers().add(bestSellers);
-
         
         // Menu > Category
         menuAdana.getCategories().add(menuDrinks);
@@ -572,18 +550,17 @@ public class DataTest implements DataTestLocal {
         
             
         /*
-        PERSISTS
+        ****************** PERSISTS ******************
         */
         
 
-        // Category
-        
-
+       
         // jAlex : je persiste uniquement les categories à la carte et les menus 
         // car il y a cascade vers les autres classes
         // Il faut juste être sûr d'avoir mis chaque produit dans une catégorie, chaque NutritionFacts dans un produit
-        // et chaque catégorie de type Menu dans un menu
-
+        // et chaque catégorie de type 'Menu' dans un menu
+        
+        // Category  
         em.persist(coldDrinks);
         em.persist(hotDrinks);
         em.persist(sandwiches);
@@ -592,14 +569,22 @@ public class DataTest implements DataTestLocal {
         em.persist(sauces);
         em.persist(menuDrinks);
         em.persist(menuSides);
+        
+        // Menu
+        em.persist(menuAdana);
+        em.persist(menuKofte);
+        em.persist(menuChicken);
+        em.persist(menuMerguez);
+        em.persist(menuAmerican);
 
-               
+        // Order       
         em.persist(o01);
         em.persist(o02);
         em.persist(o03);
         em.persist(o04);
         em.persist(o05);
         
+        // Line
         em.persist(l01);
         em.persist(l02);
         em.persist(l03);
@@ -610,12 +595,9 @@ public class DataTest implements DataTestLocal {
         em.persist(l08);
         em.persist(l09);
         em.persist(l10);
-        em.persist(l11);
-
-       
+        em.persist(l11);     
         
-        // Ingredient
-        
+        // Ingredient        
         em.persist(bread);
         em.persist(salade);
         em.persist(tomato);
@@ -648,8 +630,7 @@ public class DataTest implements DataTestLocal {
         em.persist(vanillaIceCream);
         em.persist(tiramisu);
         
-        // Allergen
-        
+        // Allergen        
         em.persist(gluten);
         em.persist(sesame);
         em.persist(nut);
@@ -667,17 +648,11 @@ public class DataTest implements DataTestLocal {
         em.persist(glutenTwo);
         em.persist(glutenThree);
         
-        // Labelling
-        
+        // Labelling        
         em.persist(defConOne);
         em.persist(defConTwo);
         em.persist(defConThree);
 
-        em.persist(menuAdana);
-        em.persist(menuKofte);
-        em.persist(menuChicken);
-        em.persist(menuMerguez);
-        em.persist(menuAmerican);
 
         em.flush();
         
