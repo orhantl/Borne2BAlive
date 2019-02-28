@@ -1,6 +1,13 @@
 
 package dataCreation;
 
+import Account.Account;
+import Account.AccountStatus;
+import Product.Category;
+import Product.CategoryType;
+import company.CashRegister;
+import company.Kiosk;
+import company.Restaurant;
 import Product.Allergen;
 import Product.Category;
 import Product.CategoryType;
@@ -131,11 +138,29 @@ public class DataTest implements DataTestLocal {
         // Location
         Location resto = new Location ("sur place");
         Location takeAway = new Location ("à emporter");       
+
+        //restaurant
+        Restaurant resto= new Restaurant
+        ("borne2Alive","17 rue CDG Paris 75012","0185252525","123456789","1234567890123","borne2Alive@gmail.com");  
         
+         //cashRegister
+        CashRegister caisse= new CashRegister("485","toto24");
+        
+        //kiosk
+        Kiosk borne01= new Kiosk("485","kv01");
+        
+        //Account
+        Account acc01 = new Account("toto@gmail.com","dassauld","toto","toto1234",
+                "0690123456",new GregorianCalendar(2018, 02,28).getTime(),new GregorianCalendar(1985,03, 24).getTime(),
+                "H","25 rue jean 94400 Vitry");
+        
+        //AccountStatus
+        AccountStatus actif= new AccountStatus ("actif");
+
         //Payment type        
         PaymentType cb = new PaymentType ("carte bancaire");
         PaymentType esp = new PaymentType ("espèces");
-        PaymentType tresto = new PaymentType("ticket restaurant");        
+        PaymentType tresto = new PaymentType("ticket restaurant");  
         
         //Order status        
         OrderStatus os01 = new OrderStatus ("en cours de préparation");
@@ -255,6 +280,15 @@ public class DataTest implements DataTestLocal {
         /*
         ****************** ASSOCIATIONS ******************
         */
+
+      // Account > Status
+        acc01.setStatus(actif);
+      
+      // CashRegister > Restaurant
+        caisse.setRestaurant(resto);
+      
+      // Kiosk > Restaurant
+        borne01.setRestaurant(resto);
         
         // Category > CategoryType
         coldDrinks.setType(typeCarte);
@@ -652,7 +686,15 @@ public class DataTest implements DataTestLocal {
         em.persist(defConOne);
         em.persist(defConTwo);
         em.persist(defConThree);
-
+    
+      // Account
+        em.persist(acc01);
+      
+      // Kioks
+        em.persist(borne01);
+      
+      // CashRegister
+        em.persist(caisse);
 
         em.flush();
         
