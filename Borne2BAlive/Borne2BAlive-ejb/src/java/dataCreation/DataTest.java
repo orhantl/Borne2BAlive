@@ -1,8 +1,14 @@
 
 package dataCreation;
 
+import Account.Account;
+import Account.AccountStatus;
 import Product.Category;
 import Product.CategoryType;
+import company.CashRegister;
+import company.Kiosk;
+import company.Restaurant;
+import java.util.GregorianCalendar;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,12 +42,34 @@ public class DataTest implements DataTestLocal {
         Category menuSandwiches = new Category("Sandwichs du Menu", "Le plat de résistance");
         Category menuSides = new Category("Accompagnements du Menu", "Au choix");
         
+        //restaurant
+        Restaurant resto= new Restaurant
+        ("borne2Alive","17 rue CDG Paris 75012","0185252525","123456789","1234567890123","borne2Alive@gmail.com");
         
         
-         
+         //cashRegister
+        CashRegister caisse= new CashRegister("485","toto24");
+        
+        //kiosk
+        Kiosk borne01= new Kiosk("485","kv01");
+        
+        //Account
+        Account acc01 = new Account("toto@gmail.com","dassauld","toto","toto1234",
+                "0690123456",new GregorianCalendar(2018, 02,28).getTime(),new GregorianCalendar(1985,03, 24).getTime(),
+                "H","25 rue jean 94400 Vitry");
+        
+        //AccountStatus
+        AccountStatus actif= new AccountStatus ("actif");
+        
+        
         /*
         ASSOCIATIONS
         */
+        acc01.setStatus(actif);
+        caisse.setRestaurant(resto);
+        borne01.setRestaurant(resto);
+        
+        
         coldDrinks.setType(typeCarte);
         hotDrinks.setType(typeCarte);
         sandwiches.setType(typeCarte);
@@ -67,6 +95,9 @@ public class DataTest implements DataTestLocal {
         em.persist(menuSandwiches);
         em.persist(menuSides);
         em.flush();
+        em.persist(acc01);
+        em.persist(borne01);
+        em.persist(caisse);
         
     }
 
