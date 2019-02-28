@@ -34,7 +34,7 @@ public class MenuItem implements Serializable {
         this.optionPriceApplied = optionPriceApplied;
     }
     
-    
+
     public Long getId() {
         return id;
     }
@@ -66,6 +66,7 @@ public class MenuItem implements Serializable {
     @Override
     public String toString() {
         return  id + " : "  + optionPriceApplied;
+
     }
     
 }
