@@ -95,17 +95,17 @@ public class DataTest implements DataTestLocal {
         // Product
         Product adana = new Product("Adana Kebab", "/WEB-INF/Img/Products/adana.jpg", 5, "Plat issu de la cuisine turque qui vient de la ville d'Adana, plus épicé que le kebab standard");
         Product kofte = new Product("Kofte Kebab", "/WEB-INF/Img/Products/kofte.jpg", 5, "Boulette de viande hachée aux épices. C'est la préparation la plus cuisinée en Turquie.");
-        Product chicken = new Product("Chicken Kebab", "/WEB-INF/Img/Products/chicken.jpg", 5, "Le traditionnel kebab en version poulet");
-        Product merguez = new Product("Merguez Kebab", "/WEB-INF/Img/Products/merguez.jpg", 5, "Le traditionnel kebab en version merguez");
+        Product chickenSandwich = new Product("Chicken Kebab", "/WEB-INF/Img/Products/chicken.jpg", 5, "Le traditionnel kebab en version poulet");
+        Product merguezSandwich = new Product("Merguez Kebab", "/WEB-INF/Img/Products/merguez.jpg", 5, "Le traditionnel kebab en version merguez");
         Product american = new Product("American Kebab", "/WEB-INF/Img/Products/american.png", 5.5f, "Le traditionnel kebab en version steak haché");
         
-        Product fries = new Product("Frites", "/WEB-INF/Img/Products/fries.jpg", 2.5f, "Délicieuses et croustillantes");
-        Product potatoes = new Product("Potatoes", "/WEB-INF/Img/Products/potatoes.png", 2.5f, "Savoureuses et croustillantes");
+        Product friesPack = new Product("Frites", "/WEB-INF/Img/Products/fries.jpg", 2.5f, "Délicieuses et croustillantes");
+        Product potatoesPack = new Product("Potatoes", "/WEB-INF/Img/Products/potatoes.png", 2.5f, "Savoureuses et croustillantes");
         Product saladSmall = new Product("Petite Salade", "/WEB-INF/Img/Products/salad.jpg", 2.0f, "Un instant frais et léger");
         
-        Product ketchup = new Product("Ketchup", "/WEB-INF/Img/Products/ketchup.jpg", 0.5f, "Aux bonnes tomates gouteuses");
+        Product ketchupPack = new Product("Ketchup", "/WEB-INF/Img/Products/ketchup.jpg", 0.5f, "Aux bonnes tomates gouteuses");
         Product mayo = new Product("Mayo", "/WEB-INF/Img/Products/mayo.jpg", 0.5f, "Aux oeufs frais");
-        Product mustard = new Product("Moutarde", "/WEB-INF/Img/Products/mustard.jpg", 0.5f, "De Dijon");
+        Product mustardPack = new Product("Moutarde", "/WEB-INF/Img/Products/mustard.jpg", 0.5f, "De Dijon");
         Product samourai = new Product("Samouraï", "/WEB-INF/Img/Products/samourai.jpg", 0.5f, "Epicée");
         Product curry = new Product("Curry", "/WEB-INF/Img/Products/curry.png", 0.5f, "Saveur des indes");
         
@@ -116,11 +116,11 @@ public class DataTest implements DataTestLocal {
         Product water = new Product("Cristaline", "/WEB-INF/Img/Products/cristaline.jpg", 1.5f, "A la Cliarefontaine, j'ai bu l'eau Cristaline");
         Product orangina = new Product("Orangina", "/WEB-INF/Img/Products/orangina.jpg", 2f, "Bien secouer !");
         Product nestea = new Product("Nestea", "/WEB-INF/Img/Products/nestea.png", 2f, "Goût pêche");
-        Product coffee = new Product("Café", "/WEB-INF/Img/Products/coffee.jpg", 1.5f, "Wake up !");
+        Product coffeePack = new Product("Café", "/WEB-INF/Img/Products/coffee.jpg", 1.5f, "Wake up !");
         Product tea = new Product("Thé", "/WEB-INF/Img/Products/tea.png", 1.5f, "English breakfast");
-        Product hotChocolate = new Product("Chocolat Chaud", "/WEB-INF/Img/Products/hotChocolate.png", 2f, "Au lait chaud");
+        Product hotChocolatePack = new Product("Chocolat Chaud", "/WEB-INF/Img/Products/hotChocolate.png", 2f, "Au lait chaud");
         
-        Product tiramisu = new Product("Tiramisu", "/WEB-INF/Img/Products/tiramisu.jpg", 4.5f, "Un savoureux mélange café/chocolat");
+        Product tiramisuPack = new Product("Tiramisu", "/WEB-INF/Img/Products/tiramisu.jpg", 4.5f, "Un savoureux mélange café/chocolat");
         Product chocolateMuffin = new Product("Muffin au chocolat", "/WEB-INF/Img/Products/chocolateMuffin.jpg", 4, "Aux pépites de chocolat");
         Product blueberryMuffin = new Product("Muffin aux Myrtilles", "/WEB-INF/Img/Products/blueberryMuffin.jpg", 4, "Parfait avec un thé");
                 
@@ -140,8 +140,7 @@ public class DataTest implements DataTestLocal {
         Location takeAway = new Location ("à emporter");       
 
         //restaurant
-        Restaurant resto= new Restaurant
-        ("borne2Alive","17 rue CDG Paris 75012","0185252525","123456789","1234567890123","borne2Alive@gmail.com");  
+        Restaurant restaurant = new Restaurant("borne2Alive","17 rue CDG Paris 75012","0185252525","123456789","1234567890123","borne2Alive@gmail.com");  
         
          //cashRegister
         CashRegister caisse= new CashRegister("485","toto24");
@@ -285,10 +284,10 @@ public class DataTest implements DataTestLocal {
         acc01.setStatus(actif);
       
       // CashRegister > Restaurant
-        caisse.setRestaurant(resto);
+        caisse.setRestaurant(restaurant);
       
       // Kiosk > Restaurant
-        borne01.setRestaurant(resto);
+        borne01.setRestaurant(restaurant);
         
         // Category > CategoryType
         coldDrinks.setType(typeCarte);
@@ -475,15 +474,15 @@ public class DataTest implements DataTestLocal {
         // Product > ProductStatus
         adana.setStatus(delisted);
         kofte.setStatus(available);
-        chicken.setStatus(available);
-        merguez.setStatus(outOfStock);
+        chickenSandwich.setStatus(available);
+        merguezSandwich.setStatus(outOfStock);
         american.setStatus(available);
-        fries.setStatus(available);
-        potatoes.setStatus(available);
+        friesPack.setStatus(available);
+        potatoesPack.setStatus(available);
         saladSmall.setStatus(available);
-        ketchup.setStatus(available);
+        ketchupPack.setStatus(available);
         mayo.setStatus(available);
-        mustard.setStatus(available);
+        mustardPack.setStatus(available);
         samourai.setStatus(available);
         curry.setStatus(outOfStock);
         coca.setStatus(available);
@@ -493,24 +492,24 @@ public class DataTest implements DataTestLocal {
         water.setStatus(available);
         orangina.setStatus(available);
         nestea.setStatus(available);
-        coffee.setStatus(available);
+        coffeePack.setStatus(available);
         tea.setStatus(available);
-        hotChocolate.setStatus(available);
-        tiramisu.setStatus(available);
+        hotChocolatePack.setStatus(available);
+        tiramisuPack.setStatus(available);
         chocolateMuffin.setStatus(available);
         blueberryMuffin.setStatus(available);
         
         // Product > NutritionFacts
         adana.setFacts(adanaFacts);
         kofte.setFacts(kofteFacts);
-        chicken.setFacts(chickenFacts);
-        merguez.setFacts(merguezFacts);
+        chickenSandwich.setFacts(chickenFacts);
+        merguezSandwich.setFacts(merguezFacts);
         american.setFacts(americanFacts);
-        fries.setFacts(friesFacts);
-        potatoes.setFacts(popatoesFacts);
-        ketchup.setFacts(ketchupFacts);
+        friesPack.setFacts(friesFacts);
+        potatoesPack.setFacts(popatoesFacts);
+        ketchupPack.setFacts(ketchupFacts);
         mayo.setFacts(mayoFacts);
-        mustard.setFacts(mustardFacts);
+        mustardPack.setFacts(mustardFacts);
         samourai.setFacts(samouraiFacts);
         curry.setFacts(curryFacts);
         coca.setFacts(cocaFacts);
@@ -518,8 +517,8 @@ public class DataTest implements DataTestLocal {
         cocaZero.setFacts(cocaZeroFacts);
         orangina.setFacts(oranginaFacts);
         nestea.setFacts(nesteaFacts);
-        hotChocolate.setFacts(hotChocolateFacts);
-        tiramisu.setFacts(tiramisuFacts);
+        hotChocolatePack.setFacts(hotChocolateFacts);
+        tiramisuPack.setFacts(tiramisuFacts);
         chocolateMuffin.setFacts(chocolateMuffinFacts);
         blueberryMuffin.setFacts(blueberryMuffinFacts);
         
@@ -531,20 +530,20 @@ public class DataTest implements DataTestLocal {
         coldDrinks.getProducts().add(nestea);
         coldDrinks.getProducts().add(water);
         coldDrinks.getProducts().add(perrier);
-        hotDrinks.getProducts().add(coffee);
+        hotDrinks.getProducts().add(coffeePack);
         hotDrinks.getProducts().add(tea);
-        hotDrinks.getProducts().add(hotChocolate);
+        hotDrinks.getProducts().add(hotChocolatePack);
         sandwiches.getProducts().add(adana);
         sandwiches.getProducts().add(kofte);
-        sandwiches.getProducts().add(chicken);
-        sandwiches.getProducts().add(merguez);
+        sandwiches.getProducts().add(chickenSandwich);
+        sandwiches.getProducts().add(merguezSandwich);
         sandwiches.getProducts().add(american);
-        sides.getProducts().add(fries);
-        sides.getProducts().add(potatoes);
+        sides.getProducts().add(friesPack);
+        sides.getProducts().add(potatoesPack);
         sides.getProducts().add(saladSmall);
-        sauces.getProducts().add(ketchup);
+        sauces.getProducts().add(ketchupPack);
         sauces.getProducts().add(mayo);
-        sauces.getProducts().add(mustard);
+        sauces.getProducts().add(mustardPack);
         sauces.getProducts().add(samourai);
         sauces.getProducts().add(curry);
         menuDrinks.getProducts().add(coca);
@@ -554,19 +553,19 @@ public class DataTest implements DataTestLocal {
         menuDrinks.getProducts().add(nestea);
         menuDrinks.getProducts().add(water);
         menuDrinks.getProducts().add(perrier);
-        menuSides.getProducts().add(fries);
-        menuSides.getProducts().add(potatoes);
+        menuSides.getProducts().add(friesPack);
+        menuSides.getProducts().add(potatoesPack);
         menuSides.getProducts().add(saladSmall);
-        desserts.getProducts().add(tiramisu);
+        desserts.getProducts().add(tiramisuPack);
         desserts.getProducts().add(chocolateMuffin);
         desserts.getProducts().add(blueberryMuffin);
         
         // Product > Offer
         kofte.getOffers().add(bestSellers);
-        fries.getOffers().add(bestSellers);
+        friesPack.getOffers().add(bestSellers);
         coca.getOffers().add(bestSellers);
         chocolateMuffin.getOffers().add(bestSellers);
-        chicken.getOffers().add(bestSellers);
+        chickenSandwich.getOffers().add(bestSellers);
         american.getOffers().add(bestSellers);
         
         // Menu > Category
