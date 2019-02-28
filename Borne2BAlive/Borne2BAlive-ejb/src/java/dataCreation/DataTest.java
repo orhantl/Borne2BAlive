@@ -3,8 +3,6 @@ package dataCreation;
 
 import Account.Account;
 import Account.AccountStatus;
-import Product.Category;
-import Product.CategoryType;
 import company.CashRegister;
 import company.Kiosk;
 import company.Restaurant;
@@ -344,6 +342,21 @@ public class DataTest implements DataTestLocal {
         l09.setSelectedOrder(o04);
         l10.setSelectedOrder(o05);
         l11.setSelectedOrder(o05);
+        
+        // Order > Account
+        
+        o01.setAccountSelected(acc01);
+        o02.setAccountSelected(acc01);
+        
+        // Order > Kiosk
+        
+        o01.setKiosk(borne01);
+        o02.setKiosk(borne01);
+        o03.setKiosk(borne01);
+        o04.setKiosk(borne01);
+        
+        // Order > CashRegister
+        o05.setCashier(caisse);
                 
         // Labelling > Allergen
         Collection<Allergen> allerBread = bread.getAllergens();

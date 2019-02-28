@@ -1,6 +1,8 @@
 package Account;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,53 +11,60 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import order.OrderInfo;
 
 @Entity
 public class Account implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(unique = true, nullable = false, length = 50)
     private String email;
 
-     @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String lastName;
-    
-     @Column(nullable = false, length = 100)
+
+    @Column(nullable = false, length = 100)
     private String firstName;
-        
-          
+
     @Column(nullable = false, length = 30)
-    private String password;    
-    
-      @Column(length = 14)    
+    private String password;
+
+    @Column(length = 14)
     private String tel;
 
-     @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date joinDate;
 
-     @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date bDay;
-     
-         @Column(length = 3)
+
+    @Column(length = 3)
     private String civility;
 
     @Column(unique = true, nullable = false, length = 300)
     private String Address;
 
-      @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-     private AccountStatus status;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private AccountStatus status;
+    
+    @OneToMany (mappedBy = "accountSelected")
+    private Collection <OrderInfo> orderList;
 
     public Account() {
+        this.orderList = new ArrayList();
     }
 
-    public Account(String email, String lastName, String firstName, String password, String tel, Date joinDate, Date bDay, String civility, String Address) {
+    public Account(String email, String lastName, String firstName, 
+            String password, String tel, Date joinDate, Date bDay, String civility, String Address) {
+        this();
         this.email = email;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -65,9 +74,17 @@ public class Account implements Serializable {
         this.bDay = bDay;
         this.civility = civility;
         this.Address = Address;
-        
     }
 
+    public Collection<OrderInfo> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(Collection<OrderInfo> orderList) {
+        this.orderList = orderList;
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -158,12 +175,10 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + id + ", email=" + email + ", lastName=" 
-                + lastName + ", firstName=" + firstName + ", password=" 
-                + password + ", tel=" + tel + ", joinDate=" + joinDate + ", bDay=" 
+        return "Account{" + "id=" + id + ", email=" + email + ", lastName="
+                + lastName + ", firstName=" + firstName + ", password="
+                + password + ", tel=" + tel + ", joinDate=" + joinDate + ", bDay="
                 + bDay + ", civility=" + civility + ", Address=" + Address + ", status=" + status + '}';
     }
 
-    
-    
-}    
+}
