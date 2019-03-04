@@ -17,7 +17,7 @@
                 <div class="card" style="width:200px">
                     <img class="card-img-top" src="${m.img}" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">${m.name}</h4>
+                        <h5 class="card-title">${m.name}</h4>
                         <p class="card-text">${m.description}</p>
                         <a href="#" class="btn btn-primary stretched-link">Sélectionner</a>
                     </div>
