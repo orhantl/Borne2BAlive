@@ -9,9 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import managers.CatalogManagerLocal;
 
 @WebServlet(name = "CreateDataController", urlPatterns = {"/CreateDataController"})
 public class CreateDataController extends HttpServlet {
+    @EJB
+    private CatalogManagerLocal catalogManager;
     
     @EJB
     private DataTestLocal dataTest;
@@ -24,11 +27,18 @@ public class CreateDataController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
    
         String url = "/index.jsp";
-        
+        String display = request.getParameter("display");
         
         if ( request.getParameter("creer") != null ) {
             dataTest.createData();
         }
+        
+        if ("menus".equals(display)) {
+            url = "/WEB-INF/menus.jsp";
+            request.setAttribute("MENUS", catalogManager.getMenus());
+        }
+        
+        
         
         
         
