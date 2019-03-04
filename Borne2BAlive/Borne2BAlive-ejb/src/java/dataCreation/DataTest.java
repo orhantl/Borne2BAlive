@@ -57,6 +57,11 @@ public class DataTest implements DataTestLocal {
         Category menuDrinks = new Category("Boissons du Menu", "Désaltérez-vous avec nos boissons rafraichissantes", "/WEB-INF/Img/Categories/coldDrinks.jpg");
         Category menuSandwiches = new Category("Sandwichs du Menu", "Le plat de résistance", "/WEB-INF/Img/Categories/sandwiches.png");
         Category menuSides = new Category("Accompagnements du Menu", "Au choix", "/WEB-INF/Img/Categories/sides.jpg");
+        Category menuAdanaCat = new Category("Sandwich Menu Adana", "", "");
+        Category menuKofteCat = new Category("Sandwich Menu Kofte", "", "");
+        Category menuChickenCat = new Category("Sandwich Menu Chicken", "", "");
+        Category menuMerguezCat = new Category("Sandwich Menu Merguez", "", "");
+        Category menuAmericanCat = new Category("Sandwich Menu Americain", "", "");
 
         // ProductStatus
         ProductStatus available = new ProductStatus("Disponible", "Le produit peut être commandé");
@@ -336,6 +341,11 @@ public class DataTest implements DataTestLocal {
         sauces.setType(typeCarte);
         menuDrinks.setType(typeMenus);
         menuSides.setType(typeMenus);
+        menuAdanaCat.setType(typeMenus);
+        menuChickenCat.setType(typeMenus);
+        menuKofteCat.setType(typeMenus);
+        menuMerguezCat.setType(typeMenus);
+        menuAmericanCat.setType(typeMenus);
 
         // Location > VAT
         resto.setAppliedVAT(normale);
@@ -692,6 +702,11 @@ public class DataTest implements DataTestLocal {
         desserts.getProducts().add(tiramisuPack);
         desserts.getProducts().add(iceCreamChocolate);
         desserts.getProducts().add(iceCreamVanilla);
+        menuAdanaCat.getProducts().add(adana);
+        menuKofteCat.getProducts().add(kofte);
+        menuChickenCat.getProducts().add(chickenSandwich);
+        menuMerguezCat.getProducts().add(merguezSandwich);
+        menuAmericanCat.getProducts().add(american);
 
         // Product > Offer
         kofte.getOffers().add(bestSellers);
@@ -705,14 +720,19 @@ public class DataTest implements DataTestLocal {
         // Menu > Category
         menuAdana.getCategories().add(menuDrinks);
         menuAdana.getCategories().add(menuSides);
+        menuAdana.getCategories().add(menuAdanaCat);
         menuKofte.getCategories().add(menuDrinks);
         menuKofte.getCategories().add(menuSides);
+        menuKofte.getCategories().add(menuKofteCat);
         menuChicken.getCategories().add(menuDrinks);
         menuChicken.getCategories().add(menuSides);
+        menuChicken.getCategories().add(menuChickenCat);
         menuMerguez.getCategories().add(menuDrinks);
         menuMerguez.getCategories().add(menuSides);
+        menuMerguez.getCategories().add(menuMerguezCat);
         menuAmerican.getCategories().add(menuDrinks);
         menuAmerican.getCategories().add(menuSides);
+        menuAmerican.getCategories().add(menuAmericanCat);
 
         /*
          ****************** PERSISTS ******************
