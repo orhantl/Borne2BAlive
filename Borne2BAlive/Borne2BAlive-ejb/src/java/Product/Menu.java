@@ -11,10 +11,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import order.Line;
 
 @Entity
+@NamedQueries(
+        {
+            @NamedQuery(name="Product.Menu.FindAll", query = "select m from Menu m")
+        }
+)
 public class Menu implements Serializable {
     private static final long serialVersionUID = 1L;
     
