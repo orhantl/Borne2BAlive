@@ -279,11 +279,15 @@ public class DataTest implements DataTestLocal {
                 
                 
         // Optional
-        Optional noIce = new Optional("Sans glaçons", 3, 0);
+        Optional noIce = new Optional("Sans glaçons", 1, 0);
         Optional extraPickles = new Optional("Extra Cornichons", 3, 0.2f);
         Optional noSalad = new Optional("Sans Salade", 1, 0);
         Optional noTomato = new Optional("Sans Tomate", 1, 0);
         Optional noOnion = new Optional("Sans Oignons", 1, 0);
+        Optional largeSide = new Optional("Taille L", 1, 0.80f);
+        Optional xLargeSide = new Optional("Taille XL", 1, 1.50f);
+        Optional largeDrink = new Optional("Taille L", 1, 0.70f);
+        Optional xLargeDrink = new Optional("Taille XL", 1, 1.20f);
         
         
         /*
@@ -296,6 +300,22 @@ public class DataTest implements DataTestLocal {
         noSalad.setIngredient(salade);
         noTomato.setIngredient(tomato);
         noOnion.setIngredient(onion);
+        largeSide.setIngredient(fries);
+        largeSide.setIngredient(potatoes);
+        xLargeSide.setIngredient(fries);
+        xLargeSide.setIngredient(potatoes);
+        largeDrink.setIngredient(coke);
+        largeDrink.setIngredient(dietCoke);
+        largeDrink.setIngredient(orangeSoda);
+        largeDrink.setIngredient(carbWater);
+        largeDrink.setIngredient(teaSoda);
+        largeDrink.setIngredient(stillWater);
+        xLargeDrink.setIngredient(coke);
+        xLargeDrink.setIngredient(dietCoke);
+        xLargeDrink.setIngredient(orangeSoda);
+        xLargeDrink.setIngredient(carbWater);
+        xLargeDrink.setIngredient(teaSoda);
+        xLargeDrink.setIngredient(stillWater);
         
         
         // Account > Status
@@ -806,6 +826,10 @@ public class DataTest implements DataTestLocal {
         em.persist(noSalad);
         em.persist(noTomato);
         em.persist(extraPickles);
+        em.persist(largeDrink);
+        em.persist(largeSide);
+        em.persist(xLargeDrink);
+        em.persist(xLargeSide);
 
         em.flush();
 
