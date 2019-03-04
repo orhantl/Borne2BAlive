@@ -187,17 +187,14 @@ public class DataTest implements DataTestLocal {
         OrderInfo o05 = new OrderInfo("ESP30", d01, 10f);
 
         // Line        
-        Line l01 = new Line(0, 0, 0, 0, 0);
-        Line l02 = new Line(0, 0, 0, 0, 0);
-        Line l03 = new Line(0, 0, 0, 0, 0);
-        Line l04 = new Line(0, 0, 0, 0, 0);
-        Line l05 = new Line(0, 0, 0, 0, 0);
-        Line l06 = new Line(0, 0, 0, 0, 0);
-        Line l07 = new Line(0, 0, 0, 0, 0);
-        Line l08 = new Line(0, 0, 0, 0, 0);
-        Line l09 = new Line(0, 0, 0, 0, 0);
-        Line l10 = new Line(0, 0, 0, 0, 0);
-        Line l11 = new Line(0, 0, 0, 0, 0);
+        Line l01 = new Line(10, 0.2f, 1, 7, 0);
+        Line l05 = new Line(5.5f, 0, 1, 4.5f, 0);
+        Line l06 = new Line(5.5f, 0, 1, 2, 0);
+        Line l07 = new Line(10, 0, 1, 2.5f, 0);
+        Line l08 = new Line(10, 0, 1, 5.5f, 20);
+        Line l09 = new Line(10, 0, 1, 4, 0);
+        Line l10 = new Line(10, 0, 1, 2.5f, 0);
+        Line l11 = new Line(10, 0, 2, 0.5f, 0);
 
         // Ingredient
         Ingredient salade = new Ingredient("Salade", "Et une salade Gaza pour la gazelle ? "
@@ -278,7 +275,9 @@ public class DataTest implements DataTestLocal {
 
         // Offer
         Offer bestSellers = new Offer("Meilleures Ventes", "Une sélection de vos produits préférés", new GregorianCalendar(2019, 01, 26).getTime(), null, 0, "/WEB-INF/Img/Offers/meilleuresVentes.jpg");
-
+        Offer promo = new Offer("Promo du jour", "La promo du jour", new GregorianCalendar(2019, 01, 26).getTime(), null, 20, null);
+                
+                
         // Optional
         Optional noIce = new Optional("Sans glaçons", 3, 0);
         Optional extraPickles = new Optional("Extra Cornichons", 3, 0.2f);
@@ -353,9 +352,6 @@ public class DataTest implements DataTestLocal {
 
         // Line > Order        
         l01.setSelectedOrder(o01);
-        l02.setSelectedOrder(o01);
-        l03.setSelectedOrder(o01);
-        l04.setSelectedOrder(o01);
         l05.setSelectedOrder(o02);
         l06.setSelectedOrder(o03);
         l07.setSelectedOrder(o03);
@@ -684,6 +680,7 @@ public class DataTest implements DataTestLocal {
         iceCreamChocolate.getOffers().add(bestSellers);
         chickenSandwich.getOffers().add(bestSellers);
         american.getOffers().add(bestSellers);
+        american.getOffers().add(promo);
 
         // Menu > Category
         menuAdana.getCategories().add(menuDrinks);
@@ -730,9 +727,6 @@ public class DataTest implements DataTestLocal {
 
         // Line
         em.persist(l01);
-        em.persist(l02);
-        em.persist(l03);
-        em.persist(l04);
         em.persist(l05);
         em.persist(l06);
         em.persist(l07);
