@@ -36,6 +36,7 @@ public class DataTest implements DataTestLocal {
 
     @PersistenceContext(unitName = "Borne2BAlive-ejbPU")
     private EntityManager em;
+    
 
     @Override
     public void createData() {

@@ -24,6 +24,7 @@ public class MainController extends HttpServlet {
         mp = new HashMap<>();
         mp.put("menus", new MenusCtrl());
         mp.put("create", new CreateDataCtrl());
+        mp.put("composeMenu", new ComposeMenuCtrl());
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
