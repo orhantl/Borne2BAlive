@@ -10,9 +10,9 @@
     <body>
         <h1>Hello World!</h1>
         
-        <a href="CreateDataController?creer">creer les données</a>
+        <a href="MainController?section=create">creer les données</a>
         <hr>
-        <a href="CreateDataController?display=menus">Afficher les menus</a>
+        <a href="MainController?section=menus">Afficher les menus</a>
                        
         
         

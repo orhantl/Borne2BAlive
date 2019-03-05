@@ -46,6 +46,7 @@ public class DataTest implements DataTestLocal {
         // CategoryType
         CategoryType typeCarte = new CategoryType("A la carte");
         CategoryType typeMenus = new CategoryType("Menus");
+        CategoryType typeSandwichMenus = new CategoryType("SandwichMenus");
 
         // Category
         Category coldDrinks = new Category("Boissons Fraîches", "Désaltérez-vous avec nos boissons rafraichissantes", "Img/Categories/coldDrinks.jpg");
@@ -341,11 +342,11 @@ public class DataTest implements DataTestLocal {
         sauces.setType(typeCarte);
         menuDrinks.setType(typeMenus);
         menuSides.setType(typeMenus);
-        menuAdanaCat.setType(typeMenus);
-        menuChickenCat.setType(typeMenus);
-        menuKofteCat.setType(typeMenus);
-        menuMerguezCat.setType(typeMenus);
-        menuAmericanCat.setType(typeMenus);
+        menuAdanaCat.setType(typeSandwichMenus);
+        menuChickenCat.setType(typeSandwichMenus);
+        menuKofteCat.setType(typeSandwichMenus);
+        menuMerguezCat.setType(typeSandwichMenus);
+        menuAmericanCat.setType(typeSandwichMenus);
 
         // Location > VAT
         resto.setAppliedVAT(normale);
@@ -552,7 +553,7 @@ public class DataTest implements DataTestLocal {
         labelGlutenThree.add(defConThree);
 
         // Product > ProductStatus
-        adana.setStatus(delisted);
+        adana.setStatus(available);
         kofte.setStatus(available);
         chickenSandwich.setStatus(available);
         merguezSandwich.setStatus(outOfStock);
@@ -564,7 +565,7 @@ public class DataTest implements DataTestLocal {
         mayo.setStatus(available);
         mustardPack.setStatus(available);
         samourai.setStatus(available);
-        curry.setStatus(outOfStock);
+        curry.setStatus(delisted);
         coca.setStatus(available);
         cocaLight.setStatus(outOfStock);
         cocaZero.setStatus(available);
@@ -750,6 +751,12 @@ public class DataTest implements DataTestLocal {
         em.persist(sauces);
         em.persist(menuDrinks);
         em.persist(menuSides);
+        em.persist(menuAdanaCat);
+        em.persist(menuChickenCat);
+        em.persist(menuKofteCat);
+        em.persist(menuAmericanCat);
+        em.persist(menuMerguezCat);
+        
 
         // Menu
         em.persist(menuAdana);

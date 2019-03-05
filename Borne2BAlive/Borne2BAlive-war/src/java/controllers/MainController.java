@@ -1,50 +1,46 @@
 
 package controllers;
 
-import dataCreation.DataTestLocal;
 import java.io.IOException;
-import javax.ejb.EJB;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import managers.CatalogManagerLocal;
 
-@WebServlet(name = "CreateDataController", urlPatterns = {"/CreateDataController"})
-public class CreateDataController extends HttpServlet {
-    @EJB
-    private CatalogManagerLocal catalogManager;
-    
-    @EJB
-    private DataTestLocal dataTest;
 
+@WebServlet(name = "MainController", urlPatterns = {"/MainController"})
+public class MainController extends HttpServlet {
+
+    private HashMap<String, SubControllerInterface> mp;
     
-    
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config); 
+        
+        mp = new HashMap<>();
+        mp.put("menus", new MenusCtrl());
+        mp.put("create", new CreateDataCtrl());
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-   
+    
         String url = "/index.jsp";
-        String display = request.getParameter("display");
+        String section = request.getParameter("section");
         
-        if ( request.getParameter("creer") != null ) {
-            dataTest.createData();
+        if(mp.containsKey(section)){
+            SubControllerInterface ctrl = mp.get(section) ;
+            url = ctrl.process(request, response);
         }
-        
-        if ("menus".equals(display)) {
-            url = "/WEB-INF/menus.jsp";
-            request.setAttribute("MENUS", catalogManager.getMenus());
-        }
-        
-        
-        
         
         
         url = response.encodeURL(url);
         getServletContext().getRequestDispatcher(url).include(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
