@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import managers.CatalogManagerLocal;
 
 @WebServlet(name = "CreateDataController", urlPatterns = {"/CreateDataController"})
@@ -25,9 +26,11 @@ public class CreateDataController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
    
         String url = "/index.jsp";
         String display = request.getParameter("display");
+        session.setAttribute("VAT", 10.0f);
         
         if ( request.getParameter("creer") != null ) {
             dataTest.createData();
@@ -35,7 +38,8 @@ public class CreateDataController extends HttpServlet {
         
         if ("menus".equals(display)) {
             url = "/WEB-INF/menus.jsp";
-            request.setAttribute("MENUS", catalogManager.getMenus());
+            request.setAttribute("MenusAvailable", catalogManager.getAvailableMenus());
+            request.setAttribute("MenusUnavailable", catalogManager.getUnavailableMenus());
         }
         
         
