@@ -1,6 +1,7 @@
 
 package managers;
 
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -25,5 +26,6 @@ public class OrderManager implements OrderManagerLocal {
         o.setAppliedVAT(10);
         return o;
     }
+
 
 }

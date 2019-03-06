@@ -1,4 +1,5 @@
 
+
 package managers;
 
 
@@ -9,6 +10,7 @@ import order.OrderInfo;
 public interface OrderManagerLocal {
 
     public OrderInfo createOrder();
+
 
     
 }
