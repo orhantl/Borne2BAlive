@@ -28,6 +28,7 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
         
         if ("navBar".equals(zone)) {
             url = "/WEB-INF/catalog/navBar.jsp";
+            request.setAttribute("navBar", catalogManager.getNavBar());
         }
         
         if ("cart".equals(zone)) {

@@ -12,7 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+@NamedQueries(
+        {
+            @NamedQuery(name="Product.Category.findAll", query = "select c from Category c where c.type.name = 'A la carte' order by c.priority")
+        }
+)
 @Entity
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -29,6 +36,9 @@ public class Category implements Serializable {
     
     @Column()
     private String img;
+    
+    @Column()
+    private int priority;
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private CategoryType type;
@@ -48,14 +58,20 @@ public class Category implements Serializable {
     }
 
   
-    
-    
-
-    public Category(String name, String description, String img) {
+     public Category(String name, String description, String img) {
         this();
         this.name = name;
         this.description = description;
         this.img = img;
+    }
+    
+
+    public Category(String name, String description, String img, int priority) {
+        this();
+        this.name = name;
+        this.description = description;
+        this.img = img;
+        this.priority = priority;
     }
     
     
@@ -116,6 +132,15 @@ public class Category implements Serializable {
         this.menus = menus;
     }
 
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    
     
     
     

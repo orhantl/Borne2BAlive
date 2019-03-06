@@ -1,6 +1,7 @@
 
 package managers;
 
+import Product.Category;
 import Product.Menu;
 import Product.Product;
 import java.util.List;
@@ -18,5 +19,7 @@ public interface CatalogManagerLocal {
     public float getFullPrice(Menu m, float tva);
 
     public List<Product> getAllProducts();
+
+    public List<Category> getNavBar();
     
 }
