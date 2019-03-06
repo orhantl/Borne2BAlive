@@ -14,8 +14,10 @@
         <hr>
         <a href="MainController?section=menus">Afficher les menus</a>
         <hr>
+        <a href="MainController?section=orderSummary">Passez votre commande</a>           
+        <hr>
         <a href="MainController?section=catalog">Afficher le catalogue</a>
-                       
+
         
         
         <hr>

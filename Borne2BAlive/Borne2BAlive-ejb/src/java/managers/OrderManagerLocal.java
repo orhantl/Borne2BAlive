@@ -1,6 +1,7 @@
 
 package managers;
 
+
 import javax.ejb.Local;
 import order.OrderInfo;
 
@@ -8,5 +9,6 @@ import order.OrderInfo;
 public interface OrderManagerLocal {
 
     public OrderInfo createOrder();
+
     
 }
