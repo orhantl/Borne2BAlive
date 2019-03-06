@@ -23,15 +23,16 @@
                         <p class="card-text">
                             <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${preTaxPrice * (100 + VAT) /100}" /> &euro;
                         </p>
-                        <a href="#" class="btn btn-primary stretched-link">Sélectionner</a>
+                        <c:url var="composeMenu" value="MainController?section=composeMenu&selectedMenu=${m.id}" />
+                        <a href="${composeMenu}" class="btn btn-primary stretched-link">Sélectionner</a>
                     </div>
                 </div>
             </c:forEach>
         </div>
 
-       Indisponible, bientôt de retour - 
+        
        <c:forEach var="u" items="${MenusUnavailable}">
-           ${u.name} - 
+           ${u.name} : Indisponible, bientôt de retour 
        </c:forEach>
     </body>
 </html>

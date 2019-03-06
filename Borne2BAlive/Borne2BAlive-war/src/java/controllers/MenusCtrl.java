@@ -21,7 +21,7 @@ public class MenusCtrl implements Serializable, SubControllerInterface {
         session.setAttribute("VAT", 10.0f); // a gerer plus tard
         request.setAttribute("MenusAvailable", catalogManager.getAvailableMenus());
         request.setAttribute("MenusUnavailable", catalogManager.getUnavailableMenus());
-        return "/WEB-INF/menus.jsp";
+        return "/WEB-INF/catalog/menus.jsp";
     }
 
     private CatalogManagerLocal lookupCatalogManagerLocal() {

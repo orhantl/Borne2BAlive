@@ -16,25 +16,14 @@ public class OrderManager implements OrderManagerLocal {
 
     @PersistenceContext(unitName = "Borne2BAlive-ejbPU")
     private EntityManager em;
-    
-    private HashMap<Integer, Line> order;
-    
-    @PostConstruct
-    public void init(){
-        order = new HashMap<>();
-    }
-    
+
+  
+  // temporaire
     @Override
-    public Collection<Line> getLines(){
-        return order.values();
+    public OrderInfo createOrder(){
+        OrderInfo o = new OrderInfo();
+        o.setAppliedVAT(10);
+        return o;
     }
-    
-    @Override
-    public boolean isEmpty(){
-        return order.isEmpty();
-    }
-    
-    
-    
-    
+
 }

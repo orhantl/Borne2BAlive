@@ -1,15 +1,14 @@
 
 package managers;
 
-import java.util.Collection;
-import javax.ejb.Local;
-import order.Line;
 
+import javax.ejb.Local;
+import order.OrderInfo;
 
 @Local
 public interface OrderManagerLocal {
-    
-    public Collection<Line> getLines();
-    public boolean isEmpty();
+
+    public OrderInfo createOrder();
+
     
 }
