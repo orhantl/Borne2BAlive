@@ -26,9 +26,6 @@ public class Line implements Serializable {
     private Long id;
     
     @Column (length = 10)
-    private float VATApplied;
-    
-    @Column (length = 10)
     private float optionPriceApplied;
     
     @Column (length = 20)
@@ -61,9 +58,8 @@ public class Line implements Serializable {
         menuItems = new ArrayList();
     }
 
-    public Line(float VATApplied, float optionPriceApplied, int qty, float preTaxPrice, float discount) {
+    public Line(float optionPriceApplied, int qty, float preTaxPrice, float discount) {
         this();
-        this.VATApplied = VATApplied;
         this.optionPriceApplied = optionPriceApplied;
         this.qty = qty;
         this.preTaxPrice = preTaxPrice;
@@ -84,14 +80,6 @@ public class Line implements Serializable {
 
     public void setSelectedOrder(OrderInfo selectedOrder) {
         this.selectedOrder = selectedOrder;
-    }
-
-    public float getVATApplied() {
-        return VATApplied;
-    }
-
-    public void setVATApplied(float VATApplied) {
-        this.VATApplied = VATApplied;
     }
 
     public float getOptionPriceApplied() {
@@ -158,8 +146,6 @@ public class Line implements Serializable {
         this.menuItems = menuItems;
     }
     
-    
-    
 
     @Override
     public int hashCode() {
@@ -182,7 +168,7 @@ public class Line implements Serializable {
 
     @Override
     public String toString() {
-        return id + " - quantité : " + qty + " prix : " + VATApplied;
+        return id + " - quantité : " + qty + " prix : " + preTaxPrice;
     }
     
 }
