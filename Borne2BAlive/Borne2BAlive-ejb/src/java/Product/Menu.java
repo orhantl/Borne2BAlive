@@ -21,7 +21,8 @@ import order.Line;
         {
             @NamedQuery(name="Product.Menu.FindAll", query = "select m from Menu m"),
             @NamedQuery(name="Product.Menu.FindAllAvailable", query = "select m from Menu m join m.categories c join c.products p where c.type.name = 'SandwichMenus' and p.status.name = 'Disponible' order by m.name"),
-            @NamedQuery(name="Product.Menu.FindAllUnavailable", query = "select m from Menu m join m.categories c join c.products p where c.type.name = 'SandwichMenus' and p.status.name != 'Disponible' order by m.name")
+            @NamedQuery(name="Product.Menu.FindAllUnavailable", query = "select m from Menu m join m.categories c join c.products p where c.type.name = 'SandwichMenus' and p.status.name != 'Disponible' order by m.name"),
+            @NamedQuery(name="Product.Menu.FindSandwich", query = "select p from Product p join p.categories c join c.menus m where c.type.name = 'SandwichMenus' and m.id = :menuId ")
         }
 )
 public class Menu implements Serializable {
