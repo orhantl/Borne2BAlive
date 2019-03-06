@@ -50,12 +50,12 @@ public class DataTest implements DataTestLocal {
         CategoryType typeSandwichMenus = new CategoryType("SandwichMenus");
 
         // Category
-        Category coldDrinks = new Category("Boissons Fraîches", "Désaltérez-vous avec nos boissons rafraichissantes", "Img/Categories/coldDrinks.jpg");
-        Category hotDrinks = new Category("Boissons Chaudes", "Pour bien finir le repas", "Img/Categories/hotDrinks.jpg");
-        Category sandwiches = new Category("Sandwichs", "Tous nos sandwichs à la carte et personnalisables", "Img/Categories/sandwiches.png");
-        Category sides = new Category("Accompagnements", "Pour les petites faims", "Img/Categories/sides.jpg");
-        Category desserts = new Category("Desserts", "Pour tous les gourmands", "Img/Categories/desserts.jpg");
-        Category sauces = new Category("Sauce", "Pour rajouter un peu de pep's à vos plats", "Img/Categories/sauces.png");
+        Category coldDrinks = new Category("Boissons Fraîches", "Désaltérez-vous avec nos boissons rafraichissantes", "Img/Categories/coldDrinks.jpg", 4);
+        Category hotDrinks = new Category("Boissons Chaudes", "Pour bien finir le repas", "Img/Categories/hotDrinks.jpg", 6);
+        Category sandwiches = new Category("Sandwichs", "Tous nos sandwichs à la carte et personnalisables", "Img/Categories/sandwiches.png", 2);
+        Category sides = new Category("Accompagnements", "Pour les petites faims", "Img/Categories/sides.jpg", 3);
+        Category desserts = new Category("Desserts", "Pour tous les gourmands", "Img/Categories/desserts.jpg", 5);
+        Category sauces = new Category("Sauce", "Pour rajouter un peu de pep's à vos plats", "Img/Categories/sauces.png", 7);
         Category menuDrinks = new Category("Boissons du Menu", "Désaltérez-vous avec nos boissons rafraichissantes", "Img/Categories/coldDrinks.jpg");
         Category menuSandwiches = new Category("Sandwichs du Menu", "Le plat de résistance", "Img/Categories/sandwiches.png");
         Category menuSides = new Category("Accompagnements du Menu", "Au choix", "Img/Categories/sides.jpg");
@@ -64,6 +64,8 @@ public class DataTest implements DataTestLocal {
         Category menuChickenCat = new Category("Sandwich Menu Chicken", "", "");
         Category menuMerguezCat = new Category("Sandwich Menu Merguez", "", "");
         Category menuAmericanCat = new Category("Sandwich Menu Americain", "", "");
+        Category menus = new Category("Menus", "Composez votre menu", "Img/Categories/menus.jpg", 1);
+        Category offers = new Category("Offres", "Nos offres du moment", "Img/Categories/offres.png", 8);
 
         // ProductStatus
         ProductStatus available = new ProductStatus("Disponible", "Le produit peut être commandé");
@@ -348,6 +350,8 @@ public class DataTest implements DataTestLocal {
         menuKofteCat.setType(typeSandwichMenus);
         menuMerguezCat.setType(typeSandwichMenus);
         menuAmericanCat.setType(typeSandwichMenus);
+        menus.setType(typeCarte);
+        offers.setType(typeCarte);
 
         // Location > VAT
         resto.setAppliedVAT(normale);
@@ -757,6 +761,8 @@ public class DataTest implements DataTestLocal {
         em.persist(menuKofteCat);
         em.persist(menuAmericanCat);
         em.persist(menuMerguezCat);
+        em.persist(offers);
+        em.persist(menus);
         
 
         // Menu
