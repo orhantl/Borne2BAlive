@@ -12,11 +12,31 @@
     
 }
 
-.navBar {
+.navBar{
+    background-color: #ffffff;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 70px;
+    border-color: #660000;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.navBarIcons {
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    line-height: 100px;
+}
+
+.navBarText {
     font-size: 12px;
     font-weight: bolder;
     text-align: center;
-/*    vertical-align: middle;
-    height: 50px;
-    line-height: 50px;*/
+    vertical-align: middle;
+    height: 15px;
+    line-height: 15px;
 }
