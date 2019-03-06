@@ -22,7 +22,7 @@ public class MainController extends HttpServlet {
         super.init(config); 
         
         mp = new HashMap<>();
-        mp.put("menus", new MenusCtrl());
+        mp.put("Menus", new MenusCtrl());
         mp.put("create", new CreateDataCtrl());
         mp.put("orderSummary", new OrderSummaryCtrl());
         mp.put("composeMenu", new ComposeMenuCtrl());

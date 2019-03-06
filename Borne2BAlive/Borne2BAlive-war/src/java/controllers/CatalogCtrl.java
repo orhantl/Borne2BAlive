@@ -1,4 +1,3 @@
-
 package controllers;
 
 import java.io.Serializable;
@@ -9,39 +8,43 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import managers.CatalogManagerLocal;
 import managers.OrderManagerLocal;
 
 public class CatalogCtrl implements Serializable, SubControllerInterface {
+
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
-    
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
         String zone = request.getParameter("zone");
         String url = "/WEB-INF/catalog/catalog.jsp";
-        
+
         if ("pageHead".equals(zone)) {
             url = "/WEB-INF/catalog/header.jsp";
         }
-        
+
         if ("navBar".equals(zone)) {
             url = "/WEB-INF/catalog/navBar.jsp";
             request.setAttribute("navBar", catalogManager.getNavBar());
         }
-        
+
         if ("cart".equals(zone)) {
             url = "/WEB-INF/catalog/cart.jsp";
             request.setAttribute("order", orderManager.createOrder());
         }
-        
+
         if ("mainDisplay".equals(zone)) {
             url = "/WEB-INF/catalog/mainDisplay.jsp";
             //request.setAttribute("order", );
             request.setAttribute("products", catalogManager.getAllProducts());
         }
-     
+
+        
+
         return url;
     }
 
@@ -64,5 +67,5 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
             throw new RuntimeException(ne);
         }
     }
-    
+
 }

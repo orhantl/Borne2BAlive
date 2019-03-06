@@ -10,15 +10,15 @@
     </head>
     <body>
 
-        <div class="mainFrame">
+        
 
             <c:url var="pageHead" value="MainController?section=composeMenu&zone=header" />
             <c:import url="${pageHead}" />
             
-            <div class="row mainFrameDisplay">
-                <div class="col">
+            <div class="row">
+                <div class="col content">
 
-                    <img src="${currentSandwich.img}" alt="${currentSandwich.name}" width="300" class="imgSandwich"><br>
+                    <img src="${currentSandwich.img}" alt="${currentSandwich.name}" height="450" class="imgSandwich"><br>
                     <a href="#">(retirer des ingrédients)</a>
                     
 
@@ -27,8 +27,10 @@
                         
             <c:url var="pageFoot" value="MainController?section=composeMenu&zone=footer" />
             <c:import url="${pageFoot}" />
+            
+            <br>
 
-        </div>
+       
 
     </body>
 </html>

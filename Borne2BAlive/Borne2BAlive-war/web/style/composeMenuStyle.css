@@ -1,9 +1,9 @@
 .pageHead {
-    background-color: #6699ff; 
+    background-color: #660000; 
     text-align: center; 
-    color: cornsilk; 
-    border-radius: 10px; 
+    color: cornsilk;  
     margin: 0%; 
+    padding: 5px;
 }
 
 .pageFoot {
@@ -11,19 +11,7 @@
     padding-right: 2%; 
 }
 
-body {
-    background-color: #666666;
-}
-
-.mainFrame {
-    margin: 3%; 
-    background-color: #ffffff; 
-    box-shadow: 10px 10px 5px grey; 
-    border-radius: 10px; 
-    padding-bottom: 1%; 
-}
-
-.mainFrameDisplay {
+.content {
     margin: 3%; 
     text-align: center;
 }
@@ -32,4 +20,8 @@ body {
     display: block; 
     margin-left: auto; 
     margin-right: auto;
+}
+
+.nextLink {
+    text-align: right;
 }
