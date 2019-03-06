@@ -1,0 +1,35 @@
+.pageHead {
+    background-color: #6699ff; 
+    text-align: center; 
+    color: cornsilk; 
+    border-radius: 10px; 
+    margin: 0%; 
+}
+
+.pageFoot {
+    padding-left: 2%; 
+    padding-right: 2%; 
+}
+
+body {
+    background-color: #666666;
+}
+
+.mainFrame {
+    margin: 3%; 
+    background-color: #ffffff; 
+    box-shadow: 10px 10px 5px grey; 
+    border-radius: 10px; 
+    padding-bottom: 1%; 
+}
+
+.mainFrameDisplay {
+    margin: 3%; 
+    text-align: center;
+}
+
+.imgSandwich {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
+}
