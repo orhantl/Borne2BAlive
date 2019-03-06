@@ -10,9 +10,12 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import managers.CatalogManagerLocal;
+import managers.OrderManagerLocal;
 
 public class CatalogCtrl implements Serializable, SubControllerInterface {
+    OrderManagerLocal orderManager = lookupOrderManagerLocal();
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
+    
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
@@ -29,10 +32,12 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
         
         if ("cart".equals(zone)) {
             url = "/WEB-INF/catalog/cart.jsp";
+            request.setAttribute("order", orderManager.createOrder());
         }
         
         if ("mainDisplay".equals(zone)) {
             url = "/WEB-INF/catalog/mainDisplay.jsp";
+            //request.setAttribute("order", );
             request.setAttribute("products", catalogManager.getAllProducts());
         }
      
@@ -43,6 +48,16 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
         try {
             Context c = new InitialContext();
             return (CatalogManagerLocal) c.lookup("java:global/Borne2BAlive/Borne2BAlive-ejb/CatalogManager!managers.CatalogManagerLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private OrderManagerLocal lookupOrderManagerLocal() {
+        try {
+            Context c = new InitialContext();
+            return (OrderManagerLocal) c.lookup("java:global/Borne2BAlive/Borne2BAlive-ejb/OrderManager!managers.OrderManagerLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
