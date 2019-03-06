@@ -196,14 +196,14 @@ public class DataTest implements DataTestLocal {
         OrderInfo o05 = new OrderInfo("ESP30", d01, 10f);
 
         // Line        
-        Line l01 = new Line(10, 0.2f, 1, 7, 0);
-        Line l05 = new Line(5.5f, 0, 1, 4.5f, 0);
-        Line l06 = new Line(5.5f, 0, 1, 2, 0);
-        Line l07 = new Line(10, 0, 1, 2.5f, 0);
-        Line l08 = new Line(10, 0, 1, 5.5f, 20);
-        Line l09 = new Line(10, 0, 1, 4, 0);
-        Line l10 = new Line(10, 0, 1, 2.5f, 0);
-        Line l11 = new Line(10, 0, 2, 0.5f, 0);
+        Line l01 = new Line(0.2f, 1, 7, 0);
+        Line l05 = new Line(0, 1, 4.5f, 0);
+        Line l06 = new Line(0, 1, 2, 0);
+        Line l07 = new Line(0, 1, 2.5f, 0);
+        Line l08 = new Line(0, 1, 5.5f, 20);
+        Line l09 = new Line(0, 1, 4, 0);
+        Line l10 = new Line(0, 1, 2.5f, 0);
+        Line l11 = new Line(0, 2, 0.5f, 0);
 
         // Ingredient
         Ingredient salade = new Ingredient("Salade", "Et une salade Gaza pour la gazelle ? "
