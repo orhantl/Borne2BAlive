@@ -1,3 +1,4 @@
+
 package controllers;
 
 import java.io.Serializable;
@@ -8,20 +9,34 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import managers.CatalogManagerLocal;
 
-public class MenusCtrl implements Serializable, SubControllerInterface {
-
+public class CatalogCtrl implements Serializable, SubControllerInterface {
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        session.setAttribute("VAT", 10.0f); // a gerer plus tard
-        request.setAttribute("MenusAvailable", catalogManager.getAvailableMenus());
-        request.setAttribute("MenusUnavailable", catalogManager.getUnavailableMenus());
-        return "/WEB-INF/catalog/menus.jsp";
+        String zone = request.getParameter("zone");
+        String url = "/WEB-INF/catalog/catalog.jsp";
+        
+        if ("pageHead".equals(zone)) {
+            url = "/WEB-INF/catalog/header.jsp";
+        }
+        
+        if ("navBar".equals(zone)) {
+            url = "/WEB-INF/catalog/navBar.jsp";
+        }
+        
+        if ("cart".equals(zone)) {
+            url = "/WEB-INF/catalog/cart.jsp";
+        }
+        
+        if ("mainDisplay".equals(zone)) {
+            url = "/WEB-INF/catalog/mainDisplay.jsp";
+            request.setAttribute("products", catalogManager.getAllProducts());
+        }
+     
+        return url;
     }
 
     private CatalogManagerLocal lookupCatalogManagerLocal() {
@@ -33,5 +48,5 @@ public class MenusCtrl implements Serializable, SubControllerInterface {
             throw new RuntimeException(ne);
         }
     }
-
+    
 }

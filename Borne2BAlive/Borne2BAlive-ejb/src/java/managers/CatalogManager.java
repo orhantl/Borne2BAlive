@@ -2,6 +2,7 @@
 package managers;
 
 import Product.Menu;
+import Product.Product;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -39,6 +40,13 @@ public class CatalogManager implements CatalogManagerLocal {
     @Override
     public float getFullPrice(Menu m, float tva) {       
         return m.getPrice() * (100 + tva) / 100;
+    }
+    
+    // Get All products
+    @Override
+    public List<Product> getAllProducts() {       
+        TypedQuery<Product> qr = em.createNamedQuery("Product.Product.findAllProducts", Product.class);
+        return qr.getResultList();
     }
 
     

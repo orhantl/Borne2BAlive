@@ -20,24 +20,22 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        String url = "/WEB-INF/composeMenu.jsp";
+        String url = "/WEB-INF/composeMenu/composeMenu.jsp";
         String zone = request.getParameter("zone");
         
         if (request.getParameter("selectedMenu") != null) {
             long menuId = Long.valueOf(request.getParameter("selectedMenu"));
             request.setAttribute("MenuToCreate", menuManager.getMenu(menuId));
             request.setAttribute("currentSandwich", menuManager.getSandwich(menuId));
-            url = "/WEB-INF/composeMenu.jsp";
+            url = "/WEB-INF/composeMenu/composeMenu.jsp";
         }
         
         if ("header".equals(zone)) {
             url = "/WEB-INF/composeMenu/header.jsp";
-            System.out.println("je suis dans le if header");
         }
         
         if ("footer".equals(zone)) {
             url = "/WEB-INF/composeMenu/footer.jsp";
-            System.out.println("je suis dans le if footer");
         }
         
         
