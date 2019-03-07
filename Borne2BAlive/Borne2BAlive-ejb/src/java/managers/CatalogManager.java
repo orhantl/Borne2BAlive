@@ -59,6 +59,12 @@ public class CatalogManager implements CatalogManagerLocal {
         return qr.getResultList();
         
     }
+    
+    @Override
+    public Product getProduct(Long id){    
+        Product p = em.find(Product.class, id);       
+        return p;
+    }
 
     
     

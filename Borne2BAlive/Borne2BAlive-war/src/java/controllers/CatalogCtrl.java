@@ -21,6 +21,7 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+
         String zone = request.getParameter("zone");
         String url = "/WEB-INF/catalog/catalog.jsp";
         
@@ -41,12 +42,14 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
 
         if ("cart".equals(zone)) {
             url = "/WEB-INF/catalog/cart.jsp";
-            request.setAttribute("order", orderManager.createOrder());
+            // a vérifier (ludivine)
+            // session.setAttribute("order", orderManager.createOrder());
+
         }
 
         if ("mainDisplay".equals(zone)) {
             url = "/WEB-INF/catalog/mainDisplay.jsp";
-            //request.setAttribute("order", );
+            session.setAttribute("order", orderManager.createOrder());
             request.setAttribute("products", catalogManager.getAllProducts());
         }
 

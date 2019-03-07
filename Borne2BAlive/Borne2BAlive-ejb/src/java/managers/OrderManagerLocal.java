@@ -13,9 +13,13 @@ public interface OrderManagerLocal {
 
     public OrderInfo createOrder();
 
+
     public Line createLine(Menu m);
 
     public void addLineToOrder(Line l, OrderInfo o);
+
+
+    public OrderInfo createOrderFinal();
 
 
     
