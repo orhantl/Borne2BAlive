@@ -11,6 +11,7 @@ public interface OrderManagerLocal {
 
     public OrderInfo createOrder();
 
+    public OrderInfo createOrderFinal();
 
     
 }
