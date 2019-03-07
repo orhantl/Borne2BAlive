@@ -10,7 +10,9 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import managers.OrderManager;
 import managers.OrderManagerLocal;
+import order.OrderInfo;
 
 /**
  * This controller summarize all the order lines before
@@ -23,8 +25,18 @@ public class OrderSummaryCtrl implements Serializable, SubControllerInterface {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response){
         HttpSession session = request.getSession();
+         
+        //OrderInfo order = (OrderInfo) session.getAttribute("order");
         
-        return "/WEB-INF/orderSummary.jsp";
+        
+        OrderInfo order = new OrderInfo();
+        order = orderManager.createOrderFinal();
+        System.out.println(order.getQueueNumber());
+        
+        request.setAttribute("order", order);
+        request.setAttribute("lines", order.getLineList());
+        
+        return "/WEB-INF/order/orderSummary.jsp";
     }
     
     
