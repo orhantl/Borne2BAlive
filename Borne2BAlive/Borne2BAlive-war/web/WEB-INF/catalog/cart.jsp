@@ -1,3 +1,4 @@
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -8,12 +9,12 @@ ${order.id}
 ${order.VAT}
 <%--
 <c:forEach var="l" items="${lines}">
-    <p> ${l.product} </p>
+    <p>${l.product.name} X ${l.qty}</p>
     
 </c:forEach>
 --%>
 
-Total &euro;
+Total ${prixTTC} &euro;
 
 
 <a href="#" class="btn btn-danger">Abandonner la commande</a>

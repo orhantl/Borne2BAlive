@@ -4,27 +4,6 @@
     <jta-data-source>jdbc/borne</jta-data-source>
     <class>Product.Category</class>
     <class>Product.CategoryType</class>
-    <class>Account.Account</class>
-    <class>Account.AccountStatus</class>
-    <class>Product.Allergen</class>
-    <class>Product.Ingredient</class>
-    <class>Product.Labelling</class>
-    <class>Product.Menu</class>
-    <class>Product.MenuItem</class>
-    <class>Product.NutritionFacts</class>
-    <class>Product.Offer</class>
-    <class>Product.Optional</class>
-    <class>Product.Product</class>
-    <class>Product.ProductStatus</class>
-    <class>company.CashRegister</class>
-    <class>company.Kiosk</class>
-    <class>company.Restaurant</class>
-    <class>order.Line</class>
-    <class>order.Location</class>
-    <class>order.OrderInfo</class>
-    <class>order.OrderStatus</class>
-    <class>order.PaymentType</class>
-    <class>order.VAT</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

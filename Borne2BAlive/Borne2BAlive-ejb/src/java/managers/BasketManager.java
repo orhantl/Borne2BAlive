@@ -13,6 +13,7 @@ public class BasketManager implements BasketManagerLocal {
     private EntityManager em;
     
 
+    @Override
    public void modifyItemQty (Line l, int qty) {
        l = em.merge(l);
        l.setQty(qty);
@@ -28,12 +29,14 @@ public class BasketManager implements BasketManagerLocal {
 //       
 //   }
    
+    @Override
    public OrderInfo emptyBasket (OrderInfo o){
        o = em.merge(o);
        o.getLineList().clear();
        return o;
    }
    
+    @Override
    public boolean isEmpty (OrderInfo o){
        boolean b;
        o = em.merge(o);
@@ -41,6 +44,7 @@ public class BasketManager implements BasketManagerLocal {
        return b;
    }
    
+    @Override
    public float getVATTotal (OrderInfo o) {
        
        /*
@@ -49,16 +53,16 @@ public class BasketManager implements BasketManagerLocal {
        and we add the total price of selected option
        */
        
-       o = em.merge(o);
        
        float preTaxSum = 0;
        for (Line l : o.getLineList()){
            preTaxSum += (l.getPreTaxPrice() * l.getDiscount() + l.getPreTaxPrice()) + l.getOptionPriceApplied();
        }   
-       
+        System.out.println("total ttc "+ preTaxSum);
        return (preTaxSum * o.getAppliedVAT()) + preTaxSum;
    }
    
+    @Override
    public float getPreTaxeTotal (OrderInfo o) {
        o = em.merge(o);
              
@@ -66,9 +70,11 @@ public class BasketManager implements BasketManagerLocal {
        for (Line l : o.getLineList()){
            preTaxSum += (l.getPreTaxPrice() * l.getDiscount() + l.getPreTaxPrice()) + l.getOptionPriceApplied();
        }      
+       
        return preTaxSum;
    }
    
+    @Override
    public int getItemNumber (OrderInfo o){
        int number = 0;
        

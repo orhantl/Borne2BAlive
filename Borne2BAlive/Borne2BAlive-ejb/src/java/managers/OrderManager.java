@@ -1,6 +1,7 @@
 
 package managers;
 
+
 import Product.Product;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,5 +53,6 @@ public class OrderManager implements OrderManagerLocal {
          return order;
      }
     
+
 
 }
