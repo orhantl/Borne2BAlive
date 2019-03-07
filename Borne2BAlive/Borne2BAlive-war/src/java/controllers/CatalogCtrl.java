@@ -1,4 +1,3 @@
-
 package controllers;
 
 import java.io.Serializable;
@@ -12,42 +11,50 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import managers.CatalogManagerLocal;
 import managers.OrderManagerLocal;
+import order.OrderInfo;
 
 public class CatalogCtrl implements Serializable, SubControllerInterface {
+
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
-    
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        
+
         String zone = request.getParameter("zone");
         String url = "/WEB-INF/catalog/catalog.jsp";
-        HttpSession session = request.getSession();
         
+        // fake order de jAlex - code à supprimer plus tard (ici et dans orderManager)
+        OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
+        currentOrder = currentOrder == null ? orderManager.createOrder() : currentOrder;
+        session.setAttribute("currentOrder", currentOrder);
+        
+
         if ("pageHead".equals(zone)) {
             url = "/WEB-INF/catalog/header.jsp";
         }
-        
+
         if ("navBar".equals(zone)) {
             url = "/WEB-INF/catalog/navBar.jsp";
             request.setAttribute("navBar", catalogManager.getNavBar());
         }
-        
+
         if ("cart".equals(zone)) {
             url = "/WEB-INF/catalog/cart.jsp";
             // a vérifier (ludivine)
             // session.setAttribute("order", orderManager.createOrder());
 
         }
-        
+
         if ("mainDisplay".equals(zone)) {
             url = "/WEB-INF/catalog/mainDisplay.jsp";
             session.setAttribute("order", orderManager.createOrder());
             request.setAttribute("products", catalogManager.getAllProducts());
         }
-     
+
+        
+
         return url;
     }
 
@@ -70,5 +77,5 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
             throw new RuntimeException(ne);
         }
     }
-    
+
 }

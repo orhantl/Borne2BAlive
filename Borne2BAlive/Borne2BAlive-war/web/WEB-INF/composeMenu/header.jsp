@@ -1,4 +1,6 @@
 <div class="row pageHead">
-    <div class="col-md-12"><h4>${MenuToCreate.name}</h4> 
-            <h5>Composez votre sandwich</h5></div>
+    <div class="col-md-12">
+        <h6>${currentLine.menu.name}</h6>
+        <h5>Votre sandwich</h5>
+    </div>
 </div> 

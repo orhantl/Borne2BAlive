@@ -18,10 +18,16 @@ public class MenusCtrl implements Serializable, SubControllerInterface {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        session.setAttribute("VAT", 10.0f); // a gerer plus tard
-        request.setAttribute("MenusAvailable", catalogManager.getAvailableMenus());
-        request.setAttribute("MenusUnavailable", catalogManager.getUnavailableMenus());
-        return "/WEB-INF/catalog/menus.jsp";
+        String zone = request.getParameter("zone");
+        String url = "/WEB-INF/catalog/catalog_menus.jsp";
+        
+        if ("mainDisplay".equals(zone)) {
+            url = "/WEB-INF/catalog/menus.jsp";
+            request.setAttribute("MenusAvailable", catalogManager.getAvailableMenus());
+            request.setAttribute("MenusUnavailable", catalogManager.getUnavailableMenus());
+        }
+        
+        return url;
     }
 
     private CatalogManagerLocal lookupCatalogManagerLocal() {
