@@ -6,7 +6,7 @@
 
 
 ${order.id}
-${order.VAT}
+${order.appliedVAT}
 <%--
 <c:forEach var="l" items="${lines}">
     <p>${l.product.name} X ${l.qty}</p>
