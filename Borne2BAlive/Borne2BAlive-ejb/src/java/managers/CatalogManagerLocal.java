@@ -21,5 +21,7 @@ public interface CatalogManagerLocal {
     public List<Product> getAllProducts();
 
     public List<Category> getNavBar();
+
+    public Product getProduct(Long id);
     
 }
