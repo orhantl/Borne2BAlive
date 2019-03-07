@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import managers.CatalogManagerLocal;
 import managers.OrderManagerLocal;
+import order.OrderInfo;
 
 public class CatalogCtrl implements Serializable, SubControllerInterface {
 
@@ -22,6 +23,12 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
         HttpSession session = request.getSession();
         String zone = request.getParameter("zone");
         String url = "/WEB-INF/catalog/catalog.jsp";
+        
+        // fake order de jAlex - code à supprimer plus tard (ici et dans orderManager)
+        OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
+        currentOrder = currentOrder == null ? orderManager.createOrder() : currentOrder;
+        session.setAttribute("currentOrder", currentOrder);
+        
 
         if ("pageHead".equals(zone)) {
             url = "/WEB-INF/catalog/header.jsp";

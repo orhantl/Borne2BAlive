@@ -23,7 +23,6 @@ public class MenusCtrl implements Serializable, SubControllerInterface {
         
         if ("mainDisplay".equals(zone)) {
             url = "/WEB-INF/catalog/menus.jsp";
-            session.setAttribute("VAT", 10.0f); // a gerer plus tard
             request.setAttribute("MenusAvailable", catalogManager.getAvailableMenus());
             request.setAttribute("MenusUnavailable", catalogManager.getUnavailableMenus());
         }

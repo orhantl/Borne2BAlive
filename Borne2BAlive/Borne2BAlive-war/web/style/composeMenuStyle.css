@@ -11,9 +11,14 @@
     padding-right: 2%; 
 }
 
-.content {
-    margin: 3%; 
-    text-align: center;
+.contentSandwichImg {
+    margin: 1%; 
+    text-align: right;
+}
+
+.contentSandwichOptions {
+    margin: 1%; 
+    text-align: left;
 }
 
 .imgSandwich {
@@ -25,3 +30,15 @@
 .nextLink {
     text-align: right;
 }
+
+/*.sandwich {
+  position: relative;
+  z-index:1;
+}
+ 
+.info {
+  position: absolute;
+  top: 0px;
+  right: 130px;
+  z-index:2;
+}*/

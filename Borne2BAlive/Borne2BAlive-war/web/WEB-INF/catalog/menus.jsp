@@ -10,11 +10,9 @@
             <img class="card-img-top" src="${m.img}" alt="">
             <div class="card-body">
                 <h6 class="card-title">${m.name}</h6>
-                <c:set var="VAT" value="${VAT}" />
-                <c:set var="preTaxPrice" value="${m.price}" />
                 <c:url var="composeMenu" value="MainController?section=composeMenu&selectedMenu=${m.id}" />
                 <a href="#myModal${m.id}" class="btn btn-primary stretched-link" data-toggle="modal">
-                    <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${preTaxPrice * (100 + VAT) /100}" /> &euro;
+                    <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${m.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
                 </a>
 
             </div>
@@ -40,6 +38,7 @@
 <c:forEach var="u" items="${MenusUnavailable}">
     ${u.name} : Indisponible, bientôt de retour 
 </c:forEach>
+
 
 
 
