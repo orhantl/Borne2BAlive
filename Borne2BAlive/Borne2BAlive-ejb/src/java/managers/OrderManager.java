@@ -4,6 +4,7 @@ package managers;
 
 
 import Product.Menu;
+import Product.MenuItem;
 import Product.Product;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,6 +49,17 @@ public class OrderManager implements OrderManagerLocal {
         o.getLineList().add(l);
     }
     
+    @Override
+    public MenuItem createMenuItem(Product p) {
+        MenuItem item = new MenuItem(p.getPrice());
+        item.setProduct(p);
+        return item;
+    }
+    
+    @Override
+    public void addItemToLine(MenuItem item, Line l) {
+        item.setLine(l);
+    }
 
   // temp
      @Override

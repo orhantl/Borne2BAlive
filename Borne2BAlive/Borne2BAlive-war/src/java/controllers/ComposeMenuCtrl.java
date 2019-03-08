@@ -1,6 +1,8 @@
 package controllers;
 
 import Product.Menu;
+import Product.MenuItem;
+import Product.Product;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,14 +35,20 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         */
         if ("1".equals(step)) {
             if (request.getParameter("selectedMenu") != null) {
+                
+                OrderInfo order = (OrderInfo) session.getAttribute("currentOrder");
                 Menu currentMenu = menuManager.getMenu(Long.valueOf(request.getParameter("selectedMenu")));
                 Line line = orderManager.createLine(currentMenu);
-                OrderInfo order = (OrderInfo) session.getAttribute("currentOrder");
+                Product currentSandwich = menuManager.getSandwich(currentMenu.getId());
+                MenuItem itemS = orderManager.createMenuItem(currentSandwich);
+                                
+                orderManager.addItemToLine(itemS, line);
                 orderManager.addLineToOrder(line, order);
+                
                 session.setAttribute("currentOrder", order);
                 session.setAttribute("currentLine", line);
-                request.setAttribute("currentSandwich", menuManager.getSandwich(currentMenu.getId()));
-                request.setAttribute("sandwichAllergens", menuManager.getAllergens(menuManager.getSandwich(currentMenu.getId()).getId()));
+                session.setAttribute("currentSandwich", currentSandwich);
+                session.setAttribute("sandwichAllergens", menuManager.getAllergens(menuManager.getSandwich(currentMenu.getId()).getId()));
 
                 url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
             }

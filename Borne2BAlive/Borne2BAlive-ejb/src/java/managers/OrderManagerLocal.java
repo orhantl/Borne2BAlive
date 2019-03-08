@@ -4,6 +4,8 @@ package managers;
 
 
 import Product.Menu;
+import Product.MenuItem;
+import Product.Product;
 import javax.ejb.Local;
 import order.Line;
 import order.OrderInfo;
@@ -20,6 +22,10 @@ public interface OrderManagerLocal {
 
 
     public OrderInfo createOrderFinal();
+
+    public void addItemToLine(MenuItem item, Line l);
+
+    public MenuItem createMenuItem(Product p);
 
 
     
