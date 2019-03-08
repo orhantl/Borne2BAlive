@@ -1,8 +1,10 @@
 
 package managers;
 
+import Product.Allergen;
 import Product.Menu;
 import Product.Product;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,6 +26,13 @@ public class MenuManager implements MenuManagerLocal {
         TypedQuery<Product> qr = em.createNamedQuery("Product.Menu.FindSandwich", Product.class);
         qr.setParameter("menuId", menuId);
         return qr.getSingleResult();
+    }
+    
+    @Override
+    public List<Allergen> getAllergens(long sandwichId) {
+        TypedQuery<Allergen> qr = em.createNamedQuery("Product.Product.findAllergensOfProduct", Allergen.class);
+        qr.setParameter("idProduct", sandwichId);
+        return qr.getResultList();
     }
 
     

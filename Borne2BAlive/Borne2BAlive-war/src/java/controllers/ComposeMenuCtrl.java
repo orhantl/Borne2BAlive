@@ -16,41 +16,64 @@ import order.Line;
 import order.OrderInfo;
 
 public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
-   
+
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     MenuManagerLocal menuManager = lookupMenuManagerLocal();
-
-    
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        String url = "/WEB-INF/composeMenu/composeMenu.jsp";
+        String url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
         String zone = request.getParameter("zone");
-        
-        
-        if (request.getParameter("selectedMenu") != null) {
-            Menu currentMenu = menuManager.getMenu(Long.valueOf(request.getParameter("selectedMenu")));
-            Line line = orderManager.createLine(currentMenu);
-            OrderInfo order = (OrderInfo) session.getAttribute("currentOrder");
-            orderManager.addLineToOrder(line, order);
-            session.setAttribute("currentOrder", order);
-            request.setAttribute("currentLine", line);
-            request.setAttribute("currentSandwich", menuManager.getSandwich(currentMenu.getId()));
+        String step = request.getParameter("step");
+        String action = request.getParameter("action");
+
+        /*
+        STEP 1 : Sandwich + infos
+        */
+        if ("1".equals(step)) {
+            if (request.getParameter("selectedMenu") != null) {
+                Menu currentMenu = menuManager.getMenu(Long.valueOf(request.getParameter("selectedMenu")));
+                Line line = orderManager.createLine(currentMenu);
+                OrderInfo order = (OrderInfo) session.getAttribute("currentOrder");
+                orderManager.addLineToOrder(line, order);
+                session.setAttribute("currentOrder", order);
+                session.setAttribute("currentLine", line);
+                request.setAttribute("currentSandwich", menuManager.getSandwich(currentMenu.getId()));
+                request.setAttribute("sandwichAllergens", menuManager.getAllergens(menuManager.getSandwich(currentMenu.getId()).getId()));
+
+                url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
+            }
+
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/1header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/1footer.jsp";
+            }
+        }
+
+        /*
+        STEP 2 : Sandwich options
+        */
+        if ("2".equals(step)) {
+            url = "/WEB-INF/composeMenu/2sandwichOpt.jsp";
             
-            url = "/WEB-INF/composeMenu/composeMenu.jsp";
+            if ("back".equals(action)) {
+                url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
+            }
+            
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/2header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/2footer.jsp";
+            }
+
         }
-        
-        if ("header".equals(zone)) {
-            url = "/WEB-INF/composeMenu/header.jsp";
-        }
-        
-        if ("footer".equals(zone)) {
-            url = "/WEB-INF/composeMenu/footer.jsp";
-        }
-        
-        
-        
+
         return url;
     }
 
@@ -73,7 +96,5 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
             throw new RuntimeException(ne);
         }
     }
-
-  
 
 }

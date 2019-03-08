@@ -20,7 +20,8 @@ import order.Line;
 
 @NamedQueries(
         {
-            @NamedQuery(name = "Product.Product.findAllProducts", query = "select p from Product p")
+            @NamedQuery(name = "Product.Product.findAllProducts", query = "select p from Product p"),
+            @NamedQuery(name = "Product.Product.findAllergensOfProduct", query = "select distinct(a) from Allergen a join a.ingredients i join i.products p where p.id = :idProduct")
         }
 )
 @Entity
