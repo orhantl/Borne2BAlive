@@ -15,8 +15,8 @@
         <c:import url="${pageHead}" />
 
         <div class="globalContent">
-            <c:url var="pageHead" value="MainController?section=composeMenu&zone=header" />
-            <c:import url="${pageHead}" />
+            <c:url var="zoneHead" value="MainController?section=composeMenu&step=1&zone=header" />
+            <c:import url="${zoneHead}" />
 
             <div class="row">
                 <div class="col-md-9">
@@ -31,13 +31,29 @@
 
                 <div class="col-md-3 contentSandwichOptions">
                     <div id="infos">
+
+                        <br>
+                        <br><a href="#" class="btn btn-info" data-toggle="collapse" data-target="#ingredients">Ingrédients</a>
+                        <div id="ingredients" class="collapse" data-parent="#infos" >
+                            <br>
+                            <c:forEach var="i" items="${currentSandwich.ingredients}">
+                                ${i.name}, 
+                            </c:forEach>
+                        </div> 
+                        <br>
+                        
+                        <br><a href="#" class="btn btn-success" data-toggle="collapse" data-target="#allergen">Allergènes</a>
+                        <div id="allergen" class="collapse" data-parent="#infos" >
+                            <br>
+                            <c:forEach var="a" items="${sandwichAllergens}">
+                                ${a.name} - 
+                            </c:forEach>
+                        </div> 
+                        <br>
+
                         <br><a href="#" class="btn btn-warning" data-toggle="collapse" data-target="#facts">Informations nutritionnelles</a>
                         <div id="facts" class="collapse" data-parent="#infos" >
-                            <br> <u>Ingrédients :</u><br>
-                                <c:forEach var="i" items="${currentSandwich.ingredients}">
-                                    ${i.name}, 
-                            </c:forEach>
-                            <br><br>
+                            <br> 
                             <u>Au 100g :</u><br>
                             <table>
                                 <tr><td>Glucides</td><td> ${currentSandwich.facts.carbs}g</td></tr>
@@ -52,14 +68,7 @@
                         </div> 
 
 
-                        <br>
-                        <br><a href="#" class="btn btn-success" data-toggle="collapse" data-target="#allergen">Allergènes</a>
-                        <div id="allergen" class="collapse" data-parent="#infos" >
-                            <br>
-                            <c:forEach var="a" items="${sandwichAllergens}">
-                                ${a.name} - 
-                            </c:forEach>
-                        </div> 
+
 
                     </div>
                     <br><br>
@@ -69,7 +78,7 @@
 
             </div> 
 
-            <c:url var="pageFoot" value="MainController?section=composeMenu&zone=footer" />
+            <c:url var="pageFoot" value="MainController?section=composeMenu&step=1&zone=footer" />
             <c:import url="${pageFoot}" />
 
             <br>

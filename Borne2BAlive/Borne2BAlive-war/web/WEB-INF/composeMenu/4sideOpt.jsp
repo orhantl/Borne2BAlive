@@ -15,34 +15,24 @@
         <c:import url="${pageHead}" />
 
         <div class="globalContent">
-            <c:url var="zoneHead" value="MainController?section=composeMenu&step=2&zone=header" />
+            <c:url var="zoneHead" value="MainController?section=composeMenu&step=4&zone=header" />
             <c:import url="${zoneHead}" />
 
-            <div class="centerStage">
-                <c:forEach var="o" items="${currentSandwichOptions}">
-                    <div class="row">
-                        
-                        <c:url var="remove" value="MainController?section=composeMenu&step=2&option=${o.id}" />
-                        
-                        <div class="col-md-3"></div>
-
-                        <div class="col-md-2 centerContent"><a href="${remove}"><img src="${o.ingredient.img}" alt="${o.ingredient.name}" height="80"></a></div>
-                        
-                        <div class="col-md-1 centerContent"><a href="${remove}"><img src="Img/pictograms/delete.jpg" alt="retirer du sandwich" width="40"></a></div>
-
-                        <div class="col-md-3 centerContent"><a href="${remove}" class="btn btn-outline-success" role="button">Retirer l'ingrédient ${o.ingredient.name}</a></div>
-
-                        <div class="col-md-3"></div>
-                    </div>
+            <div>
+               
+                
+                <img src="${currentSide.img}" alt="${currentSide.name}">
+               
+                <c:forEach var="o" items="${currentSideOptions}">
+                    ${o.name} <br>
                 </c:forEach>
-
 
 
             </div>
 
             <br><br>
 
-            <c:url var="pageFoot" value="MainController?section=composeMenu&step=2&zone=footer" />
+            <c:url var="pageFoot" value="MainController?section=composeMenu&step=4&zone=footer" />
             <c:import url="${pageFoot}" />
 
             <br>

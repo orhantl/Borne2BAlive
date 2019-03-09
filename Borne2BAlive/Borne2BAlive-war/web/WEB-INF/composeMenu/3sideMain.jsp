@@ -15,26 +15,34 @@
         <c:import url="${pageHead}" />
 
         <div class="globalContent">
-            <c:url var="zoneHead" value="MainController?section=composeMenu&step=2&zone=header" />
+            <c:url var="zoneHead" value="MainController?section=composeMenu&step=3&zone=header" />
             <c:import url="${zoneHead}" />
 
-            <div class="centerStage">
-                <c:forEach var="o" items="${currentSandwichOptions}">
-                    <div class="row">
-                        
-                        <c:url var="remove" value="MainController?section=composeMenu&step=2&option=${o.id}" />
-                        
-                        <div class="col-md-3"></div>
+            <div>
 
-                        <div class="col-md-2 centerContent"><a href="${remove}"><img src="${o.ingredient.img}" alt="${o.ingredient.name}" height="80"></a></div>
-                        
-                        <div class="col-md-1 centerContent"><a href="${remove}"><img src="Img/pictograms/delete.jpg" alt="retirer du sandwich" width="40"></a></div>
+                <div class="row centerStage">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
 
-                        <div class="col-md-3 centerContent"><a href="${remove}" class="btn btn-outline-success" role="button">Retirer l'ingrédient ${o.ingredient.name}</a></div>
+                        <div class="card-columns">
+                            <c:forEach var="s" items="${menuSides}">
+                                <div class="card" style="width:160px; text-align: center;">
+                                    <img class="card-img-top" src="${s.img}" alt="" height="150">
+                                    <div class="card-body">
+                                        <h6 class="card-title">${s.name}</h6>
+                                        <c:url var="sideChoice" value="MainController?section=composeMenu&step=4&side=${s.id}" />
+                                        <a href="${sideChoice}" class="btn btn-primary stretched-link">Sélectionner</a>
 
-                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+
                     </div>
-                </c:forEach>
+                    <div class="col-md-2"></div>
+                </div> 
+
+
 
 
 
@@ -42,7 +50,7 @@
 
             <br><br>
 
-            <c:url var="pageFoot" value="MainController?section=composeMenu&step=2&zone=footer" />
+            <c:url var="pageFoot" value="MainController?section=composeMenu&step=3&zone=footer" />
             <c:import url="${pageFoot}" />
 
             <br>

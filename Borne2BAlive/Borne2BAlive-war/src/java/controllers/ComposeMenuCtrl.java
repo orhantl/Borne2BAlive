@@ -29,22 +29,24 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         String zone = request.getParameter("zone");
         String step = request.getParameter("step");
         String action = request.getParameter("action");
+        String option = request.getParameter("option");
 
         /*
-        STEP 1 : Sandwich + infos
-        */
+         STEP 1 : Sandwich + infos
+         */
         if ("1".equals(step)) {
+            url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
             if (request.getParameter("selectedMenu") != null) {
-                
+
                 OrderInfo order = (OrderInfo) session.getAttribute("currentOrder");
                 Menu currentMenu = menuManager.getMenu(Long.valueOf(request.getParameter("selectedMenu")));
                 Line line = orderManager.createLine(currentMenu);
                 Product currentSandwich = menuManager.getSandwich(currentMenu.getId());
                 MenuItem itemS = orderManager.createMenuItem(currentSandwich);
-                                
+
                 orderManager.addItemToLine(itemS, line);
                 orderManager.addLineToOrder(line, order);
-                
+
                 session.setAttribute("currentOrder", order);
                 session.setAttribute("currentLine", line);
                 session.setAttribute("currentSandwich", currentSandwich);
@@ -60,18 +62,18 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
             if ("footer".equals(zone)) {
                 url = "/WEB-INF/composeMenu/1footer.jsp";
             }
+
         }
 
         /*
-        STEP 2 : Sandwich options
-        */
+         STEP 2 : Sandwich options
+         */
         if ("2".equals(step)) {
+            Product currentSandwich = (Product) session.getAttribute("currentSandwich");
+            session.setAttribute("currentSandwichOptions", menuManager.getOptionsFromProduct(currentSandwich.getId()));
+
             url = "/WEB-INF/composeMenu/2sandwichOpt.jsp";
-            
-            if ("back".equals(action)) {
-                url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
-            }
-            
+
             if ("header".equals(zone)) {
                 url = "/WEB-INF/composeMenu/2header.jsp";
             }
@@ -80,10 +82,61 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                 url = "/WEB-INF/composeMenu/2footer.jsp";
             }
 
+            if (option != null) {
+                // récupérer l'id de l'option et l'ajouter à la line
+                // gerer l'affichage d'une option selectionnée
+                // gérer l'affichage du prix des options
+            }
+
+        }
+
+        /*
+         STEP 3 : Sides
+         */
+        if ("3".equals(step)) {
+
+            session.setAttribute("menuSides", menuManager.getSidesFromMenu());
+
+            url = "/WEB-INF/composeMenu/3sideMain.jsp";
+
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/3header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/3footer.jsp";
+            }
+
+        }
+
+        /*
+         STEP 4 : Sides options
+         */
+        if ("4".equals(step)) {
+
+            url = "/WEB-INF/composeMenu/4sideOpt.jsp";
+            System.out.println("side = "+request.getParameter("side"));
+            if (request.getParameter("side") != null) {
+                long currentSideId = Long.valueOf(request.getParameter("side"));
+                session.setAttribute("currentSide", menuManager.getProduct(currentSideId));
+                session.setAttribute("currentSideOptions", menuManager.getOptionsFromProduct(currentSideId));
+                System.out.println("je suis dedans");
+            }
+
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/4header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/4footer.jsp";
+            }
+
         }
 
         return url;
     }
+    
+    
 
     private MenuManagerLocal lookupMenuManagerLocal() {
         try {
