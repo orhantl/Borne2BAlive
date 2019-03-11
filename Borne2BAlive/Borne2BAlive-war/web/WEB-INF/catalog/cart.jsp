@@ -4,19 +4,43 @@
 
 <p><i class="fas fa-shopping-cart"></i> VOTRE COMMANDE</p> 
 
-
-${order.id}
-${order.VAT}
 <%--
-<c:forEach var="l" items="${lines}">
-    <p>${l.product.name} X ${l.qty}</p>
-    
-</c:forEach>
+${order.id}
+${order.appliedVAT}
+
 --%>
+<div class="container">
+    <c:if test="${prixTTC == 0}">
+        Votre panier est vide !
+    </c:if>
 
-Total ${prixTTC} &euro;
+        <c:if test="${prixTTC > 0}">
+        <table class="table table-hover">
+            <thead>
+            <th>Article</th>
+            <th>Quantité</th>
+            </thead>      
+            <tbody>    
+                <c:forEach var="l" items="${order.lineList}">
+                    <tr>
+                        <td>${l.product.name}</td>
+                        <td>${l.qty}</td>
+                    </tr>
+
+                </c:forEach>
+
+            </tbody>
+        </table>
+    </div>
 
 
-<a href="#" class="btn btn-danger">Abandonner la commande</a>
-<a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Valider la commande</a>
+    Total  ${prixTTC} &euro;
+
+    <p><a href="MainController?section=cart&zone=empty" class="btn btn-danger">Vider la commande</a></p>
+
+    <p><a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Valider la commande</a></p>
+</c:if>
+
+
+
 <hr>

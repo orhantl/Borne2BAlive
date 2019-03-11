@@ -207,8 +207,8 @@ public class DataTest implements DataTestLocal {
 
         // Ingredient
         Ingredient salade = new Ingredient("Salade", "Et une salade Gaza pour la gazelle ? "
-                + "Quoi ? Oui, c'est de la roquette", "Img/Ingredient/Ingredient/salade.jpg");
-        Ingredient tomato = new Ingredient("Tomate", "Et une Roundup, une !", "Img/Ingredient/Ingredient/tomate.jpg");
+                + "Quoi ? Oui, c'est de la roquette", "Img/Ingredient/salade.jpg");
+        Ingredient tomato = new Ingredient("Tomate", "Et une Roundup, une !", "Img/Ingredient/tomate.jpg");
         Ingredient bread = new Ingredient("Pain", "Pétri sous les aisselles", "Img/Ingredient/pain-kebab.jpg");
         Ingredient onion = new Ingredient("Oignon", "Il est carré mon oignon, il est carré !",
                 "Img/Ingredient/oignon.jpg");

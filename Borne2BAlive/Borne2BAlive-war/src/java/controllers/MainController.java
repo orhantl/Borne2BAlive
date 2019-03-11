@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
@@ -22,7 +23,7 @@ public class MainController extends HttpServlet {
         super.init(config); 
         
         mp = new HashMap<>();
-        mp.put("menus", new MenusCtrl());
+        mp.put("Menus", new MenusCtrl());
         mp.put("create", new CreateDataCtrl());
         mp.put("orderSummary", new OrderSummaryCtrl());
         mp.put("composeMenu", new ComposeMenuCtrl());
@@ -41,6 +42,8 @@ public class MainController extends HttpServlet {
             SubControllerInterface ctrl = mp.get(section) ;
             url = ctrl.process(request, response);
         }
+        
+        
         
         
         url = response.encodeURL(url);

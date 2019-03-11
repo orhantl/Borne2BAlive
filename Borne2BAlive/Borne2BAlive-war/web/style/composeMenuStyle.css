@@ -1,9 +1,11 @@
 .pageHead {
-    background-color: #6699ff; 
+    background-color: #660000; 
     text-align: center; 
-    color: cornsilk; 
-    border-radius: 10px; 
+    color: cornsilk;  
     margin: 0%; 
+    padding: 5px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
 }
 
 .pageFoot {
@@ -11,21 +13,15 @@
     padding-right: 2%; 
 }
 
-body {
-    background-color: #666666;
+.contentSandwichImg {
+    margin: 1%; 
+    text-align: right;
 }
 
-.mainFrame {
-    margin: 3%; 
-    background-color: #ffffff; 
-    box-shadow: 10px 10px 5px grey; 
-    border-radius: 10px; 
-    padding-bottom: 1%; 
-}
-
-.mainFrameDisplay {
-    margin: 3%; 
-    text-align: center;
+.contentSandwichOptions {
+    margin: 1%; 
+    text-align: left;
+    font-size: 10px;
 }
 
 .imgSandwich {
@@ -33,3 +29,50 @@ body {
     margin-left: auto; 
     margin-right: auto;
 }
+
+.nextLink {
+    text-align: right;
+}
+
+.globalContent{
+    width: 90%;
+    height: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    padding-bottom: 0.5%;
+    border-style: solid;
+    border-radius: 40px;
+    border-color: #660000;
+    background-color: white;
+    box-shadow: 5px 10px 18px #666666;
+}
+
+body {
+    background-color: #dcdbdb;
+}
+
+.centerStage {
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 4%;
+}
+
+.centerContent {
+    vertical-align: middle;
+    height: 100px;
+    line-height: 100px;
+}
+
+.leftSeparator {
+    border-left: solid;
+    border-left-color: #cccccc;
+}
+
+.rightSeparator {
+    border-right: solid;
+    border-right-color: #cccccc;
+}
+
+
+

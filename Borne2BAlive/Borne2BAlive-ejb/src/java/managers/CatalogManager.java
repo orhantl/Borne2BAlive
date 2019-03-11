@@ -4,7 +4,6 @@ package managers;
 import Product.Category;
 import Product.Menu;
 import Product.Product;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,6 +16,7 @@ public class CatalogManager implements CatalogManagerLocal {
     @PersistenceContext(unitName = "Borne2BAlive-ejbPU")
     private EntityManager em;
 
+    
     // Get all menus
     @Override
     public List<Menu> getMenus() {

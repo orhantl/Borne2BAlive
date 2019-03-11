@@ -6,6 +6,7 @@ import Product.Menu;
 import Product.Product;
 import java.util.List;
 import javax.ejb.Local;
+import order.OrderInfo;
 
 @Local
 public interface CatalogManagerLocal {
@@ -22,6 +23,8 @@ public interface CatalogManagerLocal {
 
     public List<Category> getNavBar();
 
+
     public Product getProduct(Long id);
+
     
 }
