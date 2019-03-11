@@ -52,7 +52,7 @@
       </div>   
     </div>
     <div class="carousel-item">
-      <img src="Img/WelcomeScreenPict/menuAmerican.jpg" alt="New York" width="1500" height="700">
+      <img src="Img/WelcomeScreenPict/menuAmerican2.jpg" alt="New York" width="1500" height="700">
       <div class="carousel-caption">
            <br>
           <br>
@@ -64,9 +64,33 @@
  
 </div>
     
-    <div class="jumbotron text-center" >     
-  <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-outline-dark">Commander</a>
+
+    <style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: auto;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 600% ;
+  height: 15%; 
+  margin-bottom:0;
+  padding: 30px;
+}
+</style>
+
+<div class="footer">
+    <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-outline-dark btn-lg btn-block">Commander</a>
+    
+    <%-- <li class="nav-item">
+        <c:url value="ControleurMain?section=catalogue" var="url155" />
+      <a class="nav-link" href="${url155}">Catalogue</a>
+    </li>
+    --%>
+     
 </div>
-  
+
 </body>
 </html>

@@ -21,5 +21,12 @@
     <div class="jumbotron text-center" style="margin-bottom">      
   <a href="consumerChoice/consumChoice.jsp" class="btn btn-outline-dark">Sur place</a>
 </div>
+        <!-- Two columns: 50% width on medium and up-->
+<div class="row">
+    
+  <div class="col-md">Emporter</div>
+  <div class="col-md">Sur place</div>
+</div>
+
     </body>
 </html>
