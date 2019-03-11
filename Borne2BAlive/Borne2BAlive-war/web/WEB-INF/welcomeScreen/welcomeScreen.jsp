@@ -17,50 +17,56 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <style>
-  /* Make the image fully responsive */
+  /* Make the image fully responsive 
   .carousel-inner img {
     width: 100%;
-    height: 100%;
-  }
+    height: 100%; 
+  }*/
   </style>
 </head>
 <body>
 
-<div id="demo" class="carousel slide" data-ride="carousel">
+<div id="demo" class="carousel slide" data-ride="carousel" >
   <ul class="carousel-indicators">
   </ul>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="restaurant.jpg" alt="restoPresentation" width="1100" height="500">
+    <div class="carousel-item active">  
+      <img src="Img/WelcomeScreenPict/restaurant.jpg" alt="WelcResto" width="1500" height="700">
       <div class="carousel-caption">
         <h3>Borne2BAlive</h3>
         <p>Vous souhaite la bienvenue...!!!</p>
       </div>   
     </div>
     <div class="carousel-item">
-      <img src="menuAdana.jpg" alt="offMom1" width="1100" height="500">
+        <img src="Img/WelcomeScreenPict/menuAdana.jpg" alt="offMom1" width="1500" height="700">
       <div class="carousel-caption">
         <h3>Offre du moment</h3>
         <p>A ne pas rater...!!</p>
       </div>   
     </div>
     <div class="carousel-item">
-      <img src="menu.png" alt="offMom2" width="1100" height="500">
+      <img src="Img/WelcomeScreenPict/menuKoft.jpg" alt="offMom2" width="1500" height="700">
       <div class="carousel-caption">
         <h3>Offre du moment</h3>
         <p>A ne pas rater!!</p>
       </div>   
     </div>
     <div class="carousel-item">
-      <img src="menuAdana.jpg" alt="New York" width="1100" height="500">
+      <img src="Img/WelcomeScreenPict/menuAmerican.jpg" alt="New York" width="1500" height="700">
       <div class="carousel-caption">
-        <h3></h3>
-        <p>Nous avons des menus pour enfants...!</p>
+           <br>
+          <br>
+        <h3>We love America</h3>
+        <p>We love the Big Hamburger!...!</p>
       </div>   
     </div>
   </div>
  
 </div>
-
+    
+    <div class="jumbotron text-center" >     
+  <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-outline-dark">Commander</a>
+</div>
+  
 </body>
 </html>
