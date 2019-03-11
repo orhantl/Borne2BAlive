@@ -30,5 +30,7 @@ public interface MenuManagerLocal {
     public void addItemToLine(MenuItem item, Line l);
 
     public Optional getOptional(long id);
+
+    public void addOptionToItem(Optional option, MenuItem item);
     
 }

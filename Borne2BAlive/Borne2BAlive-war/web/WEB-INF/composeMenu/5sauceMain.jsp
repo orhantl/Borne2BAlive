@@ -22,11 +22,11 @@
 
                 <c:url var="remove" value="#" />
 
-                <div class="col-md-3 "></div>
+
 
                 <div class="col-md-2 "><img src="${currentItemSide.product.img}" alt="${currentItemSide.product.name}" height="300"></div>
                 <div class="col-md-1 "></div>
-                <div class="col-md-3"> 
+                <div class="col-md-2  rightSeparator"> 
                     <c:forEach var="o" items="${currentSideOptions}">
 
                         <c:url var="option" value="MainController?section=composeMenu&step=4&option=${o.id}" />
@@ -36,30 +36,46 @@
                         <br><br>
                     </c:forEach>
                 </div>
+                <div class="col-md-7 leftPadding rightPadding">
 
+                    <div class="row"> Voulez-vous ajouter une sauce ? </div><br>
+                    <div class="row centerText card-deck">
+                        <c:forEach var="s" items="${sauces}">
+                            <div class="card" style="width:120px">
+                                <img class="card-img-top" src="${s.img}" alt="${s.name}">
+                                <div class="card-body centerText">
+                                    +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${s.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
+                                    <a href="#" class="btn btn-outline-success stretched-link">${s.name}</a>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    
 
-                <div class="col-md-3 "></div>
+                </div>
+
+                <div class="col-md-1 "></div>
 
             </div>
 
+        
+
+        <br><br>
+
+        <c:url var="pageFoot" value="MainController?section=composeMenu&step=4&zone=footer" />
+        <c:import url="${pageFoot}" />
+
+        <br>
+    </div>
 
 
-            <br><br>
 
-            <c:url var="pageFoot" value="MainController?section=composeMenu&step=4&zone=footer" />
-            <c:import url="${pageFoot}" />
-
-            <br>
-        </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
-    </body>
+</body>
 </html>
 
 
