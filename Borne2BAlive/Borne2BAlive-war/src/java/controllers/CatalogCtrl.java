@@ -20,6 +20,7 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
+
         HttpSession session = request.getSession();
 
         String zone = request.getParameter("zone");

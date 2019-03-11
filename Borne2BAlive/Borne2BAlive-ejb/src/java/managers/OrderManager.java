@@ -24,7 +24,7 @@ public class OrderManager implements OrderManagerLocal {
 
     @PersistenceContext(unitName = "Borne2BAlive-ejbPU")
     private EntityManager em;
-
+        
   
   // temporaire
     @Override
@@ -57,12 +57,16 @@ public class OrderManager implements OrderManagerLocal {
          Date date = new Date();
          Product p01 = new Product();
          Product p05 = new Product();
+         p01.setName("Adana Kebab");
+         p05.setName("Chicken Kebab");
          Line l01 = new Line(0.2f, 1, 7, 0);
          l01.setProduct(p01);
          Line l05 = new Line(0, 1, 4.5f, 0);
+         l05.setProduct(p05);
          Collection<Line> lineList = new ArrayList();
          lineList.add(l01);
          lineList.add(l05);
+         
          
          OrderInfo order = new OrderInfo();
          order.setAppliedVAT(10);
@@ -74,6 +78,6 @@ public class OrderManager implements OrderManagerLocal {
      }
 
     
-
+     
 
 }
