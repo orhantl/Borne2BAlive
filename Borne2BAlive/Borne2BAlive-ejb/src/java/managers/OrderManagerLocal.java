@@ -19,9 +19,10 @@ public interface OrderManagerLocal {
     public Line createLine(Menu m);
 
     public void addLineToOrder(Line l, OrderInfo o);
+    
+    public float getPreTaxTotal(OrderInfo o);
 
-
-    public OrderInfo createOrderFinal();
+    
 
     
 

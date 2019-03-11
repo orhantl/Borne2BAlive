@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,18 +22,26 @@ import order.OrderInfo;
 
 @Stateless
 public class OrderManager implements OrderManagerLocal {
+    @EJB
+    private BasketManagerLocal basketManager;
 
     @PersistenceContext(unitName = "Borne2BAlive-ejbPU")
     private EntityManager em;
-        
+
+    
+    
+    
   
   // temporaire
     @Override
     public OrderInfo createOrder(){
         OrderInfo o = new OrderInfo();
         o.setAppliedVAT(10.0f);
+        this.getPreTaxTotal(o);
+        basketManager.getVATTotal(o);
         return o;
     }
+    
     
 
     @Override
@@ -49,35 +58,16 @@ public class OrderManager implements OrderManagerLocal {
         o.getLineList().add(l);
     }
     
-    
-
-  // temp
-     @Override
-     public OrderInfo createOrderFinal(){
-         Date date = new Date();
-         Product p01 = new Product();
-         Product p05 = new Product();
-         p01.setName("Adana Kebab");
-         p05.setName("Chicken Kebab");
-         Line l01 = new Line(0.2f, 1, 7, 0);
-         l01.setProduct(p01);
-         Line l05 = new Line(0, 1, 4.5f, 0);
-         l05.setProduct(p05);
-         Collection<Line> lineList = new ArrayList();
-         lineList.add(l01);
-         lineList.add(l05);
-         
-         
-         OrderInfo order = new OrderInfo();
-         order.setAppliedVAT(10);
-         order.setLineList(lineList);
-         order.setDateOfOrder(date);
-         order.setQueueNumber("CB23");
-         
-         return order;
-     }
-
-    
+    @Override
+    public float getPreTaxTotal (OrderInfo o) {            
+       float preTaxSum = 0;
+       for (Line l : o.getLineList()){
+           preTaxSum += (l.getPreTaxPrice() * l.getDiscount() + l.getPreTaxPrice()) + l.getOptionPriceApplied();
+       }      
+       
+       return preTaxSum;
+   }
+       
      
 
 }

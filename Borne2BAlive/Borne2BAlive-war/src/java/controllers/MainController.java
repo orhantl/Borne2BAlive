@@ -29,6 +29,7 @@ public class MainController extends HttpServlet {
         mp.put("composeMenu", new ComposeMenuCtrl());
         mp.put("catalog", new CatalogCtrl());
         mp.put("cart", new CartCtrl());
+        mp.put("orderCheckOut", new OrderCheckOutCtrl());
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

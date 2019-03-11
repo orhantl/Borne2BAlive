@@ -1,58 +1,46 @@
 
 package controllers;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import managers.OrderManager;
 import managers.OrderManagerLocal;
-import order.Line;
 import order.OrderInfo;
 
-/**
- * This controller summarize all the order lines before
- * finalizing the order
- */
-public class OrderSummaryCtrl implements Serializable, SubControllerInterface {
-        
+
+
+public class OrderCheckOutCtrl implements Serializable, SubControllerInterface {
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
+    
     
     
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response){
+        
         HttpSession session = request.getSession();
-         
+        
         OrderInfo order = (OrderInfo) session.getAttribute("order");
-        float priceVAT = (float) session.getAttribute("prixTTC");        
-        float preTaxPrice = orderManager.getPreTaxTotal(order);
+        float priceVAT = (float) session.getAttribute("priceVAT");
+        float preTaxPrice = (float) session.getAttribute("preTaxPrice");
         
-       
-        Collection<Line> lineList = order.getLineList();        
-        for(Line l : lineList){
-            System.out.println(l.toString());
-            System.out.println(l.getProduct().getName());
-            System.out.println(l.getQty());
-        }
-        
-        
+        session.setAttribute("order", order);
         session.setAttribute("preTaxPrice", preTaxPrice);
         session.setAttribute("priceVAT", priceVAT);
-        session.setAttribute("order", order);
-        session.setAttribute("lines", order.getLineList());
         
-        return "/WEB-INF/order/orderSummary.jsp";
+        return "/WEB-INF/order/orderCheckOut.jsp";
     }
-    
-    
+
     private OrderManagerLocal lookupOrderManagerLocal() {
         try {
             Context c = new InitialContext();
@@ -62,9 +50,5 @@ public class OrderSummaryCtrl implements Serializable, SubControllerInterface {
             throw new RuntimeException(ne);
         }
     }
-    
-    
-    
-    
-    
+
 }

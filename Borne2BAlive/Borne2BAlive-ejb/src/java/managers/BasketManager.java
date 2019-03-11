@@ -50,15 +50,7 @@ public class BasketManager implements BasketManagerLocal {
    }
    
    // est ce que Bob en a besoin?  sinon on efface
-    @Override
-   public float getPreTaxeTotal (OrderInfo o) {            
-       float preTaxSum = 0;
-       for (Line l : o.getLineList()){
-           preTaxSum += (l.getPreTaxPrice() * l.getDiscount() + l.getPreTaxPrice()) + l.getOptionPriceApplied();
-       }      
-       
-       return preTaxSum;
-   }
+   
    
    // est ce que Bob en a besoin? sinon on efface
     @Override
