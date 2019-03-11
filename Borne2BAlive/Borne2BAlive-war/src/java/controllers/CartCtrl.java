@@ -16,38 +16,33 @@ import order.Line;
 import order.OrderInfo;
 
 public class CartCtrl implements Serializable, SubControllerInterface {
+
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
     BasketManagerLocal basketManager = lookupBasketManagerLocal();
 
-    
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         OrderInfo o = (OrderInfo) session.getAttribute("order");
-        
-        
+
         String zone = request.getParameter("zone");
         String url = "/WEB-INF/catalog/catalog.jsp";
-        
-        if ("add".equals(zone)) {
-            Line l = new Line ();
-            l.setQty(1); 
-            Long id = Long.valueOf(request.getParameter("item"));            
-            l.setProduct(catalogManager.getProduct(id)); 
-                                 
-            o.getLineList().add(l);
-            session.setAttribute("order", o);
-            session.setAttribute("lines", o.getLineList());
-            
-            float prixTTC = basketManager.getVATTotal(o);
-            request.setAttribute("prixTTC", prixTTC);
-            
-            
+
+        if ("add".equals(zone)) {            
+            Long id = Long.valueOf(request.getParameter("item"));           
+            o.getLineList().add(basketManager.getLine(id,0));
             url = "/WEB-INF/catalog/catalog.jsp";
         }
+        
+        if ("empty".equals(zone)) {
+            basketManager.emptyBasket(o);
+        }
+
+        float prixTTC = basketManager.getVATTotal(o);
+        session.setAttribute("prixTTC", prixTTC);
+        session.setAttribute("order", o);
         return url;
     }
-    
 
     private BasketManagerLocal lookupBasketManagerLocal() {
         try {
@@ -69,4 +64,3 @@ public class CartCtrl implements Serializable, SubControllerInterface {
         }
     }
 }
-

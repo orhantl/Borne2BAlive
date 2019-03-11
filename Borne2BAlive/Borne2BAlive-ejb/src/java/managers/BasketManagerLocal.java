@@ -24,8 +24,7 @@ public interface BasketManagerLocal {
 
     public OrderInfo emptyBasket(OrderInfo o);
 
-    public boolean isEmpty(OrderInfo o);
+    public Line getLine(Long id, float f);
 
-    public void modifyItemQty(Line l, int qty);
     
 }
