@@ -24,12 +24,11 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
 
         String zone = request.getParameter("zone");
         String url = "/WEB-INF/catalog/catalog.jsp";
-        
+
         // fake order de jAlex - code à supprimer plus tard (ici et dans orderManager)
         OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
         currentOrder = currentOrder == null ? orderManager.createOrder() : currentOrder;
         session.setAttribute("currentOrder", currentOrder);
-        
 
         if ("pageHead".equals(zone)) {
             url = "/WEB-INF/catalog/header.jsp";
@@ -49,11 +48,12 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
 
         if ("mainDisplay".equals(zone)) {
             url = "/WEB-INF/catalog/mainDisplay.jsp";
-            session.setAttribute("order", orderManager.createOrder());
+            // fake order de LO - code à supprimer plus tard (ici et dans orderManager)
+            OrderInfo order = (OrderInfo) session.getAttribute("order");
+            order = order == null ? orderManager.createOrder() : order;
+            session.setAttribute("order", order);
             request.setAttribute("products", catalogManager.getAllProducts());
         }
-
-        
 
         return url;
     }
