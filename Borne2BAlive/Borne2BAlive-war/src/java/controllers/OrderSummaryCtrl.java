@@ -2,6 +2,9 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import managers.OrderManager;
 import managers.OrderManagerLocal;
+import order.Line;
 import order.OrderInfo;
 
 /**
@@ -32,6 +36,13 @@ public class OrderSummaryCtrl implements Serializable, SubControllerInterface {
         OrderInfo order = new OrderInfo();
         order = orderManager.createOrderFinal();
         System.out.println(order.getQueueNumber());
+        Collection<Line> lineList = order.getLineList();        
+        for(Line l : lineList){
+            System.out.println(l.toString());
+            System.out.println(l.getProduct().getName());
+            System.out.println(l.getQty());
+        }
+        
         
         request.setAttribute("order", order);
         request.setAttribute("lines", order.getLineList());
