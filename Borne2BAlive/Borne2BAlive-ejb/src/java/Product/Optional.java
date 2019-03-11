@@ -12,8 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import order.Line;
 
+@NamedQueries(
+        {
+           @NamedQuery(name = "Product.Optional.findAllOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct")
+        }
+)
 @Entity
 public class Optional implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -35,9 +42,14 @@ public class Optional implements Serializable {
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Ingredient ingredient;
+    
+    @ManyToMany(mappedBy = "options")
+    private Collection<MenuItem> items;
+    
 
     public Optional() {
         this.lineList = new ArrayList();
+        this.items = new ArrayList();
     }
 
     public Optional(String name, int maxQty, float price) {
@@ -96,6 +108,15 @@ public class Optional implements Serializable {
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
     }
+
+    public Collection<MenuItem> getItems() {
+        return items;
+    }
+
+    public void setItems(Collection<MenuItem> items) {
+        this.items = items;
+    }
+    
     
     
 

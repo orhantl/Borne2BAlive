@@ -10,26 +10,13 @@
             <img class="card-img-top" src="${m.img}" alt="">
             <div class="card-body">
                 <h6 class="card-title">${m.name}</h6>
-                <c:url var="composeMenu" value="MainController?section=composeMenu&selectedMenu=${m.id}" />
-                <a href="#myModal${m.id}" class="btn btn-primary stretched-link" data-toggle="modal">
+                <c:url var="composeMenu" value="MainController?section=composeMenu&step=1&selectedMenu=${m.id}" />
+                <a href="${composeMenu}" class="btn btn-primary stretched-link">
                     <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${m.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
                 </a>
 
             </div>
         </div>
-
-        <!-- The Modal -->
-        <div class="modal" id="myModal${m.id}">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <c:import url="${composeMenu}" />
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
     </c:forEach>
 
 </div>

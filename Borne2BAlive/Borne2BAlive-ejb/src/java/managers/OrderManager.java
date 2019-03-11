@@ -4,6 +4,7 @@ package managers;
 
 
 import Product.Menu;
+import Product.MenuItem;
 import Product.Product;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,6 +48,7 @@ public class OrderManager implements OrderManagerLocal {
     public void addLineToOrder(Line l, OrderInfo o) {
         o.getLineList().add(l);
     }
+    
     
 
   // temp
