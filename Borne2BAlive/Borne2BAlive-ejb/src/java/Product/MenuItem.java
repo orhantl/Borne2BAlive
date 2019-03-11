@@ -32,9 +32,14 @@ public class MenuItem implements Serializable {
     
     @ManyToOne
     private Line line;
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Optional> options;
 
     public MenuItem() {
         ingredients = new ArrayList<>();
+        options = new ArrayList<>();
+        
     }
 
     
@@ -83,6 +88,16 @@ public class MenuItem implements Serializable {
     public void setLine(Line line) {
         this.line = line;
     }
+
+    public Collection<Optional> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Collection<Optional> options) {
+        this.options = options;
+    }
+    
+    
     
     
     

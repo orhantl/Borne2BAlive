@@ -18,14 +18,28 @@
             <c:url var="zoneHead" value="MainController?section=composeMenu&step=4&zone=header" />
             <c:import url="${zoneHead}" />
 
-            <div>
-               
+            <div class="row centerStage">
+
+                <c:url var="remove" value="#" />
+
+
+
+                <div class="col-md-2 "><img src="${currentItemSide.product.img}" alt="${currentItemSide.product.name}" height="300"></div>
+                <div class="col-md-1 "></div>
+                <div class="col-md-2  rightSeparator"> 
+                    <c:forEach var="o" items="${currentSideOptions}">
+
+                        <a href="#" class="btn btn-outline-primary"> ${o.name} : 
+                            +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
+                            </a>
+                        <br><br>
+                    </c:forEach>
+                </div>
+
                 
-                <img src="${currentSide.img}" alt="${currentSide.name}">
-               
-                <c:forEach var="o" items="${currentSideOptions}">
-                    ${o.name} <br>
-                </c:forEach>
+
+                <div class="col-md-7 "></div>
+
 
 
             </div>

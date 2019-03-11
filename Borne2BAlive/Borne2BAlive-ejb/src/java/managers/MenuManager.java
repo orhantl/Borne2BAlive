@@ -2,6 +2,7 @@ package managers;
 
 import Product.Allergen;
 import Product.Menu;
+import Product.MenuItem;
 import Product.Optional;
 import Product.Product;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import order.Line;
 
 @Stateless
 public class MenuManager implements MenuManagerLocal {
@@ -53,4 +55,21 @@ public class MenuManager implements MenuManagerLocal {
         return em.find(Product.class, id);
     }
 
+    @Override
+    public MenuItem createMenuItem(Product p) {
+        MenuItem item = new MenuItem();
+        item.setProduct(p);
+        return item;
+    }
+    
+    @Override
+    public void addItemToLine(MenuItem item, Line l) {
+        item.setLine(l);
+    }
+    
+    @Override
+    public Optional getOptional(long id) {
+        return em.find(Optional.class, id);
+    }
+    
 }

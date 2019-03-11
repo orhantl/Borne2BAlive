@@ -19,25 +19,62 @@
             <c:import url="${zoneHead}" />
 
             <div class="centerStage">
-                <c:forEach var="o" items="${currentSandwichOptions}">
-                    <div class="row">
-                        
-                        <c:url var="remove" value="MainController?section=composeMenu&step=2&option=${o.id}" />
-                        
-                        <div class="col-md-3"></div>
+                
+                
+                
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <c:forEach var="o" items="${currentSandwichOptions}">
+                            <div class="row">
 
-                        <div class="col-md-2 centerContent"><a href="${remove}"><img src="${o.ingredient.img}" alt="${o.ingredient.name}" height="80"></a></div>
-                        
-                        <div class="col-md-1 centerContent"><a href="${remove}"><img src="Img/pictograms/delete.jpg" alt="retirer du sandwich" width="40"></a></div>
+                                <c:url var="remove" value="MainController?section=composeMenu&step=2&remove=${o.id}" />
 
-                        <div class="col-md-3 centerContent"><a href="${remove}" class="btn btn-outline-success" role="button">Retirer l'ingrédient ${o.ingredient.name}</a></div>
+                                <div class="col-md-2"></div>
 
-                        <div class="col-md-3"></div>
+                                <div class="col-md-3 centerContent"><a href="${remove}"><img src="${o.ingredient.img}" alt="${o.ingredient.name}" height="80"></a></div>
+
+                                <div class="col-md-6 centerContent">
+                                    <a href="${remove}" class="btn btn-outline-danger" role="button"><img src="Img/pictograms/delete.jpg" alt="retirer du sandwich" width="40"> 
+                                        Retirer l'ingrédient ${o.ingredient.name}
+                                    </a></div>
+
+                                <div class="col-md-1 centerContent"></div>
+
+                            </div>
+                        </c:forEach>
                     </div>
-                </c:forEach>
+                    
+                    
+                    
+                    <div class="col-md-6">
+                        <c:forEach var="selectedOption" items="${currentItemSandwich.options}">
+                            <div class="row">
 
+                                <c:url var="add" value="MainController?section=composeMenu&step=2&add=${selectedOption.id}" />
 
+                                <div class="col-md-1"></div>
 
+                                <div class="col-md-3 centerContent"><a href="${add}"><img src="${selectedOption.ingredient.img}" alt="${selectedOption.ingredient.name}" height="80"></a></div>
+
+                                <div class="col-md-6 centerContent">
+                                    <a href="${add}" class="btn btn-outline-success" role="button"><img src="Img/pictograms/add.png" alt="retirer du sandwich" width="40"> 
+                                        Ajouter l'ingrédient ${selectedOption.ingredient.name}
+                                    </a></div>
+
+                                <div class="col-md-2 centerContent"></div>
+
+                            </div>
+                        </c:forEach>
+                    </div>
+                    
+                </div>
+                
+                
+                
+                
+                
+                
             </div>
 
             <br><br>

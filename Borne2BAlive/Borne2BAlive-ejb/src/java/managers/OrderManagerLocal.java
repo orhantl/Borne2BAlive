@@ -23,9 +23,7 @@ public interface OrderManagerLocal {
 
     public OrderInfo createOrderFinal();
 
-    public void addItemToLine(MenuItem item, Line l);
-
-    public MenuItem createMenuItem(Product p);
+    
 
 
     

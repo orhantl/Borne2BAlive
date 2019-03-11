@@ -64,6 +64,15 @@ body {
     line-height: 100px;
 }
 
+.leftSeparator {
+    border-left: solid;
+    border-left-color: #cccccc;
+}
+
+.rightSeparator {
+    border-right: solid;
+    border-right-color: #cccccc;
+}
 
 
 

@@ -42,9 +42,14 @@ public class Optional implements Serializable {
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Ingredient ingredient;
+    
+    @ManyToMany(mappedBy = "options")
+    private Collection<MenuItem> items;
+    
 
     public Optional() {
         this.lineList = new ArrayList();
+        this.items = new ArrayList();
     }
 
     public Optional(String name, int maxQty, float price) {
@@ -103,6 +108,15 @@ public class Optional implements Serializable {
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
     }
+
+    public Collection<MenuItem> getItems() {
+        return items;
+    }
+
+    public void setItems(Collection<MenuItem> items) {
+        this.items = items;
+    }
+    
     
     
 
