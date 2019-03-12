@@ -35,15 +35,6 @@ public class OrderSummaryCtrl implements Serializable, SubControllerInterface {
         float priceVAT = (float) session.getAttribute("prixTTC");        
         float preTaxPrice = orderManager.getPreTaxTotal(order);
         
-       
-        Collection<Line> lineList = order.getLineList();        
-        for(Line l : lineList){
-            System.out.println(l.toString());
-            System.out.println(l.getProduct().getName());
-            System.out.println(l.getQty());
-        }
-        
-        
         session.setAttribute("preTaxPrice", preTaxPrice);
         session.setAttribute("priceVAT", priceVAT);
         session.setAttribute("order", order);

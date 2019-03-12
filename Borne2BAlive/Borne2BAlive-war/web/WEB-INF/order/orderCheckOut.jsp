@@ -5,9 +5,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Choix du paiement</title>
     </head>
     <body>
         <h1>Choix du paiement</h1>
+        <br>
+        <br>
+        <a href="MainController?section=cashCheckOut">Espèces</a>
+        <br>
+        <a href="MainController?section=cashCheckOut">Tickets restaurant</a>
+        <br>
+        <a href="#">Carte bancaire, paiement sans contact</a>
+        <br>
+        <br>
+        <a href="MainController?section=kill">Abandonner</a>
+        <br>
+        <a href="#">Retour</a>
+        
     </body>
 </html>

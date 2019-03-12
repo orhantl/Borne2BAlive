@@ -27,7 +27,7 @@
         
         <a href="MainController?section=cart&order=${order}">Modifier</a>
         <br>
-        <a href="#">Abandonner</a>
+        <a href="MainController?section=kill">Abandonner</a>
         <br>
         <a href="MainController?section=orderCheckOut&order=${order}&priceVAT=${priceVAT}&preTaxPrice=${preTaxPrice}">Confirmer</a>
         <br>

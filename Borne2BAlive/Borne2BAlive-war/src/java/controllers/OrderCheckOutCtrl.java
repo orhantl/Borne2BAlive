@@ -38,6 +38,8 @@ public class OrderCheckOutCtrl implements Serializable, SubControllerInterface {
         session.setAttribute("preTaxPrice", preTaxPrice);
         session.setAttribute("priceVAT", priceVAT);
         
+        
+        
         return "/WEB-INF/order/orderCheckOut.jsp";
     }
 

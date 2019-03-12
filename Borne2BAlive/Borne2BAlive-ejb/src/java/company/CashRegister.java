@@ -10,9 +10,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.criteria.Order;
 import order.OrderInfo;
+
+@NamedQueries(
+        {
+            @NamedQuery(name="company.CashRegister.findCR", query="select c from CashRegister c where c.id = :paramId")
+        }
+)
+
+
+
 
 @Entity
 public class CashRegister implements Serializable {
