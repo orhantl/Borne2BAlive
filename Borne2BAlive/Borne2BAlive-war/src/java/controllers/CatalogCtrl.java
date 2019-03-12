@@ -54,6 +54,10 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
             order = order == null ? orderManager.createOrder() : order;
             session.setAttribute("order", order);
             request.setAttribute("products", catalogManager.getAllProducts());
+
+            if ("".equals(zone)) {
+                url = "/WEB-INF/catalog/mainDisplay/.jsp";
+            }
         }
 
         return url;

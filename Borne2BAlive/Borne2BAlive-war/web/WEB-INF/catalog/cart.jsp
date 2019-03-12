@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<p><img src="Img/pictograms/cart.svg" alt="panier" id="cart"> VOTRE COMMANDE</p> 
+<p><img src="Img/pictograms/cart.svg" alt="panier" id="cart">  VOTRE COMMANDE</p> 
 
 
 <%--

@@ -55,3 +55,18 @@ body {
 #cart {
     width: 50px ;
 }
+
+#productImg{
+    width : 230px;
+}
+
+#categoryCard{
+    text-align: center;
+    horizontal-align: middle;
+    width: 230px;
+}
+
+#infoIcon {
+   width: 20px ; 
+}
+

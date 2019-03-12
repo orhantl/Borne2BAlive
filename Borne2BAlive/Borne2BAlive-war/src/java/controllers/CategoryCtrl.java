@@ -10,23 +10,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import managers.CatalogManagerLocal;
+import order.OrderInfo;
 
-public class MenusCtrl implements Serializable, SubControllerInterface {
+public class CategoryCtrl implements Serializable, SubControllerInterface {
 
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
+
         HttpSession session = request.getSession();
+        Long id = Long.valueOf(request.getParameter("id"));
+        OrderInfo order = (OrderInfo) session.getAttribute("order");
+
         String zone = request.getParameter("zone");
-        String url = "/WEB-INF/catalog/catalog_menus.jsp";
-        
+        String url = "/WEB-INF/catalog/catalog_category.jsp";
+
+        String categoryName = catalogManager.getCategory(id).getName();
+
         if ("mainDisplay".equals(zone)) {
-            url = "/WEB-INF/catalog/menus.jsp";
-            request.setAttribute("MenusAvailable", catalogManager.getAvailableMenus());
-            request.setAttribute("MenusUnavailable", catalogManager.getUnavailableMenus());
+            switch (categoryName) {
+                case "Menus":
+                    url = "/WEB-INF/catalog/menus.jsp";
+                    request.setAttribute("MenusAvailable", catalogManager.getAvailableMenus());
+                    request.setAttribute("MenusUnavailable", catalogManager.getUnavailableMenus());
+                    break;
+                case "Offres":
+                    // TODO
+                    break;
+                default:
+                    url = "/WEB-INF/catalog/categoryDisplay.jsp";
+
+                    request.setAttribute("Products", catalogManager.getAllAvailableProductsByCategory(id));
+            }
+       
         }
-        
+
         return url;
     }
 
