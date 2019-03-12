@@ -26,5 +26,7 @@ public interface BasketManagerLocal {
 
     public Line getLine(Long id, float f);
 
+    public OrderInfo removeLine(OrderInfo o, int index);
+
     
 }

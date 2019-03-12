@@ -48,4 +48,10 @@ body {
     line-height: 15px;
 }
 
+#trash {
+    width: 40px ;
+}
 
+#cart {
+    width: 50px ;
+}
