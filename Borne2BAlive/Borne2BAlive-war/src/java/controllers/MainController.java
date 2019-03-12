@@ -22,8 +22,7 @@ public class MainController extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config); 
         
-        mp = new HashMap<>();
-        mp.put("Menus", new MenusCtrl());
+        mp = new HashMap<>();        
         mp.put("create", new CreateDataCtrl());
         mp.put("orderSummary", new OrderSummaryCtrl());
         mp.put("composeMenu", new ComposeMenuCtrl());
@@ -32,6 +31,7 @@ public class MainController extends HttpServlet {
         mp.put("orderCheckOut", new OrderCheckOutCtrl());
         mp.put("cashCheckOut", new CashCheckOutCtrl());
         mp.put("kill", new Kill());
+        mp.put("category", new CategoryCtrl());
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

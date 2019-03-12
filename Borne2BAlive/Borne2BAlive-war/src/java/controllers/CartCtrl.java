@@ -37,6 +37,11 @@ public class CartCtrl implements Serializable, SubControllerInterface {
         if ("empty".equals(zone)) {
             basketManager.emptyBasket(o);
         }
+        
+        if ("remove".equals(zone)) {
+            int index = Integer.valueOf(request.getParameter("count")); 
+            basketManager.removeLine(o, index);
+        }
 
         float prixTTC = basketManager.getVATTotal(o);
         session.setAttribute("prixTTC", prixTTC);

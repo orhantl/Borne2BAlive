@@ -1,6 +1,7 @@
 
 package managers;
 
+import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -46,6 +47,14 @@ public class BasketManager implements BasketManagerLocal {
     @Override
    public OrderInfo emptyBasket (OrderInfo o){
        o.getLineList().clear();
+       return o;
+   }
+   
+    @Override
+   public OrderInfo removeLine (OrderInfo o, int index){
+       ArrayList <Line> modifiedOrder = (ArrayList) o.getLineList();
+       modifiedOrder.remove(index);
+       o.setLineList(modifiedOrder);
        return o;
    }
    

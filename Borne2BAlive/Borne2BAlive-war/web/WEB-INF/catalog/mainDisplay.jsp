@@ -7,4 +7,3 @@ ICI C'est le coeur de la page, le display <br>
 </c:forEach>
 </div>
 <hr>
-
