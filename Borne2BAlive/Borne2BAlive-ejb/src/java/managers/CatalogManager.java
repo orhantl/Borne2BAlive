@@ -82,9 +82,7 @@ public class CatalogManager implements CatalogManagerLocal {
     public Category getCategory (Long id) {
         Category c = em.find(Category.class, id);
         return c;
-
- 
-    
+    }
     
 
 }

@@ -78,7 +78,7 @@
             </div>
 
 
-                        <br><br>
+             <br><br>
 
             <c:url var="pageFoot" value="MainController?section=composeMenu&step=9&zone=footer" />
             <c:import url="${pageFoot}" />
