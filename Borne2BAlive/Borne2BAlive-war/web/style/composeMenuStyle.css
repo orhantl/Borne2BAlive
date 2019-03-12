@@ -74,5 +74,17 @@ body {
     border-right-color: #cccccc;
 }
 
+.centerText {
+    text-align: center;
+}
+
+.leftPadding{
+    padding-left: 5%;
+}
+
+.rightPadding{
+    padding-right: 5%;
+}
+
 
 
