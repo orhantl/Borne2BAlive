@@ -66,7 +66,12 @@ public class CatalogManager implements CatalogManagerLocal {
         return p;
     }
 
-    
+    @Override
+    public List<Product> getAllAvailableProductsFromCategory(String catName) {
+        TypedQuery<Product> qr = em.createNamedQuery("Product.Product.findAllAvailableProductsFromCategory", Product.class);
+        qr.setParameter("catName", catName);
+        return qr.getResultList();
+    }
     
     
     

@@ -18,7 +18,10 @@ import order.Line;
 
 @NamedQueries(
         {
-           @NamedQuery(name = "Product.Optional.findAllOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct")
+           @NamedQuery(name = "Product.Optional.findAllOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct"),
+           @NamedQuery(name = "Product.Optional.findSizeOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct and o.name like '%Taille%'"),
+           @NamedQuery(name = "Product.Optional.findIceOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct and o.name like '%glaçons%'")
+        
         }
 )
 @Entity

@@ -15,8 +15,14 @@
         <c:import url="${pageHead}" />
 
         <div class="globalContent">
-            <c:url var="zoneHead" value="MainController?section=composeMenu&step=4&zone=header" />
+            <c:url var="zoneHead" value="MainController?section=composeMenu&step=7&zone=header" />
             <c:import url="${zoneHead}" />
+
+
+
+
+
+            
 
             <div class="row centerStage">
 
@@ -24,13 +30,13 @@
 
                 <div class="col-md-3 "></div>
 
-                <div class="col-md-2 "><img src="${currentItemSide.product.img}" alt="${currentItemSide.product.name}" height="300"></div>
+                <div class="col-md-2 "><img src="${currentItemDrink.product.img}" alt="${currentItemDrink.product.name}" height="300"></div>
                 <div class="col-md-1 "></div>
                 <div class="col-md-3"> 
-                    <c:forEach var="o" items="${currentSideOptions}">
+                    <c:forEach var="o" items="${currentDrinkOptions}">
 
-                        <c:url var="option" value="MainController?section=composeMenu&step=4&option=${o.id}" />
-                        <a href="${option}" class="btn btn-outline-primary"> ${o.name} : 
+                        <c:url var="option" value="MainController?section=composeMenu&step=7&size=" />
+                        <a href="${option}${o.id}" class="btn btn-outline-primary"> ${o.name} : 
                             +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
                         </a>
                         <br><br>
@@ -46,7 +52,7 @@
 
             <br><br>
 
-            <c:url var="pageFoot" value="MainController?section=composeMenu&step=4&zone=footer" />
+            <c:url var="pageFoot" value="MainController?section=composeMenu&step=7&zone=footer" />
             <c:import url="${pageFoot}" />
 
             <br>
