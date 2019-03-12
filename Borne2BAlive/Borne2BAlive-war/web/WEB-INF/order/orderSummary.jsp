@@ -16,20 +16,20 @@
         </c:forEach>
         
         <br>
-        Prix hors taxe :
+        Prix hors taxe : ${preTaxPrice}
         <br>
         Tva Appliquée : ${order.appliedVAT}
         <br>
-        Prix toutes taxes comprises :
+        Prix toutes taxes comprises : ${priceVAT}
         <br>
         <br>
         
         
         <a href="MainController?section=cart&order=${order}">Modifier</a>
         <br>
-        <a href="#">Abandonner</a>
+        <a href="MainController?section=kill">Abandonner</a>
         <br>
-        <a href="#">Confirmer</a>
+        <a href="MainController?section=orderCheckOut&order=${order}&priceVAT=${priceVAT}&preTaxPrice=${preTaxPrice}">Confirmer</a>
         <br>
         
     </body>

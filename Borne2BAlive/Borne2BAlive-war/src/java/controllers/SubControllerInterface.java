@@ -7,6 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface SubControllerInterface {
     
-    public String process(HttpServletRequest request, HttpServletResponse response);
+    public String process(HttpServletRequest request, HttpServletResponse response);     
     
 }

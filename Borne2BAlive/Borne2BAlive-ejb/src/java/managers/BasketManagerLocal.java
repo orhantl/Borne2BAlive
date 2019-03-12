@@ -18,7 +18,7 @@ public interface BasketManagerLocal {
 
     public float getVATTotal(OrderInfo o);
 
-    public float getPreTaxeTotal(OrderInfo o);
+    //public float getPreTaxeTotal(OrderInfo o);
 
     public int getItemNumber(OrderInfo o);
 

@@ -28,6 +28,9 @@ public class MainController extends HttpServlet {
         mp.put("composeMenu", new ComposeMenuCtrl());
         mp.put("catalog", new CatalogCtrl());
         mp.put("cart", new CartCtrl());
+        mp.put("orderCheckOut", new OrderCheckOutCtrl());
+        mp.put("cashCheckOut", new CashCheckOutCtrl());
+        mp.put("kill", new Kill());
         mp.put("category", new CategoryCtrl());
     }
     

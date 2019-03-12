@@ -157,11 +157,13 @@ public class DataTest implements DataTestLocal {
         Restaurant restaurant = new Restaurant("borne2Alive", "17 rue CDG Paris 75012", "0185252525", "123456789", "1234567890123", "borne2Alive@gmail.com");
 
         //cashRegister
-        CashRegister caisse = new CashRegister("485", "toto24");
+        CashRegister cr01 = new CashRegister("Comptoir 1", "toto24");
+        CashRegister cr02 = new CashRegister("Comptoir 2", "toto23");
 
         //kiosk
-        Kiosk borne01 = new Kiosk("485", "kv01");
-
+        Kiosk kiosk01 = new Kiosk("Kiosk 01", "kv01");
+        Kiosk kiosk02 = new Kiosk("Kiosk 02", "kv02");
+                
         //Account
         Account acc01 = new Account("toto@gmail.com", "dassauld", "toto", "toto1234",
                 "0690123456", new GregorianCalendar(2018, 02, 28).getTime(), new GregorianCalendar(1985, 03, 24).getTime(),
@@ -375,10 +377,12 @@ public class DataTest implements DataTestLocal {
         acc01.setStatus(actif);
 
         // CashRegister > Restaurant
-        caisse.setRestaurant(restaurant);
+        cr01.setRestaurant(restaurant);
+        cr02.setRestaurant(restaurant);
 
         // Kiosk > Restaurant
-        borne01.setRestaurant(restaurant);
+        kiosk01.setRestaurant(restaurant);
+        kiosk02.setRestaurant(restaurant);
 
         // Category > CategoryType
         coldDrinks.setType(typeCarte);
@@ -448,13 +452,13 @@ public class DataTest implements DataTestLocal {
         
         // Order > Kiosk
         
-        o01.setKiosk(borne01);
-        o02.setKiosk(borne01);
-        o03.setKiosk(borne01);
-        o04.setKiosk(borne01);
+        o01.setKiosk(kiosk01);
+        o02.setKiosk(kiosk01);
+        o03.setKiosk(kiosk02);
+        o04.setKiosk(kiosk02);
         
         // Order > CashRegister
-        o05.setCashier(caisse);
+        o05.setCashier(cr02);
                 
 
         // Line > Product
@@ -897,10 +901,12 @@ public class DataTest implements DataTestLocal {
         em.persist(acc01);
 
         // Kioks
-        em.persist(borne01);
+        em.persist(kiosk01);
+        em.persist(kiosk02);
 
         // CashRegister
-        em.persist(caisse);
+        em.persist(cr01);
+        em.persist(cr02);
         
         // Option
         em.persist(noIce);

@@ -26,26 +26,19 @@ public class OrderSummaryCtrl implements Serializable, SubControllerInterface {
         
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     
+    
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response){
         HttpSession session = request.getSession();
          
-        //OrderInfo order = (OrderInfo) session.getAttribute("order");
+        OrderInfo order = (OrderInfo) session.getAttribute("order");
+        float priceVAT = (float) session.getAttribute("prixTTC");        
+        float preTaxPrice = orderManager.getPreTaxTotal(order);
         
-        
-        OrderInfo order = new OrderInfo();
-        order = orderManager.createOrderFinal();
-        System.out.println(order.getQueueNumber());
-        Collection<Line> lineList = order.getLineList();        
-        for(Line l : lineList){
-            System.out.println(l.toString());
-            System.out.println(l.getProduct().getName());
-            System.out.println(l.getQty());
-        }
-        
-        
-        request.setAttribute("order", order);
-        request.setAttribute("lines", order.getLineList());
+        session.setAttribute("preTaxPrice", preTaxPrice);
+        session.setAttribute("priceVAT", priceVAT);
+        session.setAttribute("order", order);
+        session.setAttribute("lines", order.getLineList());
         
         return "/WEB-INF/order/orderSummary.jsp";
     }
