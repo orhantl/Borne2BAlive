@@ -32,5 +32,15 @@ public interface MenuManagerLocal {
     public Optional getOptional(long id);
 
     public void addOptionToItem(Optional option, MenuItem item);
+
+    public void addOptionToItemSide(Optional option, MenuItem item);
+
+    public double getOptionsPrice(List<MenuItem> items);
+
+    public List<Product> getDrinksFromMenu();
+
+    public List<Optional> getSizeOptionsFromProduct(long productId);
+
+    public List<Optional> getIceOptionsFromProduct(long productId);
     
 }

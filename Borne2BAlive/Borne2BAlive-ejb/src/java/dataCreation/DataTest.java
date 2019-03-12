@@ -225,7 +225,9 @@ public class DataTest implements DataTestLocal {
                 + "les amoureux de la nature", "Img/Ingredient/fromage.jpg");
         Ingredient iceCubes = new Ingredient("Glaçons", "À la Neuf semaines et demi", "Img/Ingredient/Glaçons.jpg");
         Ingredient coke = new Ingredient("Cola", "Du diabète en boîte", "Img/Ingredient/cola.jpg");
-        Ingredient dietCoke = new Ingredient("Cola", "De l'aspartame pour le pancréas",
+        Ingredient dietCoke = new Ingredient("Cola light", "De l'aspartame pour le pancréas",
+                "Img/Ingredient/cola.jpg");
+        Ingredient cokeZero = new Ingredient("Cola zero", "Le goût original, sans sucre",
                 "Img/Ingredient/cola.jpg");
         Ingredient orangeSoda = new Ingredient("Soda à l'orange", "Du diabète en boîte",
                 "Img/Ingredient/orangeSoda.jpg");
@@ -348,19 +350,21 @@ public class DataTest implements DataTestLocal {
        
         mediumCoke.setIngredient(coke);
         mediumDietCoke.setIngredient(dietCoke);
-        mediumCokeZero.setIngredient(orangeSoda);
+        mediumCokeZero.setIngredient(cokeZero);
         mediumPerrier.setIngredient(carbWater);
         mediumNestea.setIngredient(teaSoda);
-        mediumOrangina.setIngredient(stillWater);
+        mediumOrangina.setIngredient(orangeSoda);
         mediumWater.setIngredient(stillWater);
         largeCoke.setIngredient(coke);
-        largeCokeZero.setIngredient(dietCoke);
+        largeDietCoke.setIngredient(dietCoke);
+        largeCokeZero.setIngredient(cokeZero);
         largeOrangina.setIngredient(orangeSoda);
         largePerrier.setIngredient(carbWater);
         largeNestea.setIngredient(teaSoda);
         largeWater.setIngredient(stillWater);
         xLargeCoke.setIngredient(coke);
-        xLargeCokeZero.setIngredient(dietCoke);
+        xLargeDietCoke.setIngredient(dietCoke);
+        xLargeCokeZero.setIngredient(cokeZero);
         xLargeOrangina.setIngredient(orangeSoda);
         xLargePerrier.setIngredient(carbWater);
         xLargeNestea.setIngredient(teaSoda);
@@ -692,6 +696,7 @@ public class DataTest implements DataTestLocal {
         coca.getIngredients().add(iceCubes);
         cocaLight.getIngredients().add(dietCoke);
         cocaLight.getIngredients().add(iceCubes);
+        cocaZero.getIngredients().add(cokeZero);
         cocaZero.getIngredients().add(iceCubes);
         orangina.getIngredients().add(orangeSoda);
         orangina.getIngredients().add(iceCubes);
@@ -845,6 +850,7 @@ public class DataTest implements DataTestLocal {
         em.persist(cheese);
         em.persist(iceCubes);
         em.persist(coke);
+        em.persist(cokeZero);
         em.persist(dietCoke);
         em.persist(orangeSoda);
         em.persist(teaSoda);
@@ -906,6 +912,7 @@ public class DataTest implements DataTestLocal {
         em.persist(mediumPotatoes);
         em.persist(mediumSalad);
         em.persist(mediumCoke);
+        em.persist(mediumDietCoke);
         em.persist(mediumCokeZero);
         em.persist(mediumDietCoke);
         em.persist(mediumOrangina);
@@ -916,6 +923,7 @@ public class DataTest implements DataTestLocal {
         em.persist(largePotatoes);
         em.persist(largeSalad);
         em.persist(largeCoke);
+        em.persist(largeDietCoke);
         em.persist(largeCokeZero);
         em.persist(largeDietCoke);
         em.persist(largeOrangina);
@@ -926,6 +934,7 @@ public class DataTest implements DataTestLocal {
         em.persist(xLargePotatoes);
         em.persist(xLargeSalad);
         em.persist(xLargeCoke);
+        em.persist(xLargeDietCoke);
         em.persist(xLargeCokeZero);
         em.persist(xLargeDietCoke);
         em.persist(xLargeOrangina);

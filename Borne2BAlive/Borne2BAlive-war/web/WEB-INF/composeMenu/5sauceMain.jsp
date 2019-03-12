@@ -15,7 +15,7 @@
         <c:import url="${pageHead}" />
 
         <div class="globalContent">
-            <c:url var="zoneHead" value="MainController?section=composeMenu&step=4&zone=header" />
+            <c:url var="zoneHead" value="MainController?section=composeMenu&step=5&zone=header" />
             <c:import url="${zoneHead}" />
 
             <div class="row centerStage">
@@ -24,28 +24,21 @@
 
 
 
-                <div class="col-md-2 "><img src="${currentItemSide.product.img}" alt="${currentItemSide.product.name}" height="300"></div>
-                <div class="col-md-1 "></div>
-                <div class="col-md-2  rightSeparator"> 
-                    <c:forEach var="o" items="${currentSideOptions}">
+                <div class="col-md-2 "></div>
+                <div class="col-md-8 leftPadding rightPadding">
 
-                        <c:url var="option" value="MainController?section=composeMenu&step=4&option=${o.id}" />
-                        <a href="${option}" class="btn btn-outline-primary"> ${o.name} : 
-                            +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
-                        </a>
-                        <br><br>
-                    </c:forEach>
-                </div>
-                <div class="col-md-7 leftPadding rightPadding">
-
-                    <div class="row"> Voulez-vous ajouter une sauce ? </div><br>
+                    <c:url var="selectedSauce" value="MainController?section=composeMenu&step=5&selectedSauce=" />
+                    
                     <div class="row centerText card-deck">
+                        <div class="card" style="width:120px">
+                                <img class="card-img-top" src="" alt="">
+                                <div class="card-body centerText"><a href="${selectedSauce}0" class="btn btn-outline-success stretched-link">Sans sauce</a>
+                                </div>
+                            </div>
                         <c:forEach var="s" items="${sauces}">
                             <div class="card" style="width:120px">
                                 <img class="card-img-top" src="${s.img}" alt="${s.name}">
-                                <div class="card-body centerText">
-                                    +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${s.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
-                                    <a href="#" class="btn btn-outline-success stretched-link">${s.name}</a>
+                                <div class="card-body centerText"><a href="${selectedSauce}${s.id}" class="btn btn-outline-success stretched-link">${s.name}</a>
                                 </div>
                             </div>
                         </c:forEach>
@@ -54,7 +47,7 @@
 
                 </div>
 
-                <div class="col-md-1 "></div>
+                <div class="col-md-2 "></div>
 
             </div>
 
@@ -62,7 +55,7 @@
 
         <br><br>
 
-        <c:url var="pageFoot" value="MainController?section=composeMenu&step=4&zone=footer" />
+        <c:url var="pageFoot" value="MainController?section=composeMenu&step=5&zone=footer" />
         <c:import url="${pageFoot}" />
 
         <br>
