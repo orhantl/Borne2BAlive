@@ -22,7 +22,9 @@ import order.Line;
         {
             @NamedQuery(name = "Product.Product.findAllProducts", query = "select p from Product p"),
             @NamedQuery(name = "Product.Product.findAllergensOfProduct", query = "select distinct(a) from Allergen a join a.ingredients i join i.products p where p.id = :idProduct"),
-            @NamedQuery(name = "Product.Product.findAllAvailableProductsFromCategory", query = "select p from Product p join p.categories c where c.name = :catName and p.status.name = 'Disponible' ")
+            @NamedQuery(name = "Product.Product.findAllAvailableProductsFromCategory", query = "select p from Product p join p.categories c where c.name = :catName and p.status.name = 'Disponible' "),
+            @NamedQuery(name = "Product.Product.findAllAvailableProductsByCategoryID", query = "select p from Product p join p.categories c where c.id = :idCategory and p.status.name = 'Disponible' ")
+
         }
 )
 @Entity

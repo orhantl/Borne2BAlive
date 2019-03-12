@@ -5,7 +5,7 @@
 
         <c:forEach var="c" items="${navBar}">
             <div class="col">
-                <a href="MainController?section=${c.name}"><img src="${c.img}" alt="${c.name}" width="80" class="rounded" > </a>
+                <a href="MainController?section=category&id=${c.id}"><img src="${c.img}" alt="${c.name}" width="80" class="rounded" > </a>
             </div>
         </c:forEach>
 
@@ -15,7 +15,7 @@
 
         <c:forEach var="c" items="${navBar}">
             <div class="col">
-                <a href="MainController?section=${c.name}">${c.name}</a>
+                <a href="MainController?section=category&id=${c.id}">${c.name}</a>
             </div>
         </c:forEach>
 

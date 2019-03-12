@@ -28,5 +28,9 @@ public interface CatalogManagerLocal {
 
     public List<Product> getAllAvailableProductsFromCategory(String catName);
 
+    public List<Product> getAllAvailableProductsByCategory(Long id);
+
+    public Category getCategory(Long id);
+
     
 }
