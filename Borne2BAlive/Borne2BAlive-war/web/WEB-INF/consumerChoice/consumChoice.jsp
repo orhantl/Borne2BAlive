@@ -3,30 +3,39 @@
     Created on : 11 mars 2019, 10:38:28
     Author     : cdi115
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>consumChoice</title>
-    </head>
-    <body>
-        <h1>Où souhaitez-vous déguster votre commande?</h1>
-        </div>
-    <div class="jumbotron text-center" style="margin-bottom">      
-  <a href="../consumerChoice/consumChoice.jsp" class="btn btn-outline-dark">Emporter</a>
-</div>
-        </div>
-    <div class="jumbotron text-center" style="margin-bottom">      
-  <a href="consumerChoice/consumChoice.jsp" class="btn btn-outline-dark">Sur place</a>
-</div>
-        <!-- Two columns: 50% width on medium and up-->
-<div class="row">
-    
-  <div class="col-md">Emporter</div>
-  <div class="col-md">Sur place</div>
+<html lang="en">
+<head>
+  <title>Bsp consumChoice</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
+   <style>
+  
+    .btn-lg {
+
+  text-align:center;
+  width:400px;
+  height:250px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Où souhaitez-vous déguster votre commande?</h2>
+   <br><br><br>
+  <button type="button" class="btn btn-primary btn-lg">Sur place</button>
+
+  <button type="button" class="btn btn-primary btn-lg">Emporter</button>
+
 </div>
 
-    </body>
+</body>
 </html>

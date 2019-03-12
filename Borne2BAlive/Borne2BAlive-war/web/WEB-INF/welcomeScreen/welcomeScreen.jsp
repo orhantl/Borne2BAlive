@@ -31,28 +31,28 @@
   </ul>
   <div class="carousel-inner">
     <div class="carousel-item active">  
-      <img src="Img/WelcomeScreenPict/restaurant.jpg" alt="WelcResto" width="1500" height="700">
+      <img src="Img/WelcomeScreenPict/restaurant.jpg" alt="WelcResto" width="1500" height="600">
       <div class="carousel-caption">
         <h3>Borne2BAlive</h3>
         <p>Vous souhaite la bienvenue...!!!</p>
       </div>   
     </div>
     <div class="carousel-item">
-        <img src="Img/WelcomeScreenPict/menuAdana.jpg" alt="offMom1" width="1500" height="700">
+        <img src="Img/WelcomeScreenPict/menuAdana.jpg" alt="offMom1" width="1500" height="600">
       <div class="carousel-caption">
         <h3>Offre du moment</h3>
         <p>A ne pas rater...!!</p>
       </div>   
     </div>
     <div class="carousel-item">
-      <img src="Img/WelcomeScreenPict/menuKoft.jpg" alt="offMom2" width="1500" height="700">
+      <img src="Img/WelcomeScreenPict/menuKoft.jpg" alt="offMom2" width="1500" height="600">
       <div class="carousel-caption">
         <h3>Offre du moment</h3>
         <p>A ne pas rater!!</p>
       </div>   
     </div>
     <div class="carousel-item">
-      <img src="Img/WelcomeScreenPict/menuAmerican2.jpg" alt="New York" width="1500" height="700">
+      <img src="Img/WelcomeScreenPict/menuAmerican2.jpg" alt="New York" width="1500" height="600">
       <div class="carousel-caption">
            <br>
           <br>
@@ -73,11 +73,18 @@
   width: 100%;
   background-color: black;
   color: white;
-  text-align: center;
-  font-size: 600% ;
-  height: 15%; 
+ text-align: center;
+  height: 30%; 
   margin-bottom:0;
   padding: 30px;
+
+ }
+  .btn-lg{
+  
+      text-align: center;
+      width:100%;
+       height:400px;
+ 
 }
 </style>
 
