@@ -294,7 +294,6 @@ public class DataTest implements DataTestLocal {
                 
         // Optional
         Optional noIce = new Optional("Sans glaçons", 1, 0);
-        Optional extraPickles = new Optional("Extra Cornichons", 3, 0.2f);
         Optional noSalad = new Optional("Sans Salade", 1, 0);
         Optional noTomato = new Optional("Sans Tomate", 1, 0);
         Optional noOnion = new Optional("Sans Oignons", 1, 0);
@@ -336,7 +335,6 @@ public class DataTest implements DataTestLocal {
         
         // Option > ingredient
         noIce.setIngredient(iceCubes);
-        extraPickles.setIngredient(pickle);
         noSalad.setIngredient(salade);
         noTomato.setIngredient(tomato);
         noOnion.setIngredient(onion);
@@ -476,7 +474,6 @@ public class DataTest implements DataTestLocal {
 
         // Line > Option
         l06.getOptionList().add(noIce);
-        l01.getOptionList().add(extraPickles);
         
 
         // Labelling > Allergen
@@ -913,7 +910,6 @@ public class DataTest implements DataTestLocal {
         em.persist(noOnion);
         em.persist(noSalad);
         em.persist(noTomato);
-        em.persist(extraPickles);
         em.persist(mediumFries);
         em.persist(mediumPotatoes);
         em.persist(mediumSalad);
