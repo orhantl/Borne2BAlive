@@ -32,6 +32,7 @@ public class CashCheckOutCtrl extends HttpServlet implements Serializable, SubCo
         float priceVAT = (float) session.getAttribute("priceVAT");
         
         String cashQueueNumber = orderManager.getCashCheckOutNumber();
+        orderManager.finalizeCashOrder(order, cashQueueNumber);
         
         session.setAttribute("queueNumber", cashQueueNumber);
         

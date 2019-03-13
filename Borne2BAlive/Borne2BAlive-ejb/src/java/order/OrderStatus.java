@@ -9,7 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+@NamedQueries(
+        {
+            @NamedQuery(name="order.OrderStatus.findOS", query="select c from OrderStatus c where c.id= :paramId")
+        }
+)
+
 
 @Entity
 public class OrderStatus implements Serializable {
