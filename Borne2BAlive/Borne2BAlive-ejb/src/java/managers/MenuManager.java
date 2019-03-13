@@ -90,15 +90,16 @@ public class MenuManager implements MenuManagerLocal {
 
     @Override
     public void addItemToLine(MenuItem item, Line l) {
-        if (!l.getMenuItems().contains(item)) {
-            l.getMenuItems().add(item);
-        } else {
-            l.getMenuItems().remove(item);
+        if (item != null) {
             l.getMenuItems().add(item);
         }
-        float optionsPrice = l.getMenuItems().stream().filter(i -> i.getOptionPriceApplied() > 0).map(i -> i.getOptionPriceApplied()).reduce(0.0f, (i, j) -> i + j);
-        l.setOptionPriceApplied(optionsPrice);
+    }
 
+    @Override
+    public void addMenuToLine(Menu m, Line l) {
+        if (m != null) {
+            l.setMenu(m);
+        }
     }
 
     @Override
@@ -125,12 +126,12 @@ public class MenuManager implements MenuManagerLocal {
     }
 
     @Override
-    public double getOptionsPrice(List<MenuItem> items) {
+    public float getOptionsPrice(MenuItem[] items) {
         double price = 0;
         for (MenuItem item : items) {
             price += item.getOptions().stream().mapToDouble(o -> o.getPrice()).sum();
         }
-        return price;
+        return (float) price;
     }
 
 }
