@@ -22,16 +22,18 @@ public class MainController extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config); 
         
-        mp = new HashMap<>();
-        mp.put("Menus", new MenusCtrl());
+        mp = new HashMap<>();        
         mp.put("create", new CreateDataCtrl());
         mp.put("orderSummary", new OrderSummaryCtrl());
         mp.put("composeMenu", new ComposeMenuCtrl());
         mp.put("catalog", new CatalogCtrl());
         mp.put("cart", new CartCtrl());
+        mp.put("welcomeScreen", new WelcomeScreenCtrl());
         mp.put("orderCheckOut", new OrderCheckOutCtrl());
         mp.put("cashCheckOut", new CashCheckOutCtrl());
         mp.put("kill", new Kill());
+        mp.put("category", new CategoryCtrl());
+        mp.put("detail", new DetailProductCtrl());
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

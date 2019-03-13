@@ -5,6 +5,7 @@ import Product.MenuItem;
 import Product.Optional;
 import Product.Product;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import managers.CatalogManagerLocal;
 import managers.MenuManagerLocal;
 import managers.OrderManagerLocal;
 import order.Line;
@@ -21,6 +23,7 @@ import order.OrderInfo;
 
 public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
 
+    CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     MenuManagerLocal menuManager = lookupMenuManagerLocal();
 
@@ -31,28 +34,41 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         String zone = request.getParameter("zone");
         String step = request.getParameter("step");
         String action = request.getParameter("action");
+        String option = request.getParameter("option");
+
+        OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
+        if (currentOrder == null) {
+            currentOrder = orderManager.createOrder();
+        }
+
+        Line currentLine = (Line) session.getAttribute("currentLine");
 
         /*
          STEP 1 : Sandwich + infos
          */
         if ("1".equals(step)) {
             url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
+
             if (request.getParameter("selectedMenu") != null) {
-
-//                OrderInfo order = (OrderInfo) session.getAttribute("currentOrder");
                 Menu currentMenu = menuManager.getMenu(Long.valueOf(request.getParameter("selectedMenu")));
-//                Line line = orderManager.createLine(currentMenu);
+
+                if (currentLine == null) {
+                    currentLine = orderManager.createLine(currentMenu);
+                    menuManager.addMenuToLine(currentMenu, currentLine);
+                }
+
                 Product currentSandwich = menuManager.getSandwich(currentMenu.getId());
-//                MenuItem itemSandwich = menuManager.createMenuItem(currentSandwich);
-
-//                menuManager.addItemToLine(itemSandwich, line);
-//                orderManager.addLineToOrder(line, order);
-//                session.setAttribute("currentOrder", order);
-//                session.setAttribute("currentLine", line);
-                session.setAttribute("currentSandwich", currentSandwich);
                 session.setAttribute("sandwichAllergens", menuManager.getAllergens(currentSandwich.getId()));
+                session.setAttribute("currentSandwich", currentSandwich);
 
-                url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
+                MenuItem itemSandwich = (MenuItem) session.getAttribute("currentItemSandwich");
+                if (itemSandwich == null) {
+                    itemSandwich = menuManager.createMenuItem(currentSandwich);
+                }
+
+//                menuManager.addItemToLine(itemSandwich, currentLine);
+//                orderManager.addLineToOrder(currentLine, currentOrder);
+                session.setAttribute("currentItemSandwich", itemSandwich);
             }
 
             if ("header".equals(zone)) {
@@ -76,9 +92,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
 
             Product currentSandwich = (Product) session.getAttribute("currentSandwich");
             MenuItem itemSandwich = (MenuItem) session.getAttribute("currentItemSandwich");
-            if (itemSandwich == null) {
-                itemSandwich = menuManager.createMenuItem(currentSandwich);
-            }
 
             Collection<Optional> removableOptions = (Collection<Optional>) session.getAttribute("currentSandwichOptions");
             if (removableOptions == null) {
@@ -124,6 +137,8 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                 }
             }
 
+            MenuItem[] items = {itemSandwich};
+            currentLine.setOptionPriceApplied(menuManager.getOptionsPrice(items));
             session.setAttribute("currentItemSandwich", itemSandwich);
             session.setAttribute("currentSandwichOptions", removableOptions);
 
@@ -133,7 +148,7 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
          STEP 3 : Sides
          */
         if ("3".equals(step)) {
-            session.setAttribute("menuSides", menuManager.getSidesFromMenu());
+            request.setAttribute("menuSides", menuManager.getSidesFromMenu());
 
             url = "/WEB-INF/composeMenu/3sideMain.jsp";
 
@@ -153,12 +168,23 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         if ("4".equals(step)) {
             url = "/WEB-INF/composeMenu/4sideOpt.jsp";
 
+            MenuItem itemSide = (MenuItem) session.getAttribute("currentItemSide");
+
             if (request.getParameter("side") != null) {
                 long currentSideId = Long.valueOf(request.getParameter("side"));
-                MenuItem itemSide = menuManager.createMenuItem(menuManager.getProduct(currentSideId));
+                itemSide = menuManager.createMenuItem(menuManager.getProduct(currentSideId));
 
-                session.setAttribute("currentItemSide", itemSide);
                 session.setAttribute("currentSideOptions", menuManager.getOptionsFromProduct(currentSideId));
+            }
+
+            if (option != null) {
+                Optional selectedOption = menuManager.getOptional(Long.valueOf(option));
+                menuManager.addOptionToItemSide(selectedOption, itemSide);
+
+                Collection<Product> sauces = catalogManager.getAllAvailableProductsFromCategory("Sauce");
+                session.setAttribute("sauces", sauces);
+
+                url = "/WEB-INF/composeMenu/5sauceMain.jsp";
             }
 
             if ("header".equals(zone)) {
@@ -169,7 +195,150 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                 url = "/WEB-INF/composeMenu/4footer.jsp";
             }
 
+            MenuItem[] items = {(MenuItem) session.getAttribute("currentItemSandwich"), itemSide};
+            currentLine.setOptionPriceApplied(menuManager.getOptionsPrice(items));
+            session.setAttribute("currentItemSide", itemSide);
         }
+
+        /*
+         STEP 5 : Sauces
+         */
+        if ("5".equals(step)) {
+            url = "/WEB-INF/composeMenu/5sauceMain.jsp";
+
+            if (request.getParameter("selectedSauce") != null) {
+                long selectedSauce = Long.valueOf(request.getParameter("selectedSauce"));
+                if (selectedSauce > 0) {
+                    MenuItem itemSauce = menuManager.createMenuItem(menuManager.getProduct(selectedSauce));
+
+                    MenuItem[] items = {(MenuItem) session.getAttribute("currentItemSandwich"), (MenuItem) session.getAttribute("currentItemSide"), itemSauce};
+                    currentLine.setOptionPriceApplied(menuManager.getOptionsPrice(items));
+                    session.setAttribute("currentItemSauce", itemSauce);
+                }
+                url = "/WEB-INF/composeMenu/6drinkMain.jsp";
+            }
+
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/5header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/5footer.jsp";
+            }
+
+        }
+
+        /*
+         STEP 6 : Drinks
+         */
+        if ("6".equals(step)) {
+            url = "/WEB-INF/composeMenu/6drinkMain.jsp";
+            request.setAttribute("menuDrinks", menuManager.getDrinksFromMenu());
+
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/6header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/6footer.jsp";
+            }
+
+        }
+
+        /*
+         STEP 7 : Drink size
+         */
+        if ("7".equals(step)) {
+            url = "/WEB-INF/composeMenu/7drinkOpt.jsp";
+
+            if (request.getParameter("drink") != null) {
+                MenuItem itemMenuDrink = menuManager.createMenuItem(menuManager.getProduct(Long.valueOf(request.getParameter("drink"))));
+                session.setAttribute("currentItemDrink", itemMenuDrink);
+
+                session.setAttribute("currentDrinkOptions", menuManager.getSizeOptionsFromProduct(itemMenuDrink.getProduct().getId()));
+
+            }
+
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/7header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/7footer.jsp";
+            }
+
+            if (request.getParameter("size") != null) {
+                long sizeId = Long.valueOf(request.getParameter("size"));
+                MenuItem itemMenuDrink = (MenuItem) session.getAttribute("currentItemDrink");
+                menuManager.addOptionToItem(menuManager.getOptional(sizeId), itemMenuDrink);
+
+                MenuItem[] items = {(MenuItem) session.getAttribute("currentItemSandwich"),
+                    (MenuItem) session.getAttribute("currentItemSide"), (MenuItem) session.getAttribute("currentItemSauce"), itemMenuDrink};
+                currentLine.setOptionPriceApplied(menuManager.getOptionsPrice(items));
+                session.setAttribute("currentItemDrink", itemMenuDrink);
+                url = "/WEB-INF/composeMenu/8iceOpt.jsp";
+            }
+        }
+
+        /*
+         STEP 8 : Drink ice option
+         */
+        if ("8".equals(step)) {
+            url = "/WEB-INF/composeMenu/8iceOpt.jsp";
+
+            MenuItem itemMenuDrink = (MenuItem) session.getAttribute("currentItemDrink");
+            session.setAttribute("otherDrinkOptions", menuManager.getIceOptionsFromProduct(itemMenuDrink.getProduct().getId()));
+
+            if (request.getParameter("ice") != null) {
+                long iceOptionId = Long.valueOf(request.getParameter("ice"));
+                url = "/WEB-INF/composeMenu/9review.jsp";
+
+                if (iceOptionId > 0) {
+                    menuManager.addOptionToItem(menuManager.getOptional(iceOptionId), itemMenuDrink);
+                }
+            }
+
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/8header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/8footer.jsp";
+            }
+            session.setAttribute("currentItemDrink", itemMenuDrink);
+        }
+
+        /*
+         STEP 9 : Review
+         */
+        if ("9".equals(step)) {
+            url = "/WEB-INF/composeMenu/9review.jsp";
+
+            if ("header".equals(zone)) {
+                url = "/WEB-INF/composeMenu/9header.jsp";
+            }
+
+            if ("footer".equals(zone)) {
+                url = "/WEB-INF/composeMenu/9footer.jsp";
+            }
+
+            if (request.getParameter("add") != null) {
+                MenuItem currentItemSandwich = (MenuItem) session.getAttribute("currentItemSandwich");
+                MenuItem currentItemSide = (MenuItem) session.getAttribute("currentItemSide");
+                MenuItem currentItemSauce = (MenuItem) session.getAttribute("currentItemSauce");
+                MenuItem currentItemDrink = (MenuItem) session.getAttribute("currentItemDrink");
+                menuManager.addItemToLine(currentItemSandwich, currentLine);
+                menuManager.addItemToLine(currentItemSide, currentLine);
+                menuManager.addItemToLine(currentItemSauce, currentLine);
+                menuManager.addItemToLine(currentItemDrink, currentLine);
+                orderManager.addLineToOrder(currentLine, currentOrder);
+                url = "/WEB-INF/catalog/catalog.jsp";
+            }
+        }
+
+        
+        session.setAttribute("currentLine", currentLine);
+        session.setAttribute("order", currentOrder);
 
         return url;
     }
@@ -188,6 +357,16 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         try {
             Context c = new InitialContext();
             return (OrderManagerLocal) c.lookup("java:global/Borne2BAlive/Borne2BAlive-ejb/OrderManager!managers.OrderManagerLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private CatalogManagerLocal lookupCatalogManagerLocal() {
+        try {
+            Context c = new InitialContext();
+            return (CatalogManagerLocal) c.lookup("java:global/Borne2BAlive/Borne2BAlive-ejb/CatalogManager!managers.CatalogManagerLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

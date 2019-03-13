@@ -15,30 +15,38 @@
         <c:import url="${pageHead}" />
 
         <div class="globalContent">
-            <c:url var="zoneHead" value="MainController?section=composeMenu&step=4&zone=header" />
+            <c:url var="zoneHead" value="MainController?section=composeMenu&step=6&zone=header" />
             <c:import url="${zoneHead}" />
 
             <div class="row centerStage">
 
-                <c:url var="remove" value="#" />
 
-                <div class="col-md-3 "></div>
 
-                <div class="col-md-2 "><img src="${currentItemSide.product.img}" alt="${currentItemSide.product.name}" height="300"></div>
-                <div class="col-md-1 "></div>
-                <div class="col-md-3"> 
-                    <c:forEach var="o" items="${currentSideOptions}">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
 
-                        <c:url var="option" value="MainController?section=composeMenu&step=4&option=${o.id}" />
-                        <a href="${option}" class="btn btn-outline-primary"> ${o.name} : 
-                            +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
-                        </a>
-                        <br><br>
-                    </c:forEach>
+                    <div class="card-columns">
+                        <c:forEach var="s" items="${menuDrinks}">
+                            <div class="card" style="width:160px; text-align: center;">
+                                <img class="card-img-top" src="${s.img}" alt="" >
+                                <div class="card-body">
+                                    <h6 class="card-title">${s.name}</h6>
+                                    <c:url var="drinkChoice" value="MainController?section=composeMenu&step=7&drink=${s.id}" />
+                                    <a href="${drinkChoice}" class="btn btn-primary stretched-link">Sélectionner</a>
+
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+
                 </div>
+                <div class="col-md-2"></div>
 
 
-                <div class="col-md-3 "></div>
+
+
+
+
 
             </div>
 
@@ -46,7 +54,7 @@
 
             <br><br>
 
-            <c:url var="pageFoot" value="MainController?section=composeMenu&step=4&zone=footer" />
+            <c:url var="pageFoot" value="MainController?section=composeMenu&step=6&zone=footer" />
             <c:import url="${pageFoot}" />
 
             <br>
