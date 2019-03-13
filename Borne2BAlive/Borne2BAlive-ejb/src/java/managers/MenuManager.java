@@ -128,7 +128,13 @@ public class MenuManager implements MenuManagerLocal {
     @Override
     public float getOptionsPrice(MenuItem[] items) {
         double price = 0;
-        for (MenuItem item : items) {
+        List<MenuItem> l = new ArrayList();
+        for(MenuItem i: items) { // remove null objects
+            if (i != null) {
+                l.add(i);
+            }
+        }
+        for (MenuItem item : l) {
             price += item.getOptions().stream().mapToDouble(o -> o.getPrice()).sum();
         }
         return (float) price;

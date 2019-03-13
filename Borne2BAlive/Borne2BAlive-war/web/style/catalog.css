@@ -6,6 +6,7 @@
 body {
     background-color: white;
 }
+
 .headTitle {
     font-family: "hamburgerHeaven";
     font-size: 40px;
@@ -49,7 +50,7 @@ body {
 }
 
 #trash {
-    width: 40px ;
+    width: 30px ;
 }
 
 #cart {
@@ -57,7 +58,8 @@ body {
 }
 
 #productImg{
-    width : 230px;
+    width : auto;
+    height: 100px;
 }
 
 #categoryCard{
@@ -70,3 +72,13 @@ body {
    width: 20px ; 
 }
 
+.centerDisplayContent{
+    margin: 0 auto;
+    float: none;
+    width: 100%;
+}
+
+.alignTextRight {
+    text-align: right;
+    margin-right: 50px;
+}
