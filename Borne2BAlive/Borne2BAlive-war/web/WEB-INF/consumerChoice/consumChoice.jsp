@@ -3,7 +3,6 @@
     Created on : 11 mars 2019, 10:38:28
     Author     : cdi115
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,27 +14,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- 
    <style>
-  
+ .fondPage {
+   background-color: blue;
+    color: white;
+   }
+   
     .btn-lg {
-
+ background-color: black;
   text-align:center;
-  width:400px;
+  width:550px;
   height:250px;
+  text-shadow: #444 0 1px 1px;
 }
 </style>
+
 </head>
-<body>
+<body class="fondPage">
+<header class="site-header">
+<div class=" text-center">
+<br><br><br>
+  <h1>Où souhaitez-vous déguster votre commande?</h1>
+</div>
+<div class="container text-center text-align:">
+<br><br><br>
+   <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-primary btn-lg">Sur place</a>
 
-<div class="container">
-  <h2>OÃ¹ souhaitez-vous dÃ©guster votre commande?</h2>
-   <br><br><br>
-  <button type="button" class="btn btn-primary btn-lg">Sur place</button>
-
-  <button type="button" class="btn btn-primary btn-lg">Emporter</button>
+  <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-primary btn-lg">Emporter</a>
 
 </div>
-
+</header>
 </body>
 </html>
+      
