@@ -8,6 +8,10 @@ import Product.MenuItem;
 import Product.Product;
 import company.CashRegister;
 import company.Kiosk;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -23,6 +27,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import order.Line;
 import order.OrderInfo;
+import order.OrderStatus;
 
 
 @Stateless
@@ -110,8 +115,34 @@ public class OrderManager implements OrderManagerLocal {
             System.err.println("Borne inexistante"+ex.getMessage());
         }
         
+        TypedQuery<OrderStatus> qr3 = em.createNamedQuery("order.OrderStatus.findOS", OrderStatus.class);
+        qr3.setParameter("paramId", 1L);
+        try{
+            OrderStatus os = qr3.getSingleResult();
+            o.setStatus(os);
+        }catch(NoResultException ex){
+            System.err.println("Statut erronné");
+        }
         
+        o.setQueueNumber(queueNumber);
         
+        String fileName = queueNumber + ".ord";
+        
+        try{
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(o);
+            oos.flush();
+        }catch(FileNotFoundException ex){
+            System.out.println("Erreur à l'écriture du fichier : "+ex);
+            ex.printStackTrace();
+        }catch(IOException ex){
+            System.out.println("Erreur E/S : "+ex);
+            ex.printStackTrace();
+        }
+        
+        em.persist(o);
+        //em.flush();
     }
 
 }

@@ -18,7 +18,7 @@ import order.OrderInfo;
 
 @NamedQueries(
         {
-            @NamedQuery(name="company.Kiosk.findKiosk", query="select k from kiosk k where k.id = :paramId")
+            @NamedQuery(name="company.Kiosk.findKiosk", query="select k from Kiosk k where k.id = :paramId")
         }
 )
 

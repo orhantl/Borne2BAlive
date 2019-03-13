@@ -20,7 +20,7 @@
         <br>
         <a href="MainController?section=kill">Abandonner</a>
         <br>
-        <a href="#">Retour</a>
+        <a href="MainController?section=orderSummary">Retour</a>
         
     </body>
 </html>
