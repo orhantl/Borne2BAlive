@@ -33,11 +33,11 @@
 <body class="fondPage">
 <header class="site-header">
 <div class=" text-center">
-<br><br><br>
+    <br><br><br><br>
   <h1>Où souhaitez-vous déguster votre commande?</h1>
 </div>
 <div class="container text-center text-align:">
-<br><br><br>
+<br><br><br><br><br>
    <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-primary btn-lg">Sur place</a>
 
   <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-primary btn-lg">Emporter</a>
