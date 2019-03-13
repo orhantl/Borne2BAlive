@@ -157,11 +157,13 @@ public class DataTest implements DataTestLocal {
         Restaurant restaurant = new Restaurant("borne2Alive", "17 rue CDG Paris 75012", "0185252525", "123456789", "1234567890123", "borne2Alive@gmail.com");
 
         //cashRegister
-        CashRegister caisse = new CashRegister("485", "toto24");
+        CashRegister cr01 = new CashRegister("Comptoir 1", "toto24");
+        CashRegister cr02 = new CashRegister("Comptoir 2", "toto23");
 
         //kiosk
-        Kiosk borne01 = new Kiosk("485", "kv01");
-
+        Kiosk kiosk01 = new Kiosk("Kiosk 01", "kv01");
+        Kiosk kiosk02 = new Kiosk("Kiosk 02", "kv02");
+                
         //Account
         Account acc01 = new Account("toto@gmail.com", "dassauld", "toto", "toto1234",
                 "0690123456", new GregorianCalendar(2018, 02, 28).getTime(), new GregorianCalendar(1985, 03, 24).getTime(),
@@ -207,8 +209,9 @@ public class DataTest implements DataTestLocal {
 
         // Ingredient
         Ingredient salade = new Ingredient("Salade", "Et une salade Gaza pour la gazelle ? "
-                + "Quoi ? Oui, c'est de la roquette", "Img/Ingredient/Ingredient/salade.jpg");
-        Ingredient tomato = new Ingredient("Tomate", "Et une Roundup, une !", "Img/Ingredient/Ingredient/tomate.jpg");
+                + "Quoi ? Oui, c'est de la roquette", "Img/Ingredient/salade.jpg");
+        Ingredient mixedSalad = new Ingredient("Salade mélangée", "En accompagnement", "Img/Ingredient/salade.jpg");
+        Ingredient tomato = new Ingredient("Tomate", "Et une Roundup, une !", "Img/Ingredient/tomate.jpg");
         Ingredient bread = new Ingredient("Pain", "Pétri sous les aisselles", "Img/Ingredient/pain-kebab.jpg");
         Ingredient onion = new Ingredient("Oignon", "Il est carré mon oignon, il est carré !",
                 "Img/Ingredient/oignon.jpg");
@@ -224,7 +227,9 @@ public class DataTest implements DataTestLocal {
                 + "les amoureux de la nature", "Img/Ingredient/fromage.jpg");
         Ingredient iceCubes = new Ingredient("Glaçons", "À la Neuf semaines et demi", "Img/Ingredient/Glaçons.jpg");
         Ingredient coke = new Ingredient("Cola", "Du diabète en boîte", "Img/Ingredient/cola.jpg");
-        Ingredient dietCoke = new Ingredient("Cola", "De l'aspartame pour le pancréas",
+        Ingredient dietCoke = new Ingredient("Cola light", "De l'aspartame pour le pancréas",
+                "Img/Ingredient/cola.jpg");
+        Ingredient cokeZero = new Ingredient("Cola zero", "Le goût original, sans sucre",
                 "Img/Ingredient/cola.jpg");
         Ingredient orangeSoda = new Ingredient("Soda à l'orange", "Du diabète en boîte",
                 "Img/Ingredient/orangeSoda.jpg");
@@ -289,14 +294,39 @@ public class DataTest implements DataTestLocal {
                 
         // Optional
         Optional noIce = new Optional("Sans glaçons", 1, 0);
-        Optional extraPickles = new Optional("Extra Cornichons", 3, 0.2f);
         Optional noSalad = new Optional("Sans Salade", 1, 0);
         Optional noTomato = new Optional("Sans Tomate", 1, 0);
         Optional noOnion = new Optional("Sans Oignons", 1, 0);
-        Optional largeSide = new Optional("Taille L", 1, 0.80f);
-        Optional xLargeSide = new Optional("Taille XL", 1, 1.50f);
-        Optional largeDrink = new Optional("Taille L", 1, 0.70f);
-        Optional xLargeDrink = new Optional("Taille XL", 1, 1.20f);
+        Optional mediumFries = new Optional("Taille M", 1, 0.00f);
+        Optional largeFries = new Optional("Taille L", 1, 0.80f);
+        Optional xLargeFries = new Optional("Taille XL", 1, 1.50f);
+        Optional mediumPotatoes = new Optional("Taille M", 1, 0.00f);
+        Optional largePotatoes = new Optional("Taille L", 1, 0.80f);
+        Optional xLargePotatoes = new Optional("Taille XL", 1, 1.50f);
+        Optional mediumSalad = new Optional("Taille M", 1, 0.00f);
+        Optional largeSalad = new Optional("Taille L", 1, 0.80f);
+        Optional xLargeSalad = new Optional("Taille XL", 1, 1.50f);
+        Optional mediumCoke = new Optional("Taille M", 1, 0.00f);
+        Optional largeCoke = new Optional("Taille L", 1, 0.70f);
+        Optional xLargeCoke = new Optional("Taille XL", 1, 1.20f);
+        Optional mediumDietCoke = new Optional("Taille M", 1, 0.00f);
+        Optional largeDietCoke = new Optional("Taille L", 1, 0.70f);
+        Optional xLargeDietCoke = new Optional("Taille XL", 1, 1.20f);
+        Optional mediumCokeZero = new Optional("Taille M", 1, 0.00f);
+        Optional largeCokeZero = new Optional("Taille L", 1, 0.70f);
+        Optional xLargeCokeZero = new Optional("Taille XL", 1, 1.20f);
+        Optional mediumOrangina = new Optional("Taille M", 1, 0.00f);
+        Optional largeOrangina = new Optional("Taille L", 1, 0.70f);
+        Optional xLargeOrangina = new Optional("Taille XL", 1, 1.20f);
+        Optional mediumPerrier = new Optional("Taille M", 1, 0.00f);
+        Optional largePerrier = new Optional("Taille L", 1, 0.70f);
+        Optional xLargePerrier = new Optional("Taille XL", 1, 1.20f);
+        Optional mediumWater = new Optional("Taille M", 1, 0.00f);
+        Optional largeWater = new Optional("Taille L", 1, 0.70f);
+        Optional xLargeWater = new Optional("Taille XL", 1, 1.20f);
+        Optional mediumNestea = new Optional("Taille M", 1, 0.00f);
+        Optional largeNestea = new Optional("Taille L", 1, 0.70f);
+        Optional xLargeNestea = new Optional("Taille XL", 1, 1.20f);
         
         
         /*
@@ -305,36 +335,52 @@ public class DataTest implements DataTestLocal {
         
         // Option > ingredient
         noIce.setIngredient(iceCubes);
-        extraPickles.setIngredient(pickle);
         noSalad.setIngredient(salade);
         noTomato.setIngredient(tomato);
         noOnion.setIngredient(onion);
-        largeSide.setIngredient(fries);
-        largeSide.setIngredient(potatoes);
-        xLargeSide.setIngredient(fries);
-        xLargeSide.setIngredient(potatoes);
-        largeDrink.setIngredient(coke);
-        largeDrink.setIngredient(dietCoke);
-        largeDrink.setIngredient(orangeSoda);
-        largeDrink.setIngredient(carbWater);
-        largeDrink.setIngredient(teaSoda);
-        largeDrink.setIngredient(stillWater);
-        xLargeDrink.setIngredient(coke);
-        xLargeDrink.setIngredient(dietCoke);
-        xLargeDrink.setIngredient(orangeSoda);
-        xLargeDrink.setIngredient(carbWater);
-        xLargeDrink.setIngredient(teaSoda);
-        xLargeDrink.setIngredient(stillWater);
+        mediumFries.setIngredient(fries);
+        largeFries.setIngredient(fries);
+        xLargeFries.setIngredient(fries);
+        mediumPotatoes.setIngredient(potatoes);
+        largePotatoes.setIngredient(potatoes);
+        xLargePotatoes.setIngredient(potatoes);
+        mediumSalad.setIngredient(mixedSalad);
+        largeSalad.setIngredient(mixedSalad);
+        xLargeSalad.setIngredient(mixedSalad);
+       
+        mediumCoke.setIngredient(coke);
+        mediumDietCoke.setIngredient(dietCoke);
+        mediumCokeZero.setIngredient(cokeZero);
+        mediumPerrier.setIngredient(carbWater);
+        mediumNestea.setIngredient(teaSoda);
+        mediumOrangina.setIngredient(orangeSoda);
+        mediumWater.setIngredient(stillWater);
+        largeCoke.setIngredient(coke);
+        largeDietCoke.setIngredient(dietCoke);
+        largeCokeZero.setIngredient(cokeZero);
+        largeOrangina.setIngredient(orangeSoda);
+        largePerrier.setIngredient(carbWater);
+        largeNestea.setIngredient(teaSoda);
+        largeWater.setIngredient(stillWater);
+        xLargeCoke.setIngredient(coke);
+        xLargeDietCoke.setIngredient(dietCoke);
+        xLargeCokeZero.setIngredient(cokeZero);
+        xLargeOrangina.setIngredient(orangeSoda);
+        xLargePerrier.setIngredient(carbWater);
+        xLargeNestea.setIngredient(teaSoda);
+        xLargeWater.setIngredient(stillWater);
         
         
         // Account > Status
         acc01.setStatus(actif);
 
         // CashRegister > Restaurant
-        caisse.setRestaurant(restaurant);
+        cr01.setRestaurant(restaurant);
+        cr02.setRestaurant(restaurant);
 
         // Kiosk > Restaurant
-        borne01.setRestaurant(restaurant);
+        kiosk01.setRestaurant(restaurant);
+        kiosk02.setRestaurant(restaurant);
 
         // Category > CategoryType
         coldDrinks.setType(typeCarte);
@@ -404,13 +450,13 @@ public class DataTest implements DataTestLocal {
         
         // Order > Kiosk
         
-        o01.setKiosk(borne01);
-        o02.setKiosk(borne01);
-        o03.setKiosk(borne01);
-        o04.setKiosk(borne01);
+        o01.setKiosk(kiosk01);
+        o02.setKiosk(kiosk01);
+        o03.setKiosk(kiosk02);
+        o04.setKiosk(kiosk02);
         
         // Order > CashRegister
-        o05.setCashier(caisse);
+        o05.setCashier(cr02);
                 
 
         // Line > Product
@@ -428,7 +474,6 @@ public class DataTest implements DataTestLocal {
 
         // Line > Option
         l06.getOptionList().add(noIce);
-        l01.getOptionList().add(extraPickles);
         
 
         // Labelling > Allergen
@@ -646,12 +691,13 @@ public class DataTest implements DataTestLocal {
         
         friesPack.getIngredients().add(fries);
         potatoesPack.getIngredients().add(potatoes);
-        saladSmall.getIngredients().add(salade);
+        saladSmall.getIngredients().add(mixedSalad);
 
         coca.getIngredients().add(coke);
         coca.getIngredients().add(iceCubes);
         cocaLight.getIngredients().add(dietCoke);
         cocaLight.getIngredients().add(iceCubes);
+        cocaZero.getIngredients().add(cokeZero);
         cocaZero.getIngredients().add(iceCubes);
         orangina.getIngredients().add(orangeSoda);
         orangina.getIngredients().add(iceCubes);
@@ -764,6 +810,7 @@ public class DataTest implements DataTestLocal {
         em.persist(offers);
         em.persist(menus);
         
+        em.flush();
 
         // Menu
         em.persist(menuAdana);
@@ -800,9 +847,11 @@ public class DataTest implements DataTestLocal {
         em.persist(merguez);
         em.persist(fries);
         em.persist(potatoes);
+        em.persist(mixedSalad);
         em.persist(cheese);
         em.persist(iceCubes);
         em.persist(coke);
+        em.persist(cokeZero);
         em.persist(dietCoke);
         em.persist(orangeSoda);
         em.persist(teaSoda);
@@ -849,23 +898,53 @@ public class DataTest implements DataTestLocal {
         em.persist(acc01);
 
         // Kioks
-        em.persist(borne01);
+        em.persist(kiosk01);
+        em.persist(kiosk02);
 
         // CashRegister
-        em.persist(caisse);
+        em.persist(cr01);
+        em.persist(cr02);
         
         // Option
         em.persist(noIce);
         em.persist(noOnion);
         em.persist(noSalad);
         em.persist(noTomato);
-        em.persist(extraPickles);
-        em.persist(largeDrink);
-        em.persist(largeSide);
-        em.persist(xLargeDrink);
-        em.persist(xLargeSide);
+        em.persist(mediumFries);
+        em.persist(mediumPotatoes);
+        em.persist(mediumSalad);
+        em.persist(mediumCoke);
+        em.persist(mediumDietCoke);
+        em.persist(mediumCokeZero);
+        em.persist(mediumDietCoke);
+        em.persist(mediumOrangina);
+        em.persist(mediumPerrier);
+        em.persist(mediumWater);
+        em.persist(mediumNestea);
+        em.persist(largeFries);
+        em.persist(largePotatoes);
+        em.persist(largeSalad);
+        em.persist(largeCoke);
+        em.persist(largeDietCoke);
+        em.persist(largeCokeZero);
+        em.persist(largeDietCoke);
+        em.persist(largeOrangina);
+        em.persist(largePerrier);
+        em.persist(largeWater);
+        em.persist(largeNestea);
+        em.persist(xLargeFries);
+        em.persist(xLargePotatoes);
+        em.persist(xLargeSalad);
+        em.persist(xLargeCoke);
+        em.persist(xLargeDietCoke);
+        em.persist(xLargeCokeZero);
+        em.persist(xLargeDietCoke);
+        em.persist(xLargeOrangina);
+        em.persist(xLargePerrier);
+        em.persist(xLargeWater);
+        em.persist(xLargeNestea);
+        
 
-        em.flush();
 
     }
 

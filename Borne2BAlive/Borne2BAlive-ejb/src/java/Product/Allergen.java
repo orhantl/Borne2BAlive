@@ -28,7 +28,7 @@ public class Allergen implements Serializable {
     
     //####################DEPENDENCIES############################
     
-    @ManyToMany(mappedBy = "allergens", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "allergens")
     private Collection<Ingredient> ingredients;
     
     @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})

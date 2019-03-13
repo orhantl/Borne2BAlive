@@ -3,6 +3,9 @@
     src: url('hamburgerHeaven.woff');
 }
 
+body {
+    background-color: white;
+}
 .headTitle {
     font-family: "hamburgerHeaven";
     font-size: 40px;
@@ -12,11 +15,58 @@
     
 }
 
-.navBar {
+.mainDisplay {
+    padding-left: 50px;
+}
+
+.navBar{
+    background-color: #ffffff;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 0px;
+    padding: 20px;
+    border-radius: 70px;
+    border-color: #660000;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.navBarIcons {
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    line-height: 100px;
+}
+
+.navBarText {
     font-size: 12px;
     font-weight: bolder;
     text-align: center;
-/*    vertical-align: middle;
-    height: 50px;
-    line-height: 50px;*/
+    vertical-align: middle;
+    height: 15px;
+    line-height: 15px;
 }
+
+#trash {
+    width: 40px ;
+}
+
+#cart {
+    width: 50px ;
+}
+
+#productImg{
+    width : 230px;
+}
+
+#categoryCard{
+    text-align: center;
+    horizontal-align: middle;
+    width: 230px;
+}
+
+#infoIcon {
+   width: 20px ; 
+}
+
