@@ -32,6 +32,7 @@ public class MainController extends HttpServlet {
         mp.put("cashCheckOut", new CashCheckOutCtrl());
         mp.put("kill", new Kill());
         mp.put("category", new CategoryCtrl());
+        mp.put("detail", new DetailProductCtrl());
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

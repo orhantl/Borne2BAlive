@@ -21,9 +21,10 @@ public class CategoryCtrl implements Serializable, SubControllerInterface {
 
         HttpSession session = request.getSession();
         Long id = Long.valueOf(request.getParameter("id"));
-        OrderInfo order = (OrderInfo) session.getAttribute("order");
-
+        
         String zone = request.getParameter("zone");
+        
+        
         String url = "/WEB-INF/catalog/catalog_category.jsp";
 
         String categoryName = catalogManager.getCategory(id).getName();
@@ -40,12 +41,10 @@ public class CategoryCtrl implements Serializable, SubControllerInterface {
                     break;
                 default:
                     url = "/WEB-INF/catalog/categoryDisplay.jsp";
-
-                    request.setAttribute("Products", catalogManager.getAllAvailableProductsByCategory(id));
+                    session.setAttribute("category", catalogManager.getCategory(id));
+                    session.setAttribute("Products", catalogManager.getAllAvailableProductsByCategory(id));
             }
-       
         }
-
         return url;
     }
 

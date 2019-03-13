@@ -11,12 +11,17 @@
         <title>Borne2BAlive - Catalogue</title>
     </head>
     <body>
+
         <c:url var="pageHead" value="MainController?section=catalog&zone=pageHead" />
         <c:import url="${pageHead}" />
 
         <div class="globalContent">
-            <c:url var="zoneHead" value="MainController?section=composeMenu&step=1&zone=header" />
-            <c:import url="${zoneHead}" />
+            <div class="row pageHead">
+                <div class="col-md-12">
+                    <h5>${category.name} : ${product.name}</h5>
+                    <h6>${product.description}</h6>
+                </div>
+            </div> 
 
             <div class="row">
                 <div class="col-md-9">
@@ -24,7 +29,7 @@
                 </div>
 
                 <div class="col contentSandwichImg">
-                    <img class="imgSandwich sandwich" src="${currentSandwich.img}" alt="${currentSandwich.name}" height="450" >
+                    <img class="imgSandwich sandwich" src="${product.img}" alt="${product.name}" height="450" >
                 </div>
 
 
@@ -36,16 +41,16 @@
                         <br><a href="#" class="btn btn-info" data-toggle="collapse" data-target="#ingredients">Ingrédients</a>
                         <div id="ingredients" class="collapse" data-parent="#infos" >
                             <br>
-                            <c:forEach var="i" items="${currentSandwich.ingredients}">
+                            <c:forEach var="i" items="${product.ingredients}">
                                 ${i.name}, 
                             </c:forEach>
                         </div> 
                         <br>
-                        
+
                         <br><a href="#" class="btn btn-success" data-toggle="collapse" data-target="#allergen">Allergènes</a>
                         <div id="allergen" class="collapse" data-parent="#infos" >
                             <br>
-                            <c:forEach var="a" items="${sandwichAllergens}">
+                            <c:forEach var="a" items="${allergens}">
                                 ${a.name} - 
                             </c:forEach>
                         </div> 
@@ -56,13 +61,13 @@
                             <br> 
                             <u>Au 100g :</u><br>
                             <table>
-                                <tr><td>Glucides</td><td> ${currentSandwich.facts.carbs}g</td></tr>
-                                <tr><td>- dont sucres </td><td> ${currentSandwich.facts.sugars}g</td></tr>
-                                <tr><td>Lipides</td><td> ${currentSandwich.facts.lipids}g</td></tr>
-                                <tr><td>Protéines</td><td> ${currentSandwich.facts.proteins}g</td></tr>
-                                <tr><td>Fibres</td><td> ${currentSandwich.facts.fibers}g</td></tr>
-                                <tr><td>Teneur en sel</td><td> ${currentSandwich.facts.salt}g</td></tr>
-                                <tr><td>Calories</td><td> ${currentSandwich.facts.kCal}</td></tr>
+                                <tr><td>Glucides</td><td> ${p.facts.carbs}g</td></tr>
+                                <tr><td>- dont sucres </td><td> ${p.facts.sugars}g</td></tr>
+                                <tr><td>Lipides</td><td> ${p.facts.lipids}g</td></tr>
+                                <tr><td>Protéines</td><td> ${p.facts.proteins}g</td></tr>
+                                <tr><td>Fibres</td><td> ${p.facts.fibers}g</td></tr>
+                                <tr><td>Teneur en sel</td><td> ${p.facts.salt}g</td></tr>
+                                <tr><td>Calories</td><td> ${p.facts.kCal}</td></tr>
                             </table>
 
                         </div> 
@@ -72,14 +77,45 @@
 
                     </div>
                     <br><br>
-                    <a href="MainController?section= composeMenu&step=2" class="btn btn-outline-dark">retirer des ingrédients</a>
+                    <a href="MainController?section=detail&step=2" class="btn btn-outline-dark">retirer des ingrédients</a>
                 </div>
 
 
             </div> 
 
-            <c:url var="pageFoot" value="MainController?section=composeMenu&step=1&zone=footer" />
-            <c:import url="${pageFoot}" />
+            <div class="row pageFoot" >
+                <div class="col-md-2"></div>
+                <div class="col-md-2"><a href="#" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#cancel">Annuler</a> </div>
+                <div class="col-md-6">Total des options :  
+                    +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.optionPriceApplied * (100 + currentOrder.appliedVAT) /100}" /> &euro; </div>
+                <div class="col-md-2 nextLink"><a href="MainController?section=composeMenu&step=3" class="btn btn-primary" role="button">Suivant >></a></div>
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="cancel" role="dialog">
+                    <div class="modal-dialog modal-md modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Attention !</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Vous êtes sur le point de supprimer vos modifications. </p>
+                                <p>Appuyez sur "Retour" si vous souhaitez finaliser votre menu. </p>
+                                <p>Appuyez sur "Confirmer" si vous souhaitez revenir à l'écran d'accueil</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="btn btn-info" data-dismiss="modal">Retour</a>
+                                <a href="MainController?section=Menus" class="btn btn-danger">Confirmer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div> 
 
             <br>
         </div>
