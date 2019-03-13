@@ -35,12 +35,14 @@ public interface MenuManagerLocal {
 
     public void addOptionToItemSide(Optional option, MenuItem item);
 
-    public double getOptionsPrice(List<MenuItem> items);
-
     public List<Product> getDrinksFromMenu();
 
     public List<Optional> getSizeOptionsFromProduct(long productId);
 
     public List<Optional> getIceOptionsFromProduct(long productId);
+
+    public float getOptionsPrice(MenuItem[] items);
+
+    public void addMenuToLine(Menu m, Line l);
     
 }

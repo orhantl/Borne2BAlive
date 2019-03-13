@@ -27,8 +27,8 @@
 
                     <div class="card-columns">
                         <c:forEach var="s" items="${menuDrinks}">
-                            <div class="card" style="width:180px; text-align: center;">
-                                <img class="card-img-top" src="${s.img}" alt="" height="150">
+                            <div class="card" style="width:160px; text-align: center;">
+                                <img class="card-img-top" src="${s.img}" alt="" >
                                 <div class="card-body">
                                     <h6 class="card-title">${s.name}</h6>
                                     <c:url var="drinkChoice" value="MainController?section=composeMenu&step=7&drink=${s.id}" />

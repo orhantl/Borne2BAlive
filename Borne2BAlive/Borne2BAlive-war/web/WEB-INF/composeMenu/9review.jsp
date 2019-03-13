@@ -29,52 +29,61 @@
 
 
 
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
 
-                    <table class="table-borderless table-hover table-striped">
-                        <tr>
-                            <td width="200">${currentItemSandwich.product.name}</td>
-                            <td width="200">
+                    <table class="table-borderless table-hover">
+                        <tr height="70">
+                            <td width="200" class="reviewProductText">${currentItemSandwich.product.name}</td>
+                            <td width="400">- 
                                 <c:forEach var="sandwichOptions" items="${currentItemSandwich.options}">
-                                    ${sandwichOptions.name}
+                                    ${sandwichOptions.name} - 
                                 </c:forEach>
                             </td>
+                            <c:url var="modifySandwich" value="MainController?section=composeMenu&step=2" />
+                            <td width="200"><a href="${modifySandwich}" class="btn btn-outline-info">Modifier</a></td>
                         </tr>
-                        <tr>
-                            <td>${currentItemSide.product.name}</td>
-                            <td>
+                        <tr height="70">
+                            <td class="reviewProductText">${currentItemSide.product.name}</td>
+                            <td>-
                                 <c:forEach var="sideOptions" items="${currentItemSide.options}">
-                                    ${sideOptions.name}
+                                    ${sideOptions.name} - 
                                 </c:forEach>
                             </td>
+                            <c:url var="modifySide" value="MainController?section=composeMenu&step=3" />
+                            <td><a href="${modifySide}" class="btn btn-outline-info">Modifier</a></td>
                         </tr>
-                        <tr>
-                            <td>${currentItemDrink.product.name}</td>
-                            <td>
+                        <tr height="70">
+                            <td class="reviewProductText">${currentItemDrink.product.name}</td>
+                            <td>-
                                 <c:forEach var="drinkOptions" items="${currentItemDrink.options}">
-                                    ${drinkOptions.name}
+                                    ${drinkOptions.name} - 
                                 </c:forEach>
                             </td>
+                            <c:url var="modifyDrink" value="MainController?section=composeMenu&step=6" />
+                            <td><a href="${modifyDrink}" class="btn btn-outline-info">Modifier</a></td>
                         </tr>
-                        <tr>
-                            <td>${currentItemSauce.product.name}</td>
-                            <td>
+                        <tr height="70">
+                            <td class="reviewProductText">${currentItemSauce.product.name}</td>
+                            <td>-
                                 <c:forEach var="sauceOptions" items="${currentItemSauce.options}">
-                                    ${sauceOptions.name}
+                                    ${sauceOptions.name} - 
                                 </c:forEach>
                             </td>
+                            <c:url var="modifySauce" value="MainController?section=composeMenu&step=5" />
+                            <td><a href="${modifySauce}" class="btn btn-outline-info">Modifier</a></td>
                         </tr>
                     </table>
                 </div>
 
-                <div class="col-md-2"></div>
+                <div class="col-md-1"></div>
                 <div class="col-md-2">
                     <u>Prix</u>
                     <br>Menu : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.preTaxPrice * (100 + currentOrder.appliedVAT) /100}" /> &euro; 
                     <br>Options : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.optionPriceApplied * (100 + currentOrder.appliedVAT) /100}" /> &euro; 
                     <br>Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${(currentLine.optionPriceApplied * (100 + currentOrder.appliedVAT) /100) + (currentLine.preTaxPrice * (100 + currentOrder.appliedVAT) /100)}" /> &euro;
                 </div>
+                <div class="col-md-1"></div>
             </div>
 
 

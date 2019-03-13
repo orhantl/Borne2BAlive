@@ -40,6 +40,7 @@ public class CartCtrl implements Serializable, SubControllerInterface {
         
         if ("remove".equals(zone)) {
             int index = Integer.valueOf(request.getParameter("count")); 
+            System.out.println("index value = " +index);
             basketManager.removeLine(o, index);
         }
 
