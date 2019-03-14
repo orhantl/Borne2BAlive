@@ -22,14 +22,13 @@
 
 
         <div class="row mainDisplay">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-md-8">
 
                 <c:url var="mainDisplay" value="MainController?section=category&zone=mainDisplay" />
                 <c:import url="${mainDisplay}" />
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 cartDisplay">
 
                 <c:url var="cart" value="MainController?section=catalog&zone=cart" />
                 <c:import url="${cart}" />

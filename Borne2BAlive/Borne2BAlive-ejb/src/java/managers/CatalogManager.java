@@ -2,6 +2,7 @@ package managers;
 
 import Product.Category;
 import Product.Menu;
+import Product.Offer;
 import Product.Product;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -49,6 +50,21 @@ public class CatalogManager implements CatalogManagerLocal {
         return qr.getResultList();
     }
 
+    // Get all offers
+    @Override
+    public List<Offer> getOffers() {
+        TypedQuery<Offer> qr = em.createNamedQuery("Product.Offer.findAll", Offer.class);
+        return qr.getResultList();
+    }
+    
+        // Get one offer
+    @Override
+    public Offer getOffer(long id) {
+        return em.find(Offer.class, id);
+    }
+    
+    
+    
     // Instanciate nav bar - get all displayable categories
     @Override
     public List<Category> getNavBar() {

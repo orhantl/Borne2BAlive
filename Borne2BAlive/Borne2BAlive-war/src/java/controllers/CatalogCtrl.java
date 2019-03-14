@@ -27,15 +27,18 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
         String zone = request.getParameter("zone");
         String url = "/WEB-INF/catalog/catalog.jsp";
 
-        // fake order de jAlex - code à supprimer plus tard (ici et dans orderManager)
-        OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
-        currentOrder = currentOrder == null ? orderManager.createOrder() : currentOrder;
-        session.setAttribute("currentOrder", currentOrder);
+
         
         // Order creation with VAT & location
         
         OrderInfo order = orderManager.initializeOrder((String) request.getParameter("location"));
         session.setAttribute("order", order);
+
+        // fake order de LO - code à supprimer plus tard (ici et dans orderManager)
+            OrderInfo order = (OrderInfo) session.getAttribute("order");
+            order = order == null ? orderManager.createOrder() : order;
+            session.setAttribute("order", order);
+
 
         if ("pageHead".equals(zone)) {
             url = "/WEB-INF/catalog/header.jsp";
@@ -46,24 +49,15 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
             request.setAttribute("navBar", catalogManager.getNavBar());
         }
 
-        if ("cart".equals(zone)) {
-            url = "/WEB-INF/catalog/cart.jsp";
-            // a vérifier (ludivine)
-            // session.setAttribute("order", orderManager.createOrder());
-
-        }
-
         if ("mainDisplay".equals(zone)) {
             url = "/WEB-INF/catalog/mainDisplay.jsp";
-            // fake order de LO - code à supprimer plus tard (ici et dans orderManager)
-            order = (OrderInfo) session.getAttribute("order");
-            order = order == null ? orderManager.createOrder() : order;
-            session.setAttribute("order", order);
-            request.setAttribute("products", catalogManager.getAllProducts());
 
-            if ("".equals(zone)) {
-                url = "/WEB-INF/catalog/mainDisplay/.jsp";
-            }
+            request.setAttribute("products", catalogManager.getAllProducts());         
+        }      
+        
+        if ("cart".equals(zone)) {
+            url = "/WEB-INF/catalog/cart.jsp";
+
         }
 
         return url;

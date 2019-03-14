@@ -2,28 +2,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h3>${category.name}</h3>
-
-<div class="card-columns">
-    <c:forEach var="p" items="${Products}">
-        <div id="categoryCard" class="card">
-            <img id="productImg" class="card-img-top" src="${p.img}" alt="${p.name}">
-            <div class="card-body">
-
-                <h6 class="card-title">${p.name}</h6>
-
-
-                <p><fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${p.price * (100 + order.appliedVAT) /100}" /> &euro;</p>
-                <a href="MainController?section=detail&step=1&category=${category.id}&product=${p.id}" type="button" class="btn btn-info btn-lg">Sélectionner</a>
-                <br><br>
-
-
-            </div>
-        </div>
-    </c:forEach>
-
+<div class="row"  id="categoryTitle">
+${category.name}
 </div>
 
+
+<div class="centerDisplayContent">
+    <div class="card-columns">
+        <c:forEach var="p" items="${Products}">
+            <div id="categoryCard" class="card" style="width:250px;">
+                <img id="productImg" class="card-img-top" src="${p.img}" alt="${p.name}">
+                <div class="card-body">
+
+
+                    <p><fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${p.price * (100 + order.appliedVAT) /100}" /> &euro;</p>
+                    <a href="MainController?section=detail&step=1&category=${category.id}&product=${p.id}" class="btn btn-info stretched-link">${p.name}</a>
+
+                </div>
+            </div>
+        </c:forEach>
+
+    </div>
+</div>
 <br><br>
 <!--
 <c:forEach var="u" items="${MenusUnavailable}">
