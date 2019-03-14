@@ -14,7 +14,7 @@
 
 
                 <p><fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${p.price * (100 + order.appliedVAT) /100}" /> &euro;</p>
-                <a href="MainController?section=detail&step=1&category=${category.id}&product=${p.id}" type="button" class="btn btn-info btn-lg">Sélectionner</a>
+                <a href="MainController?section=detail&step=1&product=${p.id}" type="button" class="btn btn-info btn-lg">Sélectionner</a>
                 <br><br>
 
 

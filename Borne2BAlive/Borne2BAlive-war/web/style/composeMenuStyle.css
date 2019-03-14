@@ -91,5 +91,13 @@ body {
    padding-left: 2%;
 }
 
+input#radioDetail {
+   transform: scale(1.5);
+   
+}
 
+.form-check-label{
+    font-size: 1.5em;  
+    margin-left: 20px;
+}
 

@@ -8,7 +8,7 @@
 <%--
  <i class="fas fa-shopping-cart"></i> 
 --%>
-<div class="container">
+<div>
     <c:if test="${prixTTC == 0}">
         Votre panier est vide !
     </c:if>
@@ -16,17 +16,24 @@
     <c:if test="${prixTTC > 0}">
         <table class="table table-hover">
             <thead>
-            <th>Article</th>
-            <th>Quantité</th>
-            </thead>      
+                <tr>
+                    <th>Article</th>
+                    <th></th>
+                    <th>Qte</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>             
             <tbody>    
                 <c:forEach var="l" items="${order.lineList}" varStatus="iterator">
                     <tr>
                         <td>${l.product.name}${l.menu.name}</td>
-                        <td>${l.qty}</td>
-                        <td>
-                            
-                            <a href="#" data-toggle="modal" data-target="#removeItem${iterator.index}" ><img src="Img/pictograms/trash.svg" alt="retirer de la commande" id="trash"></a></td>
+
+                        <td><a href="#" class="btn btn-success btn-lg" id="cartOperation">&minus; </a> </td>
+                        <td> ${l.qty}</td>
+                        <td><a href="#" class="btn btn-info btn-lg" id="cartOperation">&plus; </a></td>
+                        <td><a href="#" data-toggle="modal" data-target="#removeItem${iterator.index}" >
+                                <img src="Img/pictograms/trash.svg" alt="retirer de la commande" id="trash"></a></td>
 
                         <!-- Modal -->
                 <div class="modal fade" id="removeItem${iterator.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -43,8 +50,8 @@
                             </div>
                             <div class="modal-footer">
                                 <a href="#" class="btn btn-secondary" data-dismiss="modal">Fermer</a>
-                                <c:url var="removeItemURL" value="MainController?section=cart&zone=remove&count=${iterator.index}" />
-                                <a href="${removeItemURL}" type="button" class="btn btn-primary">Supprimer</a>
+                                <c:url value="MainController?section=cart&zone=remove&count=${iterator.index}" var="url150" />
+                                <a href="${url150}" onclick="removeLine();return false" type="button" class="btn btn-primary" >Supprimer</a>
                             </div>
                         </div>
                     </div>
@@ -78,7 +85,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-info" data-dismiss="modal">Retour</a>
-                    <a href="MainController?section=cart&zone=empty" class="btn btn-danger">Confirmer</a>
+                    <a href="MainController?section=cart&zone=empty" class="btn btn-danger" >Confirmer</a>
                 </div>
             </div>
         </div>
