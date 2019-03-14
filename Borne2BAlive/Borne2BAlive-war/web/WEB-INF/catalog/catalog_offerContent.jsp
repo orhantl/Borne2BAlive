@@ -14,23 +14,23 @@
     </head>
     <body>
 
-        <c:url var="pageHead" value="MainController?section=catalog&zone=pageHead" />
+        <c:url var="pageHead" value="MainController?section=offers&zone=pageHead" />
         <c:import url="${pageHead}" />
 
-        <c:url var="navBar" value="MainController?section=catalog&zone=navBar" />
+        <c:url var="navBar" value="MainController?section=offers&zone=navBar" />
         <c:import url="${navBar}" />
 
 
         <div class="row mainDisplay">
             <div class="col-md-8">
 
-                <c:url var="mainDisplay" value="MainController?section=Menus&zone=mainDisplay" />
+                <c:url var="mainDisplay" value="MainController?section=offers&zone=mainDisplay" />
                 <c:import url="${mainDisplay}" />
 
             </div>
             <div class="col-md-4 cartDisplay">
 
-                <c:url var="cart" value="MainController?section=catalog&zone=cart" />
+                <c:url var="cart" value="MainController?section=offers&zone=cart" />
                 <c:import url="${cart}" />
 
             </div>

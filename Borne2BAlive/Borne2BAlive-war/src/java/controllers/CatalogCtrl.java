@@ -40,23 +40,13 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
             request.setAttribute("navBar", catalogManager.getNavBar());
         }
 
-
         if ("mainDisplay".equals(zone)) {
             url = "/WEB-INF/catalog/mainDisplay.jsp";
-            
-            request.setAttribute("products", catalogManager.getAllProducts());
-
-            if ("".equals(zone)) {
-                url = "/WEB-INF/catalog/mainDisplay/.jsp";
-            }
-        }
-        
+            request.setAttribute("products", catalogManager.getAllProducts());         
+        }      
         
         if ("cart".equals(zone)) {
             url = "/WEB-INF/catalog/cart.jsp";
-            // a vérifier (ludivine)
-            // session.setAttribute("order", orderManager.createOrder());
-
         }
 
         return url;
