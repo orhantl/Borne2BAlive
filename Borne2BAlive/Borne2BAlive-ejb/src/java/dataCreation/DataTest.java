@@ -288,9 +288,9 @@ public class DataTest implements DataTestLocal {
         Labelling defConThree = new Labelling("Est présent dans le produit", 3);
 
         // Offer
-        Offer bestSellers = new Offer("Meilleures Ventes", "Une sélection de vos produits préférés", new GregorianCalendar(2019, 01, 26).getTime(), null, 0, "/WEB-INF/Img/Offers/meilleuresVentes.jpg");
-        Offer promo = new Offer("Promo du jour", "La promo du jour", new GregorianCalendar(2019, 01, 26).getTime(), null, 20, null);
-                
+        Offer bestSellers = new Offer("Meilleures Ventes", "Une sélection de vos produits préférés", new GregorianCalendar(2019, 01, 26).getTime(), null, 0, "Img/Offers/meilleuresVentes.jpg");
+        Offer promo = new Offer("Promo du jour", "La promo du jour", new GregorianCalendar(2019, 01, 26).getTime(), null, 20, "Img/Offers/promoDuJour.jpg");
+               
                 
         // Optional
         Optional noIce = new Optional("Sans glaçons", 1, 0);
@@ -767,7 +767,7 @@ public class DataTest implements DataTestLocal {
         iceCreamChocolate.getOffers().add(bestSellers);
         chickenSandwich.getOffers().add(bestSellers);
         american.getOffers().add(bestSellers);
-        american.getOffers().add(promo);
+        tiramisuPack.getOffers().add(promo);
 
         // Menu > Category
         menuAdana.getCategories().add(menuDrinks);

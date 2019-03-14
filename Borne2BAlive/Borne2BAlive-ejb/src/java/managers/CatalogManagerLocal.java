@@ -3,6 +3,7 @@ package managers;
 
 import Product.Category;
 import Product.Menu;
+import Product.Offer;
 import Product.Product;
 import java.util.List;
 import javax.ejb.Local;
@@ -31,6 +32,10 @@ public interface CatalogManagerLocal {
     public List<Product> getAllAvailableProductsByCategory(Long id);
 
     public Category getCategory(Long id);
+
+    public List<Offer> getOffers();
+
+    public Offer getOffer(long id);
 
     
 }
