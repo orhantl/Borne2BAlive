@@ -31,8 +31,8 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
         
         // Order creation with VAT & location
         
-        OrderInfo order = orderManager.initializeOrder((String) request.getParameter("location"));
-        session.setAttribute("order", order);
+//        OrderInfo order = orderManager.initializeOrder((String) request.getParameter("location"));
+//        session.setAttribute("order", order);
 
         // fake order de LO - code à supprimer plus tard (ici et dans orderManager)
             OrderInfo order = (OrderInfo) session.getAttribute("order");
