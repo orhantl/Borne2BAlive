@@ -15,6 +15,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import managers.BasketManagerLocal;
 import managers.CatalogManagerLocal;
 import managers.MenuManagerLocal;
 import managers.OrderManagerLocal;
@@ -22,6 +23,8 @@ import order.Line;
 import order.OrderInfo;
 
 public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
+
+    BasketManagerLocal basketManager = lookupBasketManagerLocal();
 
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
@@ -31,15 +34,11 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
     public String process(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String url = "/WEB-INF/composeMenu/1sandwichMain.jsp";
-        String zone = request.getParameter("zone");
         String step = request.getParameter("step");
         String action = request.getParameter("action");
         String option = request.getParameter("option");
 
-        OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
-        if (currentOrder == null) {
-            currentOrder = orderManager.createOrder();
-        }
+        OrderInfo currentOrder = (OrderInfo) session.getAttribute("order");
 
         Line currentLine = (Line) session.getAttribute("currentLine");
 
@@ -54,7 +53,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
 
                 if (currentLine == null) {
                     currentLine = orderManager.createLine(currentMenu);
-                    menuManager.addMenuToLine(currentMenu, currentLine);
                 }
 
                 Product currentSandwich = menuManager.getSandwich(currentMenu.getId());
@@ -69,14 +67,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
 //                menuManager.addItemToLine(itemSandwich, currentLine);
 //                orderManager.addLineToOrder(currentLine, currentOrder);
                 session.setAttribute("currentItemSandwich", itemSandwich);
-            }
-
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/1header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/1footer.jsp";
             }
 
         }
@@ -96,14 +86,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
             Collection<Optional> removableOptions = (Collection<Optional>) session.getAttribute("currentSandwichOptions");
             if (removableOptions == null) {
                 removableOptions = menuManager.getOptionsFromProduct(currentSandwich.getId());
-            }
-
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/2header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/2footer.jsp";
             }
 
             if (remove != null) {
@@ -149,17 +131,7 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
          */
         if ("3".equals(step)) {
             request.setAttribute("menuSides", menuManager.getSidesFromMenu());
-
             url = "/WEB-INF/composeMenu/3sideMain.jsp";
-
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/3header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/3footer.jsp";
-            }
-
         }
 
         /*
@@ -187,14 +159,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                 url = "/WEB-INF/composeMenu/5sauceMain.jsp";
             }
 
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/4header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/4footer.jsp";
-            }
-
             MenuItem[] items = {(MenuItem) session.getAttribute("currentItemSandwich"), itemSide};
             currentLine.setOptionPriceApplied(menuManager.getOptionsPrice(items));
             session.setAttribute("currentItemSide", itemSide);
@@ -214,18 +178,13 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                     MenuItem[] items = {(MenuItem) session.getAttribute("currentItemSandwich"), (MenuItem) session.getAttribute("currentItemSide"), itemSauce};
                     currentLine.setOptionPriceApplied(menuManager.getOptionsPrice(items));
                     session.setAttribute("currentItemSauce", itemSauce);
+                } else {
+                    session.setAttribute("currentItemSauce", null);
                 }
+                // redirect towards drinks + load drinks list
+                request.setAttribute("menuDrinks", menuManager.getDrinksFromMenu());
                 url = "/WEB-INF/composeMenu/6drinkMain.jsp";
             }
-
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/5header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/5footer.jsp";
-            }
-
         }
 
         /*
@@ -234,15 +193,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         if ("6".equals(step)) {
             url = "/WEB-INF/composeMenu/6drinkMain.jsp";
             request.setAttribute("menuDrinks", menuManager.getDrinksFromMenu());
-
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/6header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/6footer.jsp";
-            }
-
         }
 
         /*
@@ -259,14 +209,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
 
             }
 
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/7header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/7footer.jsp";
-            }
-
             if (request.getParameter("size") != null) {
                 long sizeId = Long.valueOf(request.getParameter("size"));
                 MenuItem itemMenuDrink = (MenuItem) session.getAttribute("currentItemDrink");
@@ -276,6 +218,7 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                     (MenuItem) session.getAttribute("currentItemSide"), (MenuItem) session.getAttribute("currentItemSauce"), itemMenuDrink};
                 currentLine.setOptionPriceApplied(menuManager.getOptionsPrice(items));
                 session.setAttribute("currentItemDrink", itemMenuDrink);
+                session.setAttribute("otherDrinkOptions", menuManager.getIceOptionsFromProduct(itemMenuDrink.getProduct().getId()));
                 url = "/WEB-INF/composeMenu/8iceOpt.jsp";
             }
         }
@@ -297,14 +240,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                     menuManager.addOptionToItem(menuManager.getOptional(iceOptionId), itemMenuDrink);
                 }
             }
-
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/8header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/8footer.jsp";
-            }
             session.setAttribute("currentItemDrink", itemMenuDrink);
         }
 
@@ -313,14 +248,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
          */
         if ("9".equals(step)) {
             url = "/WEB-INF/composeMenu/9review.jsp";
-
-            if ("header".equals(zone)) {
-                url = "/WEB-INF/composeMenu/9header.jsp";
-            }
-
-            if ("footer".equals(zone)) {
-                url = "/WEB-INF/composeMenu/9footer.jsp";
-            }
 
             if (request.getParameter("add") != null) {
                 MenuItem currentItemSandwich = (MenuItem) session.getAttribute("currentItemSandwich");
@@ -332,11 +259,31 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                 menuManager.addItemToLine(currentItemSauce, currentLine);
                 menuManager.addItemToLine(currentItemDrink, currentLine);
                 orderManager.addLineToOrder(currentLine, currentOrder);
+                currentLine = null;
+
+                float prixTTC = basketManager.getVATTotal(currentOrder);
+                session.setAttribute("prixTTC", prixTTC);
+
                 url = "/WEB-INF/catalog/catalog.jsp";
             }
         }
 
-        
+        /*
+         STEP kill 
+         */
+        if ("kill".equals(step)) {
+            url = "/WEB-INF/catalog/catalog.jsp";
+            currentLine = null;
+            session.removeAttribute("currentItemSandwich");
+            session.removeAttribute("currentItemSide");
+            session.removeAttribute("currentItemSauce");
+            session.removeAttribute("currentItemDrink");
+            
+            session.removeAttribute("otherDrinkOptions");
+            session.removeAttribute("currentSideOptions");
+            session.removeAttribute("currentSandwichOptions");
+        }
+
         session.setAttribute("currentLine", currentLine);
         session.setAttribute("order", currentOrder);
 
@@ -367,6 +314,16 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         try {
             Context c = new InitialContext();
             return (CatalogManagerLocal) c.lookup("java:global/Borne2BAlive/Borne2BAlive-ejb/CatalogManager!managers.CatalogManagerLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private BasketManagerLocal lookupBasketManagerLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BasketManagerLocal) c.lookup("java:global/Borne2BAlive/Borne2BAlive-ejb/BasketManager!managers.BasketManagerLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

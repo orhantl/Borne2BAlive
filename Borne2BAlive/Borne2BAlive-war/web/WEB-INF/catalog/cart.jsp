@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -9,31 +10,37 @@
  <i class="fas fa-shopping-cart"></i> 
 --%>
 <div>
-    <c:if test="${prixTTC == 0}">
+
+    <c:if test="${empty order.lineList}">
+
         Votre panier est vide !
     </c:if>
 
-    <c:if test="${prixTTC > 0}">
+    <c:if test="${not empty order.lineList}">
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Article</th>
+
                     <th></th>
                     <th>Qte</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>             
+
             <tbody>    
                 <c:forEach var="l" items="${order.lineList}" varStatus="iterator">
                     <tr>
                         <td>${l.product.name}${l.menu.name}</td>
+
 
                         <td><a href="#" class="btn btn-success btn-lg" id="cartOperation">&minus; </a> </td>
                         <td> ${l.qty}</td>
                         <td><a href="#" class="btn btn-info btn-lg" id="cartOperation">&plus; </a></td>
                         <td><a href="#" data-toggle="modal" data-target="#removeItem${iterator.index}" >
                                 <img src="Img/pictograms/trash.svg" alt="retirer de la commande" id="trash"></a></td>
+
 
                         <!-- Modal -->
                 <div class="modal fade" id="removeItem${iterator.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -66,10 +73,14 @@
         </table>
     </div>
 
-
-    Total  ${prixTTC} &euro;
-    <c:url var="emptyCart" value="MainController?section=cart&zone=empty" />
-    <p><a href="${emptyCart}" class="btn btn-danger" data-toggle="modal" data-target="#emptyCart">Vider le panier</a></p>
+    <p class="alignTextRight">
+        Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${prixTTC}" /> &euro;
+        <c:url var="emptyCart" value="MainController?section=cart&zone=empty" />
+    </p>
+    <p>
+        <a href="${emptyCart}" class="btn btn-outline-danger" data-toggle="modal" data-target="#emptyCart">Vider le panier</a> 
+        <a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Valider la commande</a>
+    </p>
 
     <!-- Modal -->
     <div class="modal fade" id="emptyCart" role="dialog">
@@ -92,7 +103,7 @@
     </div>
 
 
-    <p><a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Valider la commande</a></p>
+
 </c:if>
 
 
