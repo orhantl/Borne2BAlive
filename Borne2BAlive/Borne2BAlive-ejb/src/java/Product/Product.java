@@ -47,7 +47,7 @@ public class Product implements Serializable {
     @Column(length = 250)
     private String description;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne/*(cascade = {CascadeType.PERSIST, CascadeType.MERGE})*/
     private ProductStatus status;
     
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

@@ -54,7 +54,7 @@ public class OrderInfo implements Serializable {
     @ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
     private Collection <PaymentType> paymentList;
     
-    @OneToMany (mappedBy = "selectedOrder")
+    @OneToMany (mappedBy = "selectedOrder", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection <Line> lineList;
 
     public OrderInfo() {

@@ -23,11 +23,10 @@ public interface OrderManagerLocal {
     
     public String getCashCheckOutNumber();
     
+    public String getCreditCardCheckOutNumber();
+    
     public void finalizeCashOrder(OrderInfo o, String queueNumber);
     
-        
-    
-
-
+    public void finalizeCreditOrder(OrderInfo o, String queueNumber);
     
 }

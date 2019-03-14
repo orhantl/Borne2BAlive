@@ -13,8 +13,7 @@ import javax.servlet.http.HttpSession;
 import managers.OrderManagerLocal;
 import order.OrderInfo;
 
-
-public class CashCheckOutCtrl implements Serializable, SubControllerInterface{
+public class CreditCardCheckOutCtrl implements Serializable, SubControllerInterface {
     
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     
@@ -26,10 +25,13 @@ public class CashCheckOutCtrl implements Serializable, SubControllerInterface{
         float preTaxPrice = (float) session.getAttribute("preTaxPrice");
         float priceVAT = (float) session.getAttribute("priceVAT");
         
-        String queueNumber = orderManager.getCashCheckOutNumber();
-        orderManager.finalizeCashOrder(order, queueNumber);
+        String queueNumber = orderManager.getCreditCardCheckOutNumber();
+        orderManager.finalizeCreditOrder(order, queueNumber);
         
-        return "/WEB-INF/order/cashCheckOut.jsp";
+        session.setAttribute("queueNumber", queueNumber);
+        
+        return "/WEB-INF/order/creditCardCheckOut.jsp";
+        
     }
 
     private OrderManagerLocal lookupOrderManagerLocal() {

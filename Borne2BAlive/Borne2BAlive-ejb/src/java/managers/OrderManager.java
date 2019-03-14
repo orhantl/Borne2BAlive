@@ -38,8 +38,8 @@ public class OrderManager implements OrderManagerLocal {
     @PersistenceContext(unitName = "Borne2BAlive-ejbPU")
     private EntityManager em;
 
-    private static int queueNumber = 1;
-    
+    private static int cashQueueNumber = 0;
+    private static int creditQueueNumber = 0;
     
   
   // temporaire
@@ -80,16 +80,30 @@ public class OrderManager implements OrderManagerLocal {
        
     @Override
     public String getCashCheckOutNumber(){
-        String cashQueueNumber = "ESP";
-        queueNumber++;
-        if(queueNumber > 100){
-            queueNumber = 1;
+        String queueNumber = "ESP";
+        cashQueueNumber++;
+        if(cashQueueNumber > 100){
+            cashQueueNumber = 1;
         }
-        if(queueNumber < 10){
-            cashQueueNumber += "0";
+        if(cashQueueNumber < 10){
+            queueNumber += "0";
         }
-        cashQueueNumber += queueNumber;        
-        return cashQueueNumber;
+        queueNumber += cashQueueNumber;        
+        return queueNumber;
+    }
+    
+    @Override
+    public String getCreditCardCheckOutNumber(){
+        String queueNumber = "CB";
+        creditQueueNumber++;
+        if(creditQueueNumber > 100){
+            creditQueueNumber = 1;
+        }
+        if(creditQueueNumber < 10){
+            queueNumber += "0";
+        }
+        queueNumber += creditQueueNumber;
+        return queueNumber;
     }
     
     @Override
@@ -126,7 +140,7 @@ public class OrderManager implements OrderManagerLocal {
         
         o.setQueueNumber(queueNumber);
         
-        String fileName = queueNumber + ".ord";
+        String fileName = "D:\\"+ queueNumber + ".ord";
         
         try{
             FileOutputStream fos = new FileOutputStream(fileName);
@@ -141,8 +155,60 @@ public class OrderManager implements OrderManagerLocal {
             ex.printStackTrace();
         }
         
+        
         em.persist(o);
-        //em.flush();
     }
+    
+    @Override
+    public void finalizeCreditOrder(OrderInfo o, String queueNumber){
+        
+        o.setDateOfOrder(new GregorianCalendar().getTime());
+        
+        TypedQuery<CashRegister> qr = em.createNamedQuery("company.CashRegister.findCR", CashRegister.class);
+        qr.setParameter("paramId", 1L);
+        try{
+            CashRegister cashier = qr.getSingleResult();
+            o.setCashier(cashier);
+        }catch(NoResultException ex){
+            System.err.println("Caisse inexistante : "+ex);
+        }
+        
+        TypedQuery<Kiosk> qr2 = em.createNamedQuery("company.Kiosk.findKiosk", Kiosk.class);
+        qr2.setParameter("paramId", 2L);
+       try{
+           Kiosk kiosk = qr2.getSingleResult();
+           o.setKiosk(kiosk);
+       }catch(NoResultException ex){
+           System.err.println("Borne inexistante : "+ex);
+       }
+        
+       TypedQuery<OrderStatus> qr3 = em.createNamedQuery("order.OrderStatus.findOS", OrderStatus.class);
+       qr3.setParameter("paramId", 4L);
+       try{
+           OrderStatus os = qr3.getSingleResult();
+           o.setStatus(os);
+       }catch(NoResultException ex){
+           System.err.println("Statut erronné : "+ex);
+       }
+       
+       o.setQueueNumber(queueNumber);
+       
+       String fileName = "D:\\" + queueNumber + ".ord";
+       
+       try{
+           FileOutputStream fos = new FileOutputStream(fileName);
+           ObjectOutputStream oos = new ObjectOutputStream(fos);
+           oos.writeObject(o);
+           oos.flush();
+       }catch(FileNotFoundException ex){
+           System.err.println("Erreur à l'écriture du fichier : "+ex);
+           ex.printStackTrace();
+       }catch(IOException ex){
+           System.out.println("Erreur d'E/S : "+ex);
+           ex.printStackTrace();
+       }
+       
+    }
+    
 
 }
