@@ -26,8 +26,10 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import order.Line;
+import order.Location;
 import order.OrderInfo;
 import order.OrderStatus;
+import order.VAT;
 
 
 @Stateless
@@ -77,6 +79,35 @@ public class OrderManager implements OrderManagerLocal {
        
        return preTaxSum;
     }
+    
+    
+    public OrderInfo initializeOrder(String vatLoc){
+        OrderInfo order = new OrderInfo();
+        Long orderLocation;
+        float orderVAT;
+        
+        if(vatLoc.equals("onTheSpot")){
+            orderLocation = 2L;
+            orderVAT = 10;
+        }else{
+            orderLocation = 1L;
+            orderVAT = 5.5f;
+        }
+        
+        order.setAppliedVAT(orderVAT);
+        
+        TypedQuery<Location> qr = em.createNamedQuery("order.Location.findLocation", Location.class);
+        qr.setParameter("paramId", orderLocation);        
+        try{
+            Location loc = qr.getSingleResult();
+            order.setPlace(loc);
+        }catch(NoResultException ex){
+            System.out.println("Place inexistante");
+        }               
+        
+        return order;
+    }
+    
        
     @Override
     public String getCashCheckOutNumber(){

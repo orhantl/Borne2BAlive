@@ -21,6 +21,8 @@ public interface OrderManagerLocal {
     
     public float getPreTaxTotal(OrderInfo o);
     
+    public OrderInfo initializeOrder(String vatLoc);
+    
     public String getCashCheckOutNumber();
     
     public String getCreditCardCheckOutNumber();

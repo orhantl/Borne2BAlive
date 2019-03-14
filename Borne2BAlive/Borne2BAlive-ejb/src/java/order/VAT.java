@@ -9,7 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+@NamedQueries(
+        {
+            @NamedQuery(name="order.VAT.findVAT", 
+                    query = "select v from VAT v where v.id = :paramId")
+        }
+)
+
 
 @Entity
 public class VAT implements Serializable {

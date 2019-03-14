@@ -38,9 +38,7 @@
 </div>
 <div class="container text-center text-align:">
 <br><br><br>
-   <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-primary btn-lg">Sur place</a>
-
-  <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-primary btn-lg">Emporter</a>
+   
 
 </div>
 </header>
