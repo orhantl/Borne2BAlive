@@ -44,5 +44,7 @@ public interface MenuManagerLocal {
     public float getOptionsPrice(MenuItem[] items);
 
     public void addMenuToLine(Menu m, Line l);
-    
+
+    public List<Optional> getOptionsExcSize(long productId);
+
 }
