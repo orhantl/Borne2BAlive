@@ -34,6 +34,8 @@ public class MainController extends HttpServlet {
         mp.put("kill", new Kill());
         mp.put("category", new CategoryCtrl());
         mp.put("detail", new DetailProductCtrl());
+        mp.put("creditCardCheckOut", new CreditCardCheckOutCtrl());
+        mp.put("consumChoice", new ConsumChoiceCtrl());
         mp.put("offers", new OffersCtrl());
     }
     

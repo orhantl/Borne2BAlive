@@ -21,13 +21,14 @@ public interface OrderManagerLocal {
     
     public float getPreTaxTotal(OrderInfo o);
     
+    public OrderInfo initializeOrder(String vatLoc);
+    
     public String getCashCheckOutNumber();
+    
+    public String getCreditCardCheckOutNumber();
     
     public void finalizeCashOrder(OrderInfo o, String queueNumber);
     
-        
-    
-
-
+    public void finalizeCreditOrder(OrderInfo o, String queueNumber);
     
 }
