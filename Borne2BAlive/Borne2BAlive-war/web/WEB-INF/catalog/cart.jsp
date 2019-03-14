@@ -3,7 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<p><img src="Img/pictograms/cart.svg" alt="panier" id="cart">  VOTRE COMMANDE</p> 
+<p class="centerDisplayContent hamburger"><img src="Img/pictograms/cart.svg" alt="panier" id="cart">  VOTRE COMMANDE</p> 
 
 
 <%--
@@ -35,9 +35,9 @@
                         <td>${l.product.name}${l.menu.name}</td>
 
 
-                        <td><a href="#" class="btn btn-success btn-lg" id="cartOperation">&minus; </a> </td>
+                        <td><a href="#" class="btn btn-outline-secondary" id="cartOperation">&minus; </a> </td>
                         <td> ${l.qty}</td>
-                        <td><a href="#" class="btn btn-info btn-lg" id="cartOperation">&plus; </a></td>
+                        <td><a href="#" class="btn btn-outline-info" id="cartOperation">&plus; </a></td>
                         <td><a href="#" data-toggle="modal" data-target="#removeItem${iterator.index}" >
                                 <img src="Img/pictograms/trash.svg" alt="retirer de la commande" id="trash"></a></td>
 
@@ -58,7 +58,8 @@
                             <div class="modal-footer">
                                 <a href="#" class="btn btn-secondary" data-dismiss="modal">Fermer</a>
                                 <c:url value="MainController?section=cart&zone=remove&count=${iterator.index}" var="url150" />
-                                <a href="${url150}" onclick="removeLine();return false" type="button" class="btn btn-primary" >Supprimer</a>
+                                <a href="${url150}" onclick="removeLine();
+                                        return false" type="button" class="btn btn-primary" >Supprimer</a>
                             </div>
                         </div>
                     </div>
@@ -73,14 +74,17 @@
         </table>
     </div>
 
-    <p class="alignTextRight">
-        Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${prixTTC}" /> &euro;
-        <c:url var="emptyCart" value="MainController?section=cart&zone=empty" />
-    </p>
-    <p>
-        <a href="${emptyCart}" class="btn btn-outline-danger" data-toggle="modal" data-target="#emptyCart">Vider le panier</a> 
-        <a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Valider la commande</a>
-    </p>
+    <div class="centerDisplayContent">
+        <p class="cartPrice">
+            Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${prixTTC}" /> &euro;
+            <c:url var="emptyCart" value="MainController?section=cart&zone=empty" />
+        </p>
+        <p>
+            <a href="${emptyCart}" class="btn btn-outline-danger" data-toggle="modal" data-target="#emptyCart">Vider</a> 
+            <a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Commander</a>
+        </p>
+    </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="emptyCart" role="dialog">
@@ -108,4 +112,3 @@
 
 
 
-<hr>
