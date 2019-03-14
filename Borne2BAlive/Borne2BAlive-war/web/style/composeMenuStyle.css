@@ -49,7 +49,7 @@
 }
 
 body {
-    background-color: #dcdbdb;
+    background: rgba(224, 224, 224, 0.8);
 }
 
 .centerStage {

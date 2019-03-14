@@ -28,7 +28,7 @@
                 <c:import url="${mainDisplay}" />
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 cartDisplay">
 
                 <c:url var="cart" value="MainController?section=catalog&zone=cart" />
                 <c:import url="${cart}" />

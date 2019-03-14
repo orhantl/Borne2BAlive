@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h3 id="categoryTitle">${category.name}</h3>
+<div class="row"  id="categoryTitle">
+${category.name}
+</div>
+
 <div class="centerDisplayContent">
     <div class="card-columns">
         <c:forEach var="p" items="${Products}">
@@ -11,7 +14,7 @@
                 <div class="card-body">
 
                     <p><fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${p.price * (100 + order.appliedVAT) /100}" /> &euro;</p>
-                    <a href="MainController?section=detail&step=1&category=${category.id}&product=${p.id}" class="btn btn-info">${p.name}</a>
+                    <a href="MainController?section=detail&step=1&category=${category.id}&product=${p.id}" class="btn btn-info stretched-link">${p.name}</a>
 
                 </div>
             </div>

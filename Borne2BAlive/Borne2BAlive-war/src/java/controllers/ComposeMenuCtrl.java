@@ -274,6 +274,14 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         if ("kill".equals(step)) {
             url = "/WEB-INF/catalog/catalog.jsp";
             currentLine = null;
+            session.removeAttribute("currentItemSandwich");
+            session.removeAttribute("currentItemSide");
+            session.removeAttribute("currentItemSauce");
+            session.removeAttribute("currentItemDrink");
+            
+            session.removeAttribute("otherDrinkOptions");
+            session.removeAttribute("currentSideOptions");
+            session.removeAttribute("currentSandwichOptions");
         }
 
         session.setAttribute("currentLine", currentLine);
