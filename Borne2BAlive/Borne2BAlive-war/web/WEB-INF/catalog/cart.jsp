@@ -32,12 +32,24 @@
             <tbody>    
                 <c:forEach var="l" items="${order.lineList}" varStatus="iterator">
                     <tr>
-                        <td>${l.product.name}${l.menu.name}</td>
+                        <td>${l.product.name}${l.menu.name}
+                            <!--(<c:forEach var="o" items="${l.optionList}">
+                                ${l.optionList}
+                            </c:forEach>
+                            )--></td>
 
 
-                        <td><a href="#" class="btn btn-outline-secondary" id="cartOperation">&minus; </a> </td>
-                        <td> ${l.qty}</td>
-                        <td><a href="#" class="btn btn-outline-info" id="cartOperation">&plus; </a></td>
+                        <td>
+                            <c:if test="${l.qty > 1}">                            
+                            <a href="MainController?section=cart&zone=minus&count=${iterator.index}" class="btn btn-outline-secondary" id="cartOperation">&minus; </a> </td>                        
+                            </c:if>
+                        
+                            <td> ${l.qty}</td>
+                        <td>
+                            <c:if test="${l.qty < 10}">
+                            
+                            <a href="MainController?section=cart&zone=plus&count=${iterator.index}" class="btn btn-outline-info" id="cartOperation">&plus; </a></td>
+                            </c:if>
                         <td><a href="#" data-toggle="modal" data-target="#removeItem${iterator.index}" >
                                 <img src="Img/pictograms/trash.svg" alt="retirer de la commande" id="trash"></a></td>
 

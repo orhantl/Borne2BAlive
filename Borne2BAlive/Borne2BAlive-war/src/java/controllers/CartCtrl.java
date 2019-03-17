@@ -40,8 +40,15 @@ public class CartCtrl implements Serializable, SubControllerInterface {
         
         if ("remove".equals(zone)) {
             int index = Integer.valueOf(request.getParameter("count")); 
-            System.out.println("index value = " +index);
             basketManager.removeLine(o, index);
+        }
+        if ("minus".equals(zone)) {
+            int index = Integer.valueOf(request.getParameter("count")); 
+            basketManager.minusItem(o, index);
+        }
+        if ("plus".equals(zone)) {
+            int index = Integer.valueOf(request.getParameter("count")); 
+            basketManager.plusItem(o, index);
         }
 
         float prixTTC = basketManager.getVATTotal(o);
