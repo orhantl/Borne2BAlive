@@ -5,10 +5,6 @@
 
 <p class="centerDisplayContent hamburger"><img src="Img/pictograms/cart.svg" alt="panier" id="cart">  VOTRE COMMANDE</p> 
 
-
-<%--
- <i class="fas fa-shopping-cart"></i> 
---%>
 <div>
 
     <c:if test="${empty order.lineList}">
@@ -33,22 +29,26 @@
                 <c:forEach var="l" items="${order.lineList}" varStatus="iterator">
                     <tr>
                         <td>${l.product.name}${l.menu.name}
-                            <!--(<c:forEach var="o" items="${l.optionList}">
-                                ${l.optionList}
+                            <c:if test="${not empty l.optionList }">
+                                :<c:forEach var="o" items="${l.optionList}">
+                                ${o.name}
                             </c:forEach>
-                            )--></td>
+                            
+                            </c:if> 
+                            
+                        </td>
 
 
                         <td>
                             <c:if test="${l.qty > 1}">                            
-                            <a href="MainController?section=cart&zone=minus&count=${iterator.index}" class="btn btn-outline-secondary" id="cartOperation">&minus; </a> </td>                        
+                                <a href="MainController?section=cart&zone=minus&count=${iterator.index}" class="btn btn-outline-secondary" id="cartOperation">&minus; </a> </td>                        
                             </c:if>
-                        
-                            <td> ${l.qty}</td>
+
+                        <td> ${l.qty}</td>
                         <td>
                             <c:if test="${l.qty < 10}">
-                            
-                            <a href="MainController?section=cart&zone=plus&count=${iterator.index}" class="btn btn-outline-info" id="cartOperation">&plus; </a></td>
+
+                                <a href="MainController?section=cart&zone=plus&count=${iterator.index}" class="btn btn-outline-info" id="cartOperation">&plus; </a></td>
                             </c:if>
                         <td><a href="#" data-toggle="modal" data-target="#removeItem${iterator.index}" >
                                 <img src="Img/pictograms/trash.svg" alt="retirer de la commande" id="trash"></a></td>
@@ -76,8 +76,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 </tr>
 
             </c:forEach>

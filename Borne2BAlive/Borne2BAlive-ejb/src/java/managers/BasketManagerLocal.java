@@ -38,5 +38,9 @@ public interface BasketManagerLocal {
 
     public OrderInfo minusItem(OrderInfo o, int index);
 
+    public ArrayList<Optional> mergeOptionList(ArrayList<Optional> a, ArrayList<Optional> b);
+
+    public float mergeOptionPriceApplied(float a, float b);
+
     
 }

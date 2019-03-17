@@ -1,7 +1,9 @@
 package controllers;
 
+import Product.Optional;
 import Product.Product;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -56,14 +58,31 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
         if ("2".equals(step)) {
             Line l = basketManager.getLine(idProduct, 0);
+//
+//            if (request.getParameterValues("options") != null) {
+//                String rs[] = request.getParameterValues("options");
+//                for (String s : rs) {
+//                    System.out.println("option : " + s);
+//                }
+//            }
+//
+//            if (request.getParameterValues("size") != null) {
+//                String rt[] = request.getParameterValues("size");
+//                for (String s : rt) {
+//                    System.out.println("taille : " + s);
+//                }
+//            }
 
-            // deal with the sandwich options
-            l.setOptionPriceApplied(basketManager.getOptionPriceApplied(request.getParameterValues("options")));
-            l.setOptionList(basketManager.getOptionList(request.getParameterValues("options")));
-
-            // deal with the size of sides and cold drinks
-            l.setOptionPriceApplied(basketManager.getOptionPriceApplied(request.getParameterValues("size")));
-            l.setOptionList(basketManager.getOptionList(request.getParameterValues("size")));
+            
+            float f = basketManager.getOptionPriceApplied(request.getParameterValues("size")) 
+                    + basketManager.getOptionPriceApplied(request.getParameterValues("options"));
+            
+            ArrayList <Optional> a = basketManager.getOptionList(request.getParameterValues("size"));
+            ArrayList <Optional> b = basketManager.getOptionList(request.getParameterValues("options"));
+            
+            // options + size
+            l.setOptionList(basketManager.mergeOptionList(a, b));
+            l.setOptionPriceApplied(f);
 
             order.getLineList().add(l);
 

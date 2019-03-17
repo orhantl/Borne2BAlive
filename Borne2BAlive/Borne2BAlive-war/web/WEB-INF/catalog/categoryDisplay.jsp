@@ -16,7 +16,8 @@ ${category.name}
 
 
                     <p><fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${p.price * (100 + order.appliedVAT) /100}" /> &euro;</p>
-                    <a href="MainController?section=detail&step=1&category=${category.id}&product=${p.id}" class="btn btn-info stretched-link">${p.name}</a>
+                    <c:url var="url150" value="MainController?section=detail&step=1&category=${category.id}&product=${p.id}" />
+                    <a href="${url150}" class="btn btn-info stretched-link">${p.name}</a>
 
                 </div>
             </div>
@@ -25,9 +26,3 @@ ${category.name}
     </div>
 </div>
 <br><br>
-<!--
-<c:forEach var="u" items="${MenusUnavailable}">
-    ${u.name} : Indisponible, bientôt de retour 
-</c:forEach>
-
--->

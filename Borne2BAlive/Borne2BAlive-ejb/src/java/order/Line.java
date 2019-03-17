@@ -168,7 +168,7 @@ public class Line implements Serializable {
 
     @Override
     public String toString() {
-        return id + " - quantité : " + qty + " prix : " + preTaxPrice;
+        return id + " - quantité : " + qty + " prix : " + preTaxPrice + " liste des options : "+ optionList;
     }
     
 }

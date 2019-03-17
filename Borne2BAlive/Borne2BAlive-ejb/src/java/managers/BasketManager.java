@@ -50,6 +50,12 @@ public class BasketManager implements BasketManagerLocal {
         }
         return f;
     }
+    
+    @Override
+    public float mergeOptionPriceApplied (float a, float b){
+        float f = a + b;
+        return f;
+    }
 
     // retourne un tableau d'option pour un achat au détail
     @Override
@@ -62,13 +68,30 @@ public class BasketManager implements BasketManagerLocal {
         }
         return options;
     }
+    
+    @Override
+    public ArrayList<Optional> mergeOptionList(ArrayList <Optional> a, ArrayList <Optional> b) {
+        ArrayList<Optional> options = new ArrayList();
+        if (! a.isEmpty() ) {
+            for (Optional o : a) {
+                options.add(o);
+            }
+        }
+        if (! b.isEmpty() ) {
+            for (Optional o : b) {
+                options.add(o);
+            }
+        }
+        return options;
+    }
 
     @Override
     public float getVATTotal(OrderInfo o) {
 
         float preTaxSum = 0;
         for (Line l : o.getLineList()) {
-            preTaxSum += ((l.getPreTaxPrice() * l.getDiscount() / 100 + l.getPreTaxPrice()) + l.getOptionPriceApplied())* l.getQty();
+            preTaxSum += ((l.getPreTaxPrice() * l.getDiscount() / 100 + l.getPreTaxPrice()) 
+                    + l.getOptionPriceApplied())* l.getQty();
         }
         return (preTaxSum * o.getAppliedVAT()) / 100 + preTaxSum;
     }
@@ -128,13 +151,4 @@ public class BasketManager implements BasketManagerLocal {
         }
         return number;
     }
-
-    public void persist(Object object) {
-        em.persist(object);
-    }
-
-    public void persist1(Object object) {
-        em.persist(object);
-    }
-
 }
