@@ -64,8 +64,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                     itemSandwich = menuManager.createMenuItem(currentSandwich);
                 }
 
-//                menuManager.addItemToLine(itemSandwich, currentLine);
-//                orderManager.addLineToOrder(currentLine, currentOrder);
                 session.setAttribute("currentItemSandwich", itemSandwich);
             }
 

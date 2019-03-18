@@ -34,6 +34,14 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
 //        OrderInfo order = orderManager.initializeOrder((String) request.getParameter("location"));
 //        session.setAttribute("order", order);
 
+
+        // fake order de LO - code à supprimer plus tard (ici et dans orderManager)
+            //OrderInfo order = (OrderInfo) session.getAttribute("order");
+            //order = order == null ? orderManager.createOrder() : order;
+            //session.setAttribute("order", order);
+
+
+
         if ("pageHead".equals(zone)) {
             url = "/WEB-INF/catalog/header.jsp";
         }

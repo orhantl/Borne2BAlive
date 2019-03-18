@@ -1,14 +1,11 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<p><img src="Img/pictograms/cart.svg" alt="panier" id="cart">  VOTRE COMMANDE</p> 
+<p class="centerDisplayContent hamburger"><img src="Img/pictograms/cart.svg" alt="panier" id="cart">  VOTRE COMMANDE</p> 
 
-
-<%--
- <i class="fas fa-shopping-cart"></i> 
---%>
 <div>
 
     <c:if test="${empty order.lineList}">
@@ -32,12 +29,28 @@
             <tbody>    
                 <c:forEach var="l" items="${order.lineList}" varStatus="iterator">
                     <tr>
-                        <td>${l.product.name}${l.menu.name}</td>
+                        <td>${l.product.name}${l.menu.name}
+                            <c:if test="${not empty l.optionList }">
+                                :<c:forEach var="o" items="${l.optionList}">
+                                ${o.name}
+                            </c:forEach>
+                            
+                            </c:if> 
+                            
+                        </td>
 
 
-                        <td><a href="#" class="btn btn-success btn-lg" id="cartOperation">&minus; </a> </td>
+                        <td>
+                            <c:if test="${l.qty > 1}">                            
+                                <a href="MainController?section=cart&zone=minus&count=${iterator.index}" class="btn btn-outline-secondary" id="cartOperation">&minus; </a> </td>                        
+                            </c:if>
+
                         <td> ${l.qty}</td>
-                        <td><a href="#" class="btn btn-info btn-lg" id="cartOperation">&plus; </a></td>
+                        <td>
+                            <c:if test="${l.qty < 10}">
+
+                                <a href="MainController?section=cart&zone=plus&count=${iterator.index}" class="btn btn-outline-info" id="cartOperation">&plus; </a></td>
+                            </c:if>
                         <td><a href="#" data-toggle="modal" data-target="#removeItem${iterator.index}" >
                                 <img src="Img/pictograms/trash.svg" alt="retirer de la commande" id="trash"></a></td>
 
@@ -58,13 +71,12 @@
                             <div class="modal-footer">
                                 <a href="#" class="btn btn-secondary" data-dismiss="modal">Fermer</a>
                                 <c:url value="MainController?section=cart&zone=remove&count=${iterator.index}" var="url150" />
-                                <a href="${url150}" onclick="removeLine();return false" type="button" class="btn btn-primary" >Supprimer</a>
+                                <a href="${url150}" onclick="removeLine();
+                                        return false" type="button" class="btn btn-primary" >Supprimer</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
                 </tr>
 
             </c:forEach>
@@ -73,14 +85,17 @@
         </table>
     </div>
 
-    <p class="alignTextRight">
-        Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${prixTTC}" /> &euro;
-        <c:url var="emptyCart" value="MainController?section=cart&zone=empty" />
-    </p>
-    <p>
-        <a href="${emptyCart}" class="btn btn-outline-danger" data-toggle="modal" data-target="#emptyCart">Vider le panier</a> 
-        <a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Valider la commande</a>
-    </p>
+    <div class="centerDisplayContent">
+        <p class="cartPrice">
+            Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${prixTTC}" /> &euro;
+            <c:url var="emptyCart" value="MainController?section=cart&zone=empty" />
+        </p>
+        <p>
+            <a href="${emptyCart}" class="btn btn-outline-danger" data-toggle="modal" data-target="#emptyCart">Vider</a> 
+            <a href="MainController?section=orderSummary" class="btn btn-success">Commander</a>
+        </p>
+    </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="emptyCart" role="dialog">
@@ -103,9 +118,8 @@
     </div>
 
 
-    <p><a href="MainController?section=orderSummary&order=${order}" class="btn btn-success">Valider la commande</a></p>
+
 </c:if>
 
 
 
-<hr>

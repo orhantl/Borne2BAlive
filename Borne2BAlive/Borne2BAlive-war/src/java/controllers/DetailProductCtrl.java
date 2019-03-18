@@ -1,7 +1,9 @@
 package controllers;
 
+import Product.Optional;
 import Product.Product;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -10,6 +12,8 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import managers.BasketManager;
+import managers.BasketManagerLocal;
 import managers.CatalogManagerLocal;
 import managers.MenuManagerLocal;
 import managers.OrderManagerLocal;
@@ -18,9 +22,9 @@ import order.OrderInfo;
 
 public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
+    BasketManagerLocal basketManager = lookupBasketManagerLocal();
     MenuManagerLocal menuManager = lookupMenuManagerLocal();
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
-
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
 
     @Override
@@ -39,7 +43,6 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
         Product p = catalogManager.getProduct(idProduct);
 
         //String categoryName = catalogManager.getCategory(idCat).getName();
-
         OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
         if (currentOrder == null) {
             currentOrder = orderManager.createOrder();
@@ -47,29 +50,49 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
         if ("1".equals(step)) {
 
-            
-            
-
-            session.setAttribute("allergens", menuManager.getAllergens(idProduct));
-
-            session.setAttribute("product", catalogManager.getProduct(idProduct));
-            //session.setAttribute("category", catalogManager.getCategory(idCat));
-            
-            session.setAttribute("option", menuManager.getOptionsExcSize(idProduct));
-            session.setAttribute("size", menuManager.getSizeOptionsFromProduct(idProduct));
+            request.setAttribute("allergens", menuManager.getAllergens(idProduct));
+            request.setAttribute("product", catalogManager.getProduct(idProduct));
+            request.setAttribute("option", menuManager.getOptionsExcSize(idProduct));
+            request.setAttribute("size", menuManager.getSizeOptionsFromProduct(idProduct));
         }
-        
+
         if ("2".equals(step)) {
-            Line l = new Line();
-            l.setProduct(catalogManager.getProduct(idProduct));
-            l.setQty(1);
-            order.getLineList().add(l);          
+            Line l = basketManager.getLine(idProduct, 0);
+//
+//            if (request.getParameterValues("options") != null) {
+//                String rs[] = request.getParameterValues("options");
+//                for (String s : rs) {
+//                    System.out.println("option : " + s);
+//                }
+//            }
+//
+//            if (request.getParameterValues("size") != null) {
+//                String rt[] = request.getParameterValues("size");
+//                for (String s : rt) {
+//                    System.out.println("taille : " + s);
+//                }
+//            }
+
             
+            float f = basketManager.getOptionPriceApplied(request.getParameterValues("size")) 
+                    + basketManager.getOptionPriceApplied(request.getParameterValues("options"));
+            
+            ArrayList <Optional> a = basketManager.getOptionList(request.getParameterValues("size"));
+            ArrayList <Optional> b = basketManager.getOptionList(request.getParameterValues("options"));
+            
+            // options + size
+            l.setOptionList(basketManager.mergeOptionList(a, b));
+            l.setOptionPriceApplied(f);
+
+            order.getLineList().add(l);
+
+            System.out.println("lines" + order.getLineList().toString());
+
             url = "/WEB-INF/catalog/catalog.jsp";
         }
 
-        //session? ou request?
-        
+        float prixTTC = basketManager.getVATTotal(order);
+        session.setAttribute("prixTTC", prixTTC);
         session.setAttribute("order", order);
         return url;
     }
@@ -98,6 +121,16 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
         try {
             Context c = new InitialContext();
             return (MenuManagerLocal) c.lookup("java:global/Borne2BAlive/Borne2BAlive-ejb/MenuManager!managers.MenuManagerLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private BasketManagerLocal lookupBasketManagerLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BasketManagerLocal) c.lookup("java:global/Borne2BAlive/Borne2BAlive-ejb/BasketManager!managers.BasketManagerLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
