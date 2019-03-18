@@ -28,6 +28,8 @@ public class CashCheckOutCtrl implements Serializable, SubControllerInterface{
         
         String queueNumber = orderManager.getCashCheckOutNumber();
         orderManager.finalizeCashOrder(order, queueNumber);
+        session.setAttribute("queueNumber", queueNumber);
+        
         
         return "/WEB-INF/order/cashCheckOut.jsp";
     }

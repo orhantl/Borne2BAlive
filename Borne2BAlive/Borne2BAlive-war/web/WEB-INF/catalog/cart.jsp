@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -91,7 +92,7 @@
         </p>
         <p>
             <a href="${emptyCart}" class="btn btn-outline-danger" data-toggle="modal" data-target="#emptyCart">Vider</a> 
-            <a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Commander</a>
+            <a href="MainController?section=orderSummary" class="btn btn-success">Commander</a>
         </p>
     </div>
 

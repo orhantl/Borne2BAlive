@@ -17,7 +17,7 @@ public class Kill extends HttpServlet implements Serializable, SubControllerInte
         HttpSession session = request.getSession();
         session.invalidate();
         
-        return "/index.jsp";
+        return "/WEB-INF/welcomeScreen/welcomeScreen.jsp";
         
     }
 
