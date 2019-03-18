@@ -28,17 +28,17 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
         HttpSession session = request.getSession();
         Long idProduct = Long.valueOf(request.getParameter("product"));
-        Long idCat = Long.valueOf(request.getParameter("category"));
+        //Long idCat = Long.valueOf(request.getParameter("category"));
         OrderInfo order = (OrderInfo) session.getAttribute("order");
 
-        String zone = request.getParameter("zone");
+        //String zone = request.getParameter("zone");
         String step = request.getParameter("step");
 
         String url = "/WEB-INF/catalog/categoryDetail.jsp";
 
         Product p = catalogManager.getProduct(idProduct);
 
-        String categoryName = catalogManager.getCategory(idCat).getName();
+        //String categoryName = catalogManager.getCategory(idCat).getName();
 
         OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
         if (currentOrder == null) {
@@ -53,17 +53,24 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
             session.setAttribute("allergens", menuManager.getAllergens(idProduct));
 
             session.setAttribute("product", catalogManager.getProduct(idProduct));
-            session.setAttribute("category", catalogManager.getCategory(idCat));
+            //session.setAttribute("category", catalogManager.getCategory(idCat));
+            
+            session.setAttribute("option", menuManager.getOptionsExcSize(idProduct));
+            session.setAttribute("size", menuManager.getSizeOptionsFromProduct(idProduct));
         }
         
         if ("2".equals(step)) {
             Line l = new Line();
             l.setProduct(catalogManager.getProduct(idProduct));
+            l.setQty(1);
+            order.getLineList().add(l);          
+            
+            url = "/WEB-INF/catalog/catalog.jsp";
         }
 
         //session? ou request?
         
-
+        session.setAttribute("order", order);
         return url;
     }
 

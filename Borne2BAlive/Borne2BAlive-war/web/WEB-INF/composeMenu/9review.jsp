@@ -15,8 +15,13 @@
         <c:import url="${pageHead}" />
 
         <div class="globalContent">
-            <c:url var="zoneHead" value="MainController?section=composeMenu&step=9&zone=header" />
-            <c:import url="${zoneHead}" />
+            <div class="row pageHead">
+    <div class="col-md-12">
+        <h6>${currentLine.menu.name}</h6>
+        <h5>Vérifiez votre menu</h5>
+    </div>
+</div> 
+
 
 
 
@@ -79,9 +84,9 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
                     <u>Prix</u>
-                    <br>Menu : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.preTaxPrice * (100 + currentOrder.appliedVAT) /100}" /> &euro; 
-                    <br>Options : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.optionPriceApplied * (100 + currentOrder.appliedVAT) /100}" /> &euro; 
-                    <br>Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${(currentLine.optionPriceApplied * (100 + currentOrder.appliedVAT) /100) + (currentLine.preTaxPrice * (100 + currentOrder.appliedVAT) /100)}" /> &euro;
+                    <br>Menu : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.preTaxPrice * (100 + order.appliedVAT) /100}" /> &euro; 
+                    <br>Options : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.optionPriceApplied * (100 + order.appliedVAT) /100}" /> &euro; 
+                    <br>Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${(currentLine.optionPriceApplied * (100 + order.appliedVAT) /100) + (currentLine.preTaxPrice * (100 + order.appliedVAT) /100)}" /> &euro;
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -89,8 +94,40 @@
 
              <br><br>
 
-            <c:url var="pageFoot" value="MainController?section=composeMenu&step=9&zone=footer" />
-            <c:import url="${pageFoot}" />
+            <div class="row pageFoot" >
+    <div class="col-md-2"></div>
+    <div class="col-md-2"><a href="#" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#cancel">Annuler</a> </div>
+    <div class="col-md-6"></div>
+    <c:url var="addToCart" value="MainController?section=composeMenu&step=9&add" />
+    <div class="col-md-2"><a href="${addToCart}" class="btn btn-success" role="button" >Ajouter au panier</a> </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="cancel" role="dialog">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Attention !</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Vous êtes sur le point de supprimer vos modifications. </p>
+                    <p>Appuyez sur "Retour" si vous souhaitez finaliser votre menu. </p>
+                    <p>Appuyez sur "Confirmer" si vous souhaitez revenir à l'écran d'accueil</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-info" data-dismiss="modal">Retour</a>
+                    <a href="MainController?section=composeMenu&step=kill" class="btn btn-danger">Confirmer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div> 
+
 
             <br>
         </div>
