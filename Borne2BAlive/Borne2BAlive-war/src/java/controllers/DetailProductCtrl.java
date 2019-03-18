@@ -29,24 +29,14 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) {
-
         HttpSession session = request.getSession();
         Long idProduct = Long.valueOf(request.getParameter("product"));
-        //Long idCat = Long.valueOf(request.getParameter("category"));
         OrderInfo order = (OrderInfo) session.getAttribute("order");
-
-        //String zone = request.getParameter("zone");
         String step = request.getParameter("step");
 
-        String url = "/WEB-INF/catalog/categoryDetail.jsp";
+        String url = "/WEB-INF/catalog/productDetail.jsp";
 
         Product p = catalogManager.getProduct(idProduct);
-
-        //String categoryName = catalogManager.getCategory(idCat).getName();
-        OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
-        if (currentOrder == null) {
-            currentOrder = orderManager.createOrder();
-        }
 
         if ("1".equals(step)) {
 
@@ -58,21 +48,6 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
         if ("2".equals(step)) {
             Line l = basketManager.getLine(idProduct, 0);
-//
-//            if (request.getParameterValues("options") != null) {
-//                String rs[] = request.getParameterValues("options");
-//                for (String s : rs) {
-//                    System.out.println("option : " + s);
-//                }
-//            }
-//
-//            if (request.getParameterValues("size") != null) {
-//                String rt[] = request.getParameterValues("size");
-//                for (String s : rt) {
-//                    System.out.println("taille : " + s);
-//                }
-//            }
-
             
             float f = basketManager.getOptionPriceApplied(request.getParameterValues("size")) 
                     + basketManager.getOptionPriceApplied(request.getParameterValues("options"));
