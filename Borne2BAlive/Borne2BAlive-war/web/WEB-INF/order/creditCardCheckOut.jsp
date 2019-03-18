@@ -17,6 +17,8 @@
         <h2><center>N° ${queueNumber}</center></h2>
         <br>
         <br>
-        <h2><center>Rendez-vous à la caisse n° 1</center></h2>
+        <h2><center>Rendez-vous à la caisse n° ${order.cashier.id}</center></h2>
+        <script type="text/javascript" src="style/endOrder.js"></script>
+        
     </body>
 </html>

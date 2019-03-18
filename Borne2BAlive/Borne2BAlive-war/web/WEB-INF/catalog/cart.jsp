@@ -85,7 +85,7 @@
     </div>
 
 
-    <p><a href="MainController?section=OrderSummary&order=${order}" class="btn btn-success">Valider la commande</a></p>
+    <p><a href="MainController?section=orderSummary&order=${order}" class="btn btn-success">Valider la commande</a></p>
 </c:if>
 
 
