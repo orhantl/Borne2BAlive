@@ -36,10 +36,10 @@ public class OrderInfo implements Serializable {
     @Column(length = 10)
     private float appliedVAT;
     
-    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToOne
     private Location place;
     
-    @ManyToOne (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToOne 
     private OrderStatus status;
     
     @ManyToOne
@@ -51,7 +51,7 @@ public class OrderInfo implements Serializable {
     @ManyToOne 
     private Kiosk kiosk;
     
-    @ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany
     private Collection <PaymentType> paymentList;
     
     @OneToMany (mappedBy = "selectedOrder", cascade= {CascadeType.PERSIST, CascadeType.MERGE})

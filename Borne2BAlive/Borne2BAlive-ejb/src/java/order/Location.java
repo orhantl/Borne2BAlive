@@ -17,8 +17,8 @@ import javax.persistence.OneToMany;
 
 @NamedQueries(
         {
-            @NamedQuery(name="order.Location.findLocation", 
-                    query="select l from Location l where l.id= :paramId")
+            @NamedQuery(name="order.Location.findLocation", query="select l from Location l where l.id= :paramId"),
+            @NamedQuery(name="order.Location.findAll", query="select l from Location l")
         }
 )
 

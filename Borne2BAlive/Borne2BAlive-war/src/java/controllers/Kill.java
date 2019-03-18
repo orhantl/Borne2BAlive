@@ -15,7 +15,11 @@ public class Kill extends HttpServlet implements Serializable, SubControllerInte
     public String process(HttpServletRequest request, HttpServletResponse response){
         
         HttpSession session = request.getSession();
-        session.invalidate();
+        
+//        session.invalidate(); // tuer la session
+//        request.getSession(true); // créer une nouvelle session
+        
+        session.removeAttribute("order");
         
         return "/WEB-INF/welcomeScreen/welcomeScreen.jsp";
         

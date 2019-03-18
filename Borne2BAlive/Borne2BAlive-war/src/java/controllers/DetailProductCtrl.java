@@ -42,11 +42,7 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
         Product p = catalogManager.getProduct(idProduct);
 
-        //String categoryName = catalogManager.getCategory(idCat).getName();
-        OrderInfo currentOrder = (OrderInfo) session.getAttribute("currentOrder");
-        if (currentOrder == null) {
-            currentOrder = orderManager.createOrder();
-        }
+
 
         if ("1".equals(step)) {
 

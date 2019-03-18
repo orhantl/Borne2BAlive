@@ -139,24 +139,27 @@ body {
     letter-spacing: 4px;
 }
 
-
+.catSquareDisplay{
+    margin-top: 80px;
+}
 
 .catSquare
 {
     border-color: #cc3300;
-    background-image: linear-gradient(0.25turn, #660000, #cc6600);
-    border-width: 7px;
+    background-image: linear-gradient(0.40turn, rgba(102, 0, 0, 0.8), rgba(202, 104, 0, 0.8));
+    border-width: 1px;
     border-radius: 20px;
     border-style: solid;
     display:inline-block;
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
     margin: 10px;
     font-family: "hamburgerHeaven";
     color: #ffff99;
-    font-size: 1.4em;
-    letter-spacing: 4px;
+    font-size: 1.3em;
+    letter-spacing: 2px;
     text-align: center; 
+    box-shadow: 5px 5px 9px #666666;
 }
 
 #catTitle{ 
