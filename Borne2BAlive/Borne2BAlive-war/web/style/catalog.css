@@ -139,3 +139,26 @@ body {
     letter-spacing: 4px;
 }
 
+
+
+.catSquare
+{
+    border-color: #cc3300;
+    background-image: linear-gradient(0.25turn, #660000, #cc6600);
+    border-width: 7px;
+    border-radius: 20px;
+    border-style: solid;
+    display:inline-block;
+    height: 250px;
+    width: 250px;
+    margin: 10px;
+    font-family: "hamburgerHeaven";
+    color: #ffff99;
+    font-size: 1.4em;
+    letter-spacing: 4px;
+    text-align: center; 
+}
+
+#catTitle{ 
+  transform: rotate(-30deg);
+}

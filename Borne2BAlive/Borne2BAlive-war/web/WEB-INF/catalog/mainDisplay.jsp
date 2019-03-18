@@ -1,9 +1,20 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-ICI C'est le coeur de la page, le display <br>
 
-<div id="product">
-<c:forEach var="p" items="${products}">
-    ${p.name} : <a href="MainController?section=cart&zone=add&item=${p.id}" >ajouter au panier</a><br> 
-</c:forEach>
+
+<div class="catSquareDisplay">
+    <c:forEach var="c" items="${navBar}">
+        <c:url var="url151" value="MainController?section=category&id=${c.id}" />
+        <a href="${url151}">
+            <div class="col catSquare">
+                
+                <br><br><br>
+                <div id ="catTitle" syle="text-decoration: none;">${c.name} </div>
+
+            </div>
+        </a>
+
+    </c:forEach>
+
 </div>
-<hr>
+
+
