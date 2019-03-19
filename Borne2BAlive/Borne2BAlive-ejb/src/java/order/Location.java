@@ -11,7 +11,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+@NamedQueries(
+        {
+            @NamedQuery(name="order.Location.findLocation", query="select l from Location l where l.id= :paramId"),
+            @NamedQuery(name="order.Location.findAll", query="select l from Location l")
+        }
+)
 
 @Entity
 public class Location implements Serializable {

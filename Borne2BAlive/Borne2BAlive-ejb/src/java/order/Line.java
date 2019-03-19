@@ -3,6 +3,7 @@ package order;
 
 import Product.Menu;
 import Product.MenuItem;
+import Product.Offer;
 import Product.Optional;
 import Product.Product;
 import java.io.Serializable;
@@ -43,14 +44,16 @@ public class Line implements Serializable {
     @ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
     private Collection <Optional> optionList;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToOne/*(cascade = {CascadeType.PERSIST, CascadeType.MERGE })*/
     private Product product;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToOne/*(cascade = {CascadeType.PERSIST, CascadeType.MERGE })*/
     private Menu menu;
     
     @OneToMany(mappedBy = "line", cascade = {CascadeType.PERSIST, CascadeType.MERGE })
     private Collection<MenuItem> menuItems;
+    
+   
 
 
     public Line() {
@@ -168,7 +171,7 @@ public class Line implements Serializable {
 
     @Override
     public String toString() {
-        return id + " - quantité : " + qty + " prix : " + preTaxPrice;
+        return id + " - quantité : " + qty + " prix : " + preTaxPrice + " liste des options : "+ optionList;
     }
     
 }

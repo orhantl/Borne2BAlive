@@ -11,27 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import managers.OrderManagerLocal;
-import order.OrderInfo;
 
-
-public class CashCheckOutCtrl implements Serializable, SubControllerInterface{
-    
+public class ConsumChoiceCtrl implements Serializable, SubControllerInterface {
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response){
-        
         HttpSession session = request.getSession();
-        OrderInfo order = (OrderInfo) session.getAttribute("order");
-        float preTaxPrice = (float) session.getAttribute("preTaxPrice");
-        float priceVAT = (float) session.getAttribute("priceVAT");
+        String url = "/WEB-INF/consumerChoice/consumChoice.jsp";
         
-        String queueNumber = orderManager.getCashCheckOutNumber();
-        orderManager.finalizeCashOrder(order, queueNumber);
-        session.setAttribute("queueNumber", queueNumber);
+        request.setAttribute("locations", orderManager.getLocations());
         
-        
-        return "/WEB-INF/order/cashCheckOut.jsp";
+        if (request.getParameter("locationID") != null) {
+            long locationID = Long.valueOf(request.getParameter("locationID"));
+            session.setAttribute("order", orderManager.startNewOrder(locationID));
+            url = "/WEB-INF/catalog/catalog.jsp";
+        }
+                
+                
+        return url;
     }
 
     private OrderManagerLocal lookupOrderManagerLocal() {

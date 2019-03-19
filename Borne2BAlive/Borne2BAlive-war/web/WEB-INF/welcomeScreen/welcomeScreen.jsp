@@ -41,14 +41,14 @@
         <img src="Img/WelcomeScreenPict/menuAdana.jpg" alt="offMom1" width="1500" height="600">
       <div class="carousel-caption">
         <h3>Offre du moment</h3>
-        <p>A ne pas rater...!!</p>
+        <p>À ne pas rater...!!</p>
       </div>   
     </div>
     <div class="carousel-item">
       <img src="Img/WelcomeScreenPict/menuKoft.jpg" alt="offMom2" width="1500" height="600">
       <div class="carousel-caption">
         <h3>Offre du moment</h3>
-        <p>A ne pas rater!!</p>
+        <p>À ne pas rater!!</p>
       </div>   
     </div>
     <div class="carousel-item">
@@ -91,7 +91,14 @@
         
 <div class="footer">
     <a href="MainController?section=consumChoice" class="btn btn-outline-dark btn-lg btn-block">Commander</a>
-   
+
+    
+    <%-- <li class="nav-item">
+        <c:url value="ControleurMain?section=catalogue" var="url155" />
+      <a class="nav-link" href="${url155}">Catalogue</a>
+    </li>
+    --%>
+
      
 </div>
 

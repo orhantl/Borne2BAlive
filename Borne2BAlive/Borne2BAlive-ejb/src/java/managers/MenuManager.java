@@ -56,10 +56,19 @@ public class MenuManager implements MenuManagerLocal {
         return qr.getResultList();
     }
 
+    
     // get all options that are not size related
     @Override
     public List<Optional> getIceOptionsFromProduct(long productId) {
         TypedQuery<Optional> qr = em.createNamedQuery("Product.Optional.findIceOptionsFromProduct", Optional.class);
+        qr.setParameter("idProduct", productId);
+        return qr.getResultList();
+    }
+    
+    // get all options except size - usefull for retail products (cold drinks)
+    @Override
+    public List<Optional> getOptionsExcSize (long productId){
+        TypedQuery<Optional> qr = em.createNamedQuery("Product.Optional.findOptionsExcSize", Optional.class);
         qr.setParameter("idProduct", productId);
         return qr.getResultList();
     }
@@ -128,7 +137,17 @@ public class MenuManager implements MenuManagerLocal {
     @Override
     public float getOptionsPrice(MenuItem[] items) {
         double price = 0;
-        for (MenuItem item : items) {
+        List<MenuItem> l = new ArrayList();
+        for(MenuItem i: items) { // remove null objects
+            if (i != null) {
+                l.add(i);
+            }
+        }
+      //chaque el de l'arraylist de item est mis dans une stream sur laquelle on peut itérer
+            //  .mapToDouble on récupère les él au format double ( fonction pour chaque item o, 
+            //on prend O.getPrice - le stream est une suite de prix, que l'on additionne
+            // pas de fonction mapToFloat d'ou cast ensuite
+        for (MenuItem item : l) {            
             price += item.getOptions().stream().mapToDouble(o -> o.getPrice()).sum();
         }
         return (float) price;

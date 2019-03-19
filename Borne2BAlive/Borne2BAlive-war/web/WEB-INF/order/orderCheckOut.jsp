@@ -15,7 +15,7 @@
         <br>
         <a href="MainController?section=cashCheckOut">Tickets restaurant</a>
         <br>
-        <a href="#">Carte bancaire, paiement sans contact</a>
+        <a href="MainController?section=creditCardCheckOut">Carte bancaire, paiement sans contact</a>
         <br>
         <br>
         <a href="MainController?section=kill">Abandonner</a>

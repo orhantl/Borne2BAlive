@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : consumChoice
     Created on : 11 mars 2019, 10:38:28
@@ -34,13 +35,19 @@
 <header class="site-header">
 <div class=" text-center">
     <br><br><br><br>
-  <h1>Où souhaitez-vous déguster votre commande?</h1>
+  <h1>OÃ¹ souhaitez-vous dÃ©guster votre commande?</h1>
 </div>
 <div class="container text-center text-align:">
-<br><br><br><br><br>
-   <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-primary btn-lg">Sur place</a>
 
-  <a href="WEB-INF/consumerChoice/consumChoice.jsp" class="btn btn-primary btn-lg">Emporter</a>
+<br><br><br>
+
+
+<c:url var="choiceURL" value="MainController?section=consumChoice&locationID=" />
+<c:forEach var="l" items="${locations}">
+    <a href="${choiceURL}${l.id}">${l.name}</a> <br>
+</c:forEach>
+
+   
 
 </div>
 </header>

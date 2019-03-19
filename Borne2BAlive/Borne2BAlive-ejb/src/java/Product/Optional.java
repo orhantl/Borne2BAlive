@@ -18,10 +18,10 @@ import order.Line;
 
 @NamedQueries(
         {
-           @NamedQuery(name = "Product.Optional.findAllOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct"),
-           @NamedQuery(name = "Product.Optional.findSizeOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct and o.name like '%Taille%'"),
-           @NamedQuery(name = "Product.Optional.findIceOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct and o.name like '%glaçons%'")
-        
+           @NamedQuery(name = "Product.Optional.findAllOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct order by o.price"),
+           @NamedQuery(name = "Product.Optional.findSizeOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct and o.name like '%Taille%' order by o.price"),
+           @NamedQuery(name = "Product.Optional.findIceOptionsFromProduct", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct and o.name like '%glaçons%' order by o.price"),
+           @NamedQuery(name = "Product.Optional.findOptionsExcSize", query = "select o from Optional o join o.ingredient i join i.products p where p.id = :idProduct and o.name not like '%Taille%' order by o.price")
         }
 )
 @Entity
@@ -145,7 +145,7 @@ public class Optional implements Serializable {
 
     @Override
     public String toString() {
-        return id + " / " + name ;
+        return name ;
     }
     
 }

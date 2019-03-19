@@ -11,7 +11,7 @@
         <h1>Votre commande</h1>
         <c:forEach var="l" items="${lines}">
             
-            <p>${l.product.name} ${l.qty} ${l.preTaxPrice}</p>
+            <p>${l.menu.name}${l.product.name} ${l.qty} ${preTaxPrice}</p>
         
         </c:forEach>
         

@@ -5,6 +5,8 @@
  */
 package managers;
 
+import Product.Optional;
+import java.util.ArrayList;
 import javax.ejb.Local;
 import order.Line;
 import order.OrderInfo;
@@ -27,6 +29,18 @@ public interface BasketManagerLocal {
     public Line getLine(Long id, float f);
 
     public OrderInfo removeLine(OrderInfo o, int index);
+
+    public float getOptionPriceApplied(String[] optionId);
+
+    public ArrayList<Optional> getOptionList(String[] optionId);
+
+    public OrderInfo plusItem(OrderInfo o, int index);
+
+    public OrderInfo minusItem(OrderInfo o, int index);
+
+    public ArrayList<Optional> mergeOptionList(ArrayList<Optional> a, ArrayList<Optional> b);
+
+    public float mergeOptionPriceApplied(float a, float b);
 
     
 }
