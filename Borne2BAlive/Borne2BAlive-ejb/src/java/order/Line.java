@@ -3,6 +3,7 @@ package order;
 
 import Product.Menu;
 import Product.MenuItem;
+import Product.Offer;
 import Product.Optional;
 import Product.Product;
 import java.io.Serializable;
@@ -51,6 +52,8 @@ public class Line implements Serializable {
     
     @OneToMany(mappedBy = "line", cascade = {CascadeType.PERSIST, CascadeType.MERGE })
     private Collection<MenuItem> menuItems;
+    
+   
 
 
     public Line() {

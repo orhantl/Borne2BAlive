@@ -23,24 +23,25 @@
 </div> 
 
 
-
-
-
             
 
             <div class="row centerStage">
 
                 <c:url var="remove" value="#" />
 
-                <div class="col-md-3 "></div>
+                <div class="col-md-2 "></div>
 
                 <div class="col-md-2 "><img src="${currentItemDrink.product.img}" alt="${currentItemDrink.product.name}" height="300"></div>
-                <div class="col-md-1 "></div>
+                <div class="col-md-3 "></div>
                 <div class="col-md-3"> 
+                    <br>
+                    <br>
+                    <br>
+                  
                     <c:forEach var="o" items="${currentDrinkOptions}">
 
                         <c:url var="option" value="MainController?section=composeMenu&step=7&size=" />
-                        <a href="${option}${o.id}" class="btn btn-outline-primary"> ${o.name} : 
+                        <a href="${option}${o.id}" class="btn btn-primary"> ${o.name} : 
                             +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + order.appliedVAT) /100}" /> &euro;
                         </a>
                         <br><br>
@@ -48,7 +49,7 @@
                 </div>
 
 
-                <div class="col-md-3 "></div>
+                <div class="col-md-2 "></div>
 
             </div>
 

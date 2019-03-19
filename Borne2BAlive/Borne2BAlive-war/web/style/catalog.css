@@ -146,8 +146,8 @@ body {
 .catSquare
 {
     border-color: #cc3300;
-    background-image: linear-gradient(0.40turn, rgba(102, 0, 0, 0.8), rgba(202, 104, 0, 0.8));
-    border-width: 1px;
+    background-image: linear-gradient(0.40turn, rgba(159, 9, 26, 1), rgba(252, 130, 7, 0.8));
+    border-width: 0px;
     border-radius: 20px;
     border-style: solid;
     display:inline-block;
