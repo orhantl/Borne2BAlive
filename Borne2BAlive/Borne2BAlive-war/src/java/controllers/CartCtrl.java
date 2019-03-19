@@ -51,8 +51,7 @@ public class CartCtrl implements Serializable, SubControllerInterface {
             basketManager.plusItem(o, index);
         }
 
-        float prixTTC = basketManager.getVATTotal(o);
-        session.setAttribute("prixTTC", prixTTC);
+
         session.setAttribute("order", o);
         return url;
     }

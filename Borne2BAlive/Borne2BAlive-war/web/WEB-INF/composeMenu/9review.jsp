@@ -90,13 +90,13 @@
                             <th>Prix</th>
                         </tr>
                         <tr><td>Menu</td>
-                            <td> <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.preTaxPrice * (100 + order.appliedVAT) /100}" /> &euro; 
+                            <td> <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.getProductFullPrice(order.getAppliedVAT())}" /> &euro; 
                             </td></tr>
                         <tr><td>Options</td>
-                            <td> <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.optionPriceApplied * (100 + order.appliedVAT) /100}" /> &euro; 
+                            <td> <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.getOptionsFullPrice(order.getAppliedVAT())}" /> &euro; 
                             </td></tr>
                         <tr><td>Total</td>
-                            <td> <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${(currentLine.optionPriceApplied * (100 + order.appliedVAT) /100) + (currentLine.preTaxPrice * (100 + order.appliedVAT) /100)}" /> &euro;
+                            <td> <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.getFullPrice(order.getAppliedVAT())}" /> &euro;
                             </td></tr>
                     </table>
 

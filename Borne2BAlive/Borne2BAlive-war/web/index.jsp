@@ -11,7 +11,7 @@
         <h1>Hello World!</h1>
         
         <a href="MainController?section=create">creer les données</a>
-
+        <br><br>
         <a href="MainController?section=welcomeScreen">Lancer borne 2b alive</a>
         
         

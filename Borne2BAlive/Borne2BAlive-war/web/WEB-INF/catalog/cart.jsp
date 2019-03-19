@@ -87,7 +87,7 @@
 
     <div class="centerDisplayContent">
         <p class="cartPrice">
-            Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${prixTTC}" /> &euro;
+            Total : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${order.getFullPrice()}" /> &euro;
             <c:url var="emptyCart" value="MainController?section=cart&zone=empty" />
         </p>
         <p>

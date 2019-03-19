@@ -174,4 +174,16 @@ public class Line implements Serializable {
         return id + " - quantité : " + qty + " prix : " + preTaxPrice + " liste des options : "+ optionList;
     }
     
+    public float getFullPrice(float vat) {
+        return ((preTaxPrice + optionPriceApplied) * (100 + vat) / 100);
+    }
+    
+    public float getOptionsFullPrice(float vat) {
+        return ((optionPriceApplied) * (100 + vat) / 100);
+    }
+    
+    public float getProductFullPrice(float vat) {
+        return ((preTaxPrice) * (100 + vat) / 100);
+    }
+    
 }
