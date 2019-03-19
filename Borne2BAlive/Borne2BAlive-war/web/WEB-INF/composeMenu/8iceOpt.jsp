@@ -32,26 +32,29 @@
 
                 <c:url var="remove" value="#" />
 
-                <div class="col-md-3 "></div>
+                <div class="col-md-2 "></div>
 
                 <div class="col-md-2 "><img src="${currentItemDrink.product.img}" alt="${currentItemDrink.product.name}" height="300"></div>
-                <div class="col-md-1 "></div>
+                <div class="col-md-3 "></div>
                 <div class="col-md-3"> 
+                    <br>
+                    <br>
+                    <br>
                     <c:url var="option" value="MainController?section=composeMenu&step=8&ice=" />
                     
                     <c:forEach var="o" items="${otherDrinkOptions}">
-                        <a href="${option}${o.id}" class="btn btn-outline-primary"> ${o.name} : 
+                        <a href="${option}${o.id}" class="btn btn-primary"> ${o.name} : 
                             +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + order.appliedVAT) /100}" /> &euro;
                         </a>
                         <br><br>
                     </c:forEach>
-                        <a href="${option}0" class="btn btn-outline-primary"> Avec glaçons : 
+                        <a href="${option}0" class="btn btn-primary"> Avec glaçons : 
                             +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="0.00" /> &euro;
                         </a>
                 </div>
 
 
-                <div class="col-md-3 "></div>
+                <div class="col-md-2 "></div>
 
             </div>
 
@@ -64,7 +67,7 @@
     <div class="col-md-2"><a href="${back}" class="btn btn-outline-info" role="button" >Retour</a> </div>
     <div class="col-md-2"><a href="#" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#cancel">Annuler</a> </div>
     <div class="col-md-6">Total des options :  
-        +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.optionPriceApplied * (100 + order.appliedVAT) /100}" /> &euro; </div>
+        +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.getOptionsFullPrice(order.getAppliedVAT())}" /> &euro; </div>
     
 
 

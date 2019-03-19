@@ -38,6 +38,7 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
         Product p = catalogManager.getProduct(idProduct);
 
+
         if ("1".equals(step)) {
 
             request.setAttribute("allergens", menuManager.getAllergens(idProduct));

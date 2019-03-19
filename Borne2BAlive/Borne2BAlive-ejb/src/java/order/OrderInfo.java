@@ -1,4 +1,3 @@
-
 package order;
 
 import Account.Account;
@@ -22,40 +21,41 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class OrderInfo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (length = 10)
+    @Column(length = 10)
     private String queueNumber;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfOrder;
-    
+
     @Column(length = 10)
     private float appliedVAT;
-    
-    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE })
+
+    @ManyToOne
     private Location place;
-    
-    @ManyToOne (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
+
+    @ManyToOne
     private OrderStatus status;
-    
+
     @ManyToOne
     private Account accountSelected;
-    
+
     @ManyToOne
     private CashRegister cashier;
-    
-    @ManyToOne 
+
+    @ManyToOne
     private Kiosk kiosk;
-    
-    @ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.MERGE })
-    private Collection <PaymentType> paymentList;
-    
-    @OneToMany (mappedBy = "selectedOrder", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
-    private Collection <Line> lineList;
+
+    @ManyToMany
+    private Collection<PaymentType> paymentList;
+
+    @OneToMany(mappedBy = "selectedOrder", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Line> lineList;
 
     public OrderInfo() {
         this.paymentList = new ArrayList();
@@ -93,7 +93,6 @@ public class OrderInfo implements Serializable {
         this.accountSelected = accountSelected;
     }
 
-    
     public Collection<Line> getLineList() {
         return lineList;
     }
@@ -126,7 +125,6 @@ public class OrderInfo implements Serializable {
         this.paymentList = paymentList;
     }
 
-    
     public String getQueueNumber() {
         return queueNumber;
     }
@@ -150,7 +148,7 @@ public class OrderInfo implements Serializable {
     public void setAppliedVAT(float appliedVAT) {
         this.appliedVAT = appliedVAT;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -182,5 +180,13 @@ public class OrderInfo implements Serializable {
     public String toString() {
         return queueNumber + dateOfOrder + appliedVAT;
     }
+
     
+    public float getFullPrice() {
+        float sum = 0;
+        for (Line l : lineList) {
+            sum += l.getPreTaxPrice() + l.getOptionPriceApplied();
+        }
+        return (sum * (100 + appliedVAT) / 100);
+    }
 }
