@@ -21,7 +21,7 @@
     padding-bottom: 0.5%;
     border-style: solid;
     border-radius: 40px;
-    border-color: #660000;
+    border-width : 0;
     background-color: white;
     box-shadow: 5px 10px 18px #666666;
 }
@@ -49,6 +49,9 @@
     padding-bottom: 2%;
 }
 
+body {
+    background: rgba(224, 224, 224, 0.8);
+}
 
 .mainAction {
     display: flex; 
@@ -113,7 +116,7 @@
 }
 input[type="radio"]:checked + label span.radio::after {
     left: -27px;
-    background-color: #EBFF43;
+    background-color: #ffcc00;
 }
 
 // checkbox
@@ -139,5 +142,5 @@ input[type="radio"]:checked + label span.radio::after {
 }
 input[type="checkbox"]:checked + label span.checkbox::after {
     left: -27px;
-    background-color: #EBFF43;
+    background-color: #ffcc00;
 }

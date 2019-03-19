@@ -102,7 +102,7 @@
                                                     <label for="checkbox-${o.id}">
                                                         <span class="checkbox">${o.name}
                                                             <c:if test="${o.price > 0}">
-                                                                + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
+                                                                + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price.getProductFullPrice(currentOrder.appliedVAT)}" /> &euro;
                                                             </c:if>
                                                         </span>
                                                     </label>
@@ -132,7 +132,7 @@
                                             <label for="radio-${s.id}">
                                                 <span class="radio">${s.name}
                                                     <c:if test="${s.price > 0}">
-                                                        + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${s.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
+                                                        + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${s.price.getOptionalFullPrice(currentOrder.appliedVAT)}" /> &euro;
                                                     </c:if>
                                                 </span>
                                             </label>

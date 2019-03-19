@@ -121,7 +121,6 @@ public class Optional implements Serializable {
     }
     
     
-    
 
     @Override
     public int hashCode() {
@@ -146,6 +145,12 @@ public class Optional implements Serializable {
     @Override
     public String toString() {
         return name ;
+    }
+    
+    
+      public float getOptionalFullPrice (float f){
+        float fullPrice = this.price * (100 + f) /100;
+        return fullPrice;
     }
     
 }
