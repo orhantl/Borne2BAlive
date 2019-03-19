@@ -88,14 +88,17 @@
 }
 </style>
 
+        
 <div class="footer">
     <a href="MainController?section=consumChoice" class="btn btn-outline-dark btn-lg btn-block">Commander</a>
+
     
     <%-- <li class="nav-item">
         <c:url value="ControleurMain?section=catalogue" var="url155" />
       <a class="nav-link" href="${url155}">Catalogue</a>
     </li>
     --%>
+
      
 </div>
 

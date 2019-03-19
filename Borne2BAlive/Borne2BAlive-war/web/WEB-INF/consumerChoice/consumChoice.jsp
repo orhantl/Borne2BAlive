@@ -34,11 +34,13 @@
 <body class="fondPage">
 <header class="site-header">
 <div class=" text-center">
-<br><br><br>
-  <h1>Où souhaitez-vous déguster votre commande?</h1>
+    <br><br><br><br>
+  <h1>OÃ¹ souhaitez-vous dÃ©guster votre commande?</h1>
 </div>
 <div class="container text-center text-align:">
+
 <br><br><br>
+
 
 <c:url var="choiceURL" value="MainController?section=consumChoice&locationID=" />
 <c:forEach var="l" items="${locations}">
