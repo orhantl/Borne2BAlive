@@ -44,16 +44,16 @@ public class OrderManager implements OrderManagerLocal {
     private static int creditQueueNumber = 0;
     
   
-  // temporaire
-    @Override
-    public OrderInfo createOrder(){
-        OrderInfo o = new OrderInfo();
-        o.setAppliedVAT(10.0f);
-        this.getPreTaxTotal(o);
-        basketManager.getVATTotal(o);
-        return o;
-    }
-    
+//  // temporaire
+//    @Override
+//    public OrderInfo createOrder(){
+//        OrderInfo o = new OrderInfo();
+//        o.setAppliedVAT(10.0f);
+//        this.getPreTaxTotal(o);
+//        basketManager.getVATTotal(o);
+//        return o;
+//    }
+//    
     
 
     @Override
@@ -81,33 +81,34 @@ public class OrderManager implements OrderManagerLocal {
     }
     
     
-    public OrderInfo initializeOrder(String vatLoc){
-        OrderInfo order = new OrderInfo();
-        Long orderLocation;
-        float orderVAT;
-        
-        if(vatLoc.equals("onTheSpot")){
-            orderLocation = 2L;
-            orderVAT = 10;
-        }else{
-            orderLocation = 1L;
-            orderVAT = 5.5f;
-        }
-        
-        order.setAppliedVAT(orderVAT);
-        
-        TypedQuery<Location> qr = em.createNamedQuery("order.Location.findLocation", Location.class);
-        qr.setParameter("paramId", orderLocation);        
-        try{
-            Location loc = qr.getSingleResult();
-            order.setPlace(loc);
-        }catch(NoResultException ex){
-            System.out.println("Place inexistante");
-        }               
-        
-        return order;
-    }
-    
+//    @Override
+//    public OrderInfo initializeOrder(String vatLoc){
+//        OrderInfo order = new OrderInfo();
+//        Long orderLocation;
+//        float orderVAT;
+//        
+//        if(vatLoc.equals("onTheSpot")){
+//            orderLocation = 2L;
+//            orderVAT = 10;
+//        }else{
+//            orderLocation = 1L;
+//            orderVAT = 5.5f;
+//        }
+//        
+//        order.setAppliedVAT(orderVAT);
+//        
+//        TypedQuery<Location> qr = em.createNamedQuery("order.Location.findLocation", Location.class);
+//        qr.setParameter("paramId", orderLocation);        
+//        try{
+//            Location loc = qr.getSingleResult();
+//            order.setPlace(loc);
+//        }catch(NoResultException ex){
+//            System.out.println("Place inexistante");
+//        }               
+//        
+//        return order;
+//    }
+//    
        
     @Override
     public String getCashCheckOutNumber(){
@@ -239,7 +240,23 @@ public class OrderManager implements OrderManagerLocal {
            ex.printStackTrace();
        }
        
+       em.persist(o);
     }
     
+    @Override
+    public List<Location> getLocations() {
+        TypedQuery qr = em.createNamedQuery("order.Location.findAll", Location.class);
+        return qr.getResultList();
+    }
+    
+    // Méthode définitive qui créé une commande, l'associe à un lieu de consommation, et copie le taux de tva à appliquer
+    @Override
+    public OrderInfo startNewOrder(long locationID) {
+        OrderInfo order = new OrderInfo();
+        Location loc = em.find(Location.class, locationID);
+        order.setPlace(loc);
+        order.setAppliedVAT(loc.getAppliedVAT().getRate());
+        return order;
+    }
 
 }

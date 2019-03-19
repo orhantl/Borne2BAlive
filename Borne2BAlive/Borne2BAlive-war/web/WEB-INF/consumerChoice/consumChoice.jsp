@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : consumChoice
     Created on : 11 mars 2019, 10:38:28
@@ -38,6 +39,12 @@
 </div>
 <div class="container text-center text-align:">
 <br><br><br>
+
+<c:url var="choiceURL" value="MainController?section=consumChoice&locationID=" />
+<c:forEach var="l" items="${locations}">
+    <a href="${choiceURL}${l.id}">${l.name}</a> <br>
+</c:forEach>
+
    
 
 </div>

@@ -1,6 +1,5 @@
 package controllers;
 
-import Product.Product;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import managers.BasketManagerLocal;
 import managers.CatalogManagerLocal;
-import order.Line;
 import order.OrderInfo;
 
 public class CartCtrl implements Serializable, SubControllerInterface {
@@ -51,8 +49,7 @@ public class CartCtrl implements Serializable, SubControllerInterface {
             basketManager.plusItem(o, index);
         }
 
-        float prixTTC = basketManager.getVATTotal(o);
-        session.setAttribute("prixTTC", prixTTC);
+
         session.setAttribute("order", o);
         return url;
     }

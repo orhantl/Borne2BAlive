@@ -38,7 +38,7 @@
                     <div id="infos">
 
                         <br>
-                        <br><a href="#" class="btn btn-info" data-toggle="collapse" data-target="#ingredients">Ingrédients</a>
+                        <br><a href="#" class="btn btn-outline-info" data-toggle="collapse" data-target="#ingredients">Ingrédients</a>
                         <div id="ingredients" class="collapse" data-parent="#infos" >
                             <br>
                             <c:forEach var="i" items="${currentSandwich.ingredients}">
@@ -47,7 +47,7 @@
                         </div> 
                         <br>
 
-                        <br><a href="#" class="btn btn-success" data-toggle="collapse" data-target="#allergen">Allergènes</a>
+                        <br><a href="#" class="btn btn-outline-info" data-toggle="collapse" data-target="#allergen">Allergènes</a>
                         <div id="allergen" class="collapse" data-parent="#infos" >
                             <br>
                             <c:forEach var="a" items="${sandwichAllergens}">
@@ -56,11 +56,14 @@
                         </div> 
                         <br>
 
-                        <br><a href="#" class="btn btn-warning" data-toggle="collapse" data-target="#facts">Informations nutritionnelles</a>
+                        <br><a href="#" class="btn btn-outline-info" data-toggle="collapse" data-target="#facts">Informations nutritionnelles</a>
                         <div id="facts" class="collapse" data-parent="#infos" >
                             <br> 
-                            <u>Au 100g :</u><br>
-                            <table>
+                            <table class="table smallText table-sm">
+                                <tr>
+                                    <th></th>
+                                    <th>Au 100g :</th>
+                                </tr>
                                 <tr><td>Glucides</td><td> ${currentSandwich.facts.carbs}g</td></tr>
                                 <tr><td>- dont sucres </td><td> ${currentSandwich.facts.sugars}g</td></tr>
                                 <tr><td>Lipides</td><td> ${currentSandwich.facts.lipids}g</td></tr>
@@ -76,8 +79,8 @@
 
 
                     </div>
-                    <br><br>
-                    <a href="MainController?section=composeMenu&step=2" class="btn btn-outline-dark">retirer des ingrédients</a>
+                    <br><br><br>
+                    <a href="MainController?section=composeMenu&step=2" class="btn btn-outline-dark">Personnaliser</a>
                 </div>
 
 
@@ -87,7 +90,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-2"><a href="#" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#cancel">Annuler</a> </div>
             <div class="col-md-6">Total des options :  
-                +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.optionPriceApplied * (100 + order.appliedVAT) /100}" /> &euro; </div>
+                +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.getOptionsFullPrice(order.getAppliedVAT())}" /> &euro; </div>
             <div class="col-md-2 nextLink"><a href="MainController?section=composeMenu&step=3" class="btn btn-primary" role="button">Suivant >></a></div>
 
 

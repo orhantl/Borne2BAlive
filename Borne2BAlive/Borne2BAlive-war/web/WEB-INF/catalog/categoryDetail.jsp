@@ -16,8 +16,9 @@
         <c:url var="pageHead" value="MainController?section=catalog&zone=pageHead" />
         <c:import url="${pageHead}" />
 
-        <form action="MainController?section=detail&step=2&product=${product.id}"  method="POST">
-            <div class="globalContent">
+        <div class="globalContent">
+
+            <form action="MainController?section=detail&step=2&product=${product.id}"  method="POST">
                 <div class="row pageHead">
                     <div class="col-md-12">
                         <h5>${product.name}</h5>
@@ -26,17 +27,14 @@
                 </div> 
 
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-3">
+                        <div class="contentSandwichImg">
+                            <img class="imgSandwich sandwich" src="${product.img}" alt="${product.name}" height="300" >
+                        </div>
 
                     </div>
 
-                    <div class="col contentSandwichImg">
-                        <img class="imgSandwich sandwich" src="${product.img}" alt="${product.name}" height="450" >
-                    </div>
-
-
-
-                    <div class="col-md-3 contentSandwichOptions">
+                    <div class="col-md-5 contentSandwichOptions">
                         <div id="infos">
 
                             <br>
@@ -68,14 +66,24 @@
                             <div id="facts" class="collapse" data-parent="#infos" >
                                 <br> 
                                 <u>Au 100g :</u><br>
-                                <table>
-                                    <tr><td>Glucides</td><td> ${p.facts.carbs}g</td></tr>
-                                    <tr><td>- dont sucres </td><td> ${p.facts.sugars}g</td></tr>
-                                    <tr><td>Lipides</td><td> ${p.facts.lipids}g</td></tr>
-                                    <tr><td>Protéines</td><td> ${p.facts.proteins}g</td></tr>
-                                    <tr><td>Fibres</td><td> ${p.facts.fibers}g</td></tr>
-                                    <tr><td>Teneur en sel</td><td> ${p.facts.salt}g</td></tr>
-                                    <tr><td>Calories</td><td> ${p.facts.kCal}</td></tr>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">valeur nutritionnelle</th>
+                                            <th scope="col"></th>
+                                            <th scope="col">pour 100 gr</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr><td>Glucides</td> <td></td> <td> ${p.facts.carbs}</td></tr>
+                                    <tr><td>- dont sucres </td><td></td><td> ${p.facts.sugars}</td></tr>
+                                    <tr><td>Lipides</td><td></td><td> ${p.facts.lipids}</td></tr>
+                                    <tr><td>Protéines</td><td></td><td> ${p.facts.proteins}</td></tr>
+                                    <tr><td>Fibres</td><td></td><td> ${p.facts.fibers}</td></tr>
+                                    <tr><td>Teneur en sel</td><td></td><td> ${p.facts.salt}</td></tr>
+                                    <tr><td>Calories</td><td></td><td> ${p.facts.kCal}</td></tr>
+                                    </tbody>
                                 </table>
                             </div> 
                             <br><br>
@@ -94,7 +102,7 @@
                                                     <label for="checkbox-${o.id}">
                                                         <span class="checkbox">${o.name}
                                                             <c:if test="${o.price > 0}">
-                                                                + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
+                                                                + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price.getProductFullPrice(currentOrder.appliedVAT)}" /> &euro;
                                                             </c:if>
                                                         </span>
                                                     </label>
@@ -110,32 +118,31 @@
                             </div>
                         </div>
 
-                        <br>
-                        <div>
-                            <c:if test="${not empty size}">
-                                <a href="#" class="btn btn-danger" >Choisir la taille</a>
-                                <br><br>
-                                <c:forEach var="s" items="${size}">
-                                    <div>
-                                        <section id="first" class="section">
-                                            <div class="container">
-                                                <input type="radio" name="size" id="radio-${s.id}" value="${s.id}" style="visibility:hidden; display : none">
-                                                <label for="radio-${s.id}">
-                                                    <span class="radio">${s.name}
-                                                        <c:if test="${s.price > 0}">
-                                                            + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${s.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
-                                                        </c:if>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </c:forEach>
+                    </div>
+                    <br>
+                    <div class="col-md-4 ">
+                        <c:if test="${not empty size}">
+                            <label class="btn btn-danger" >Choisir la taille</label>
+                            <br><br>
+                            <c:forEach var="s" items="${size}">
+                                <div>
+                                    <section id="first" class="section">
+                                        <div class="container">
+                                            <input type="radio" name="size" id="radio-${s.id}" value="${s.id}" style="visibility:hidden; display : none">
+                                            <label for="radio-${s.id}">
+                                                <span class="radio">${s.name}
+                                                    <c:if test="${s.price > 0}">
+                                                        + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${s.price.getOptionalFullPrice(currentOrder.appliedVAT)}" /> &euro;
+                                                    </c:if>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </section>
+                                </div>
+                            </c:forEach>
 
-                                <br>
-                            </c:if> 
-
-                        </div>
+                            <br>
+                        </c:if> 
 
                     </div>
 
@@ -143,9 +150,9 @@
                 </div> 
 
                 <div class="row pageFoot" >
-                    <div class="col-md-2"></div>
 
-                    <div class="col-md-2"><a href="#" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#cancel">Annuler</a></div>
+
+                    <div class="col-offset-3 col-md-2"><a href="#" class="btn btn-outline-dark" role="button" data-toggle="modal" data-target="#cancel">Annuler</a></div>
 
 
                     <!-- Modal -->
@@ -168,7 +175,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">Prix : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${product.price}" /> &euro; </div>
+                    <div class="col-md-5">Prix : <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${product.price}" /> &euro; </div>
 
                     <div class="col-md-2 nextLink">
                         <button type ="submit" class="btn btn-warning btn-lg" role="button">Ajouter au panier </button>
@@ -177,8 +184,9 @@
                 </div> 
 
                 <br>
-            </div>
-        </form>
+            </form>
+        </div>
+
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

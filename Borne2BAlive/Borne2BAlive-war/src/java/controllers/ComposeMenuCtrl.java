@@ -145,6 +145,7 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
                 itemSide = menuManager.createMenuItem(menuManager.getProduct(currentSideId));
 
                 session.setAttribute("currentSideOptions", menuManager.getOptionsFromProduct(currentSideId));
+                session.setAttribute("sideAllergens", menuManager.getAllergens(currentSideId));
             }
 
             if (option != null) {
@@ -280,6 +281,7 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
             session.removeAttribute("otherDrinkOptions");
             session.removeAttribute("currentSideOptions");
             session.removeAttribute("currentSandwichOptions");
+            session.removeAttribute("currentSandwich");
         }
 
         session.setAttribute("currentLine", currentLine);

@@ -11,12 +11,8 @@
         <h1>Hello World!</h1>
         
         <a href="MainController?section=create">creer les données</a>
-        <hr>
-        <%--<a href="MainController?section=orderSummary">Passez votre commande</a>--%>           
-        <hr>
-        <a href="MainController?section=catalog">Afficher le catalogue</a>
-        <hr>
-        <a href="MainController?section=welcomeScreen">Afficher welcomeScreen</a>
+        <br><br>
+        <a href="MainController?section=welcomeScreen">Lancer borne 2b alive</a>
         
         
         <hr>

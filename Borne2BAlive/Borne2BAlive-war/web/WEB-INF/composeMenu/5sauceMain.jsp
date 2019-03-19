@@ -37,13 +37,13 @@
                     <div class="row centerText card-deck">
                         <div class="card" style="width:120px">
                                 <img class="card-img-top" src="" alt="">
-                                <div class="card-body centerText"><a href="${selectedSauce}0" class="btn btn-outline-success stretched-link">Sans sauce</a>
+                                <div class="card-body centerText"><a href="${selectedSauce}0" class="btn btn-primary stretched-link">Sans sauce</a>
                                 </div>
                             </div>
                         <c:forEach var="s" items="${sauces}">
                             <div class="card" style="width:120px">
                                 <img class="card-img-top" src="${s.img}" alt="${s.name}">
-                                <div class="card-body centerText"><a href="${selectedSauce}${s.id}" class="btn btn-outline-success stretched-link">${s.name}</a>
+                                <div class="card-body centerText"><a href="${selectedSauce}${s.id}" class="btn btn-primary stretched-link">${s.name}</a>
                                 </div>
                             </div>
                         </c:forEach>
@@ -67,7 +67,7 @@
     <div class="col-md-2"><a href="${back}" class="btn btn-outline-info" role="button" >Retour</a> </div>
     <div class="col-md-2"><a href="#" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#cancel">Annuler</a> </div>
     <div class="col-md-6">Total des options :  
-        +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.optionPriceApplied * (100 + order.appliedVAT) /100}" /> &euro; </div>
+        +<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${currentLine.getOptionsFullPrice(order.getAppliedVAT())}" /> &euro; </div>
     
 
 
