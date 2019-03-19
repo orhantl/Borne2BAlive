@@ -1,41 +1,19 @@
-.pageHead {
-    background-image: linear-gradient(-0.25turn, #660000, #cc6600, rgb(234, 185, 117));
+.pageHead {     
     text-align: center; 
     color: cornsilk;  
     margin: 0%; 
     padding: 5px;
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
+    background-image: linear-gradient(-0.25turn, #660000, #cc6600, rgb(251, 242, 229));
 }
 
-.pageFoot {
-    padding-left: 2%; 
-    padding-right: 2%; 
-}
 
-.contentSandwichImg {
-    margin: 1%; 
-    text-align: right;
-}
-
-.contentSandwichOptions {
-    margin: 1%; 
-    text-align: left;
-    font-size: 10px;
-}
-
-.imgSandwich {
-    display: block; 
-    margin-left: auto; 
-    margin-right: auto;
-}
-
-.nextLink {
-    text-align: right;
-}
-
-.globalContent{
-    width: 90%;
+.globalContentProduct{
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+    width: 75%;
     height: 75%;
     margin-left: auto;
     margin-right: auto;
@@ -44,62 +22,63 @@
     border-style: solid;
     border-radius: 40px;
     border-color: #660000;
-    border-width: 0px;
     background-color: white;
     box-shadow: 5px 10px 18px #666666;
 }
 
-
-body {
-    background: rgba(224, 224, 224, 0.8);
+.mainContent {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 2%;
 }
 
-.centerStage {
-    margin-left: auto; 
-    margin-right: auto;
-    margin-top: 2%;
+.extraInfos {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.centerContent {
-    vertical-align: middle;
-    height: 100px;
-    line-height: 100px;
+.productFooter {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    float : left;
+    padding-left: 30%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
-.leftSeparator {
-    border-left: solid;
-    border-left-color: #cccccc;
-}
 
-.rightSeparator {
-    border-right: solid;
-    border-right-color: #cccccc;
-}
-
-.centerText {
+.mainAction {
+    display: flex; 
+    flex-direction: column;   
+    justify-content: space-around;
     text-align: center;
 }
 
-.smallText {
-    font-size: 10px;
+#infos {
+    display : inline-block;
+/*    flex-direction: row;   
+    justify-content: space-around;*/
 }
 
-.leftPadding{
-    padding-left: 5%;
+.productOptions {
+    diplay : flex;
+    margin-top: 50px;
+    
+    
 }
 
-.rightPadding{
-    padding-right: 5%;
+.nextLink {
+    text-align: right;
 }
 
-.reviewProductText {
-    font-weight: bold;
-    padding-left: 2%;
+/* checkbox / radion button customisé */
+
+.container {
+    margin: 20px;
 }
-
-/* essai checkbox / radion button customisé */
-
-
 .container label {
     position: relative;
     left : 50px;

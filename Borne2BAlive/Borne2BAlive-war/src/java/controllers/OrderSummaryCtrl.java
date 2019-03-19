@@ -2,9 +2,6 @@
 package controllers;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -13,9 +10,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import managers.OrderManager;
 import managers.OrderManagerLocal;
-import order.Line;
 import order.OrderInfo;
 
 /**
@@ -27,10 +22,12 @@ public class OrderSummaryCtrl implements Serializable, SubControllerInterface {
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     
     
+    
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response){
         HttpSession session = request.getSession();
-         
+        
+        String url = "/WEB-INF/order/orderSummary.jsp";
         OrderInfo order = (OrderInfo) session.getAttribute("order");
         float priceVAT = (float) session.getAttribute("prixTTC");        
         float preTaxPrice = orderManager.getPreTaxTotal(order);
@@ -40,7 +37,7 @@ public class OrderSummaryCtrl implements Serializable, SubControllerInterface {
         session.setAttribute("order", order);
         session.setAttribute("lines", order.getLineList());
         
-        return "/WEB-INF/order/orderSummary.jsp";
+        return url;
     }
     
     
