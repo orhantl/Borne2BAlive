@@ -22,5 +22,7 @@
         <br>
         <a href="MainController?section=orderSummary">Retour</a>
         
+        
+        <script type="text/javascript" src="style/idleTimer.js"></script>
     </body>
 </html>

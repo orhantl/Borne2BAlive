@@ -42,6 +42,9 @@
 
 </div>
 </header>
+    
+<script type="text/javascript" src="style/idleTimer.js"></script>
+    
 </body>
 </html>
       
