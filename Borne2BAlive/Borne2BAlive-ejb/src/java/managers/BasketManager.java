@@ -14,6 +14,7 @@ import order.OrderInfo;
 public class BasketManager implements BasketManagerLocal {
 
     @EJB
+    
     private MenuManagerLocal menuManager;
     @EJB
     private CatalogManagerLocal catalogManager;

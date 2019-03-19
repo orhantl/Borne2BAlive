@@ -32,7 +32,7 @@
                 <div class="mainContent">
                     <div class="productImg">
                         <img class="img" src="${product.img}" alt="${product.name}" height="300" >
-                        <figcaption class="ingredients">
+                        <br><figcaption class="ingredients">
                             <c:if test="${not empty product.ingredients}">
 
                                 Ingrédients : <c:forEach var="i" items="${product.ingredients}">
@@ -49,7 +49,7 @@
                                         <div class="modal-dialog modal-md modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Allergènes contenu dans ce produit</h4>
+                                                    <h4 class="modal-title">Allergènes contenus dans ce produit</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p><c:forEach var="a" items="${allergens}">
@@ -126,7 +126,7 @@
                                                                 <label for="checkbox-${o.id}">
                                                                     <span class="checkbox">${o.name}
                                                                         <c:if test="${o.price > 0}">
-                                                                            + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
+                                                                            + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${o.getOptionalFullPrice(order.appliedVAT)}" /> &euro;
                                                                         </c:if>
                                                                     </span>
                                                                 </label>
@@ -145,13 +145,6 @@
 
                             </c:if>
 
-
-
-
-
-
-
-
                         </div>    
                     </div>
 
@@ -169,7 +162,7 @@
                                             <label for="radio-${s.id}">
                                                 <span class="radio">${s.name}
                                                     <c:if test="${s.price > 0}">
-                                                        + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${s.price * (100 + currentOrder.appliedVAT) /100}" /> &euro;
+                                                        + <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${s.getOptionalFullPrice(order.appliedVAT)}" /> &euro;
                                                     </c:if>
                                                 </span>
                                             </label>
@@ -184,10 +177,12 @@
                     <div class="mainAction">
                         <div class="nextLink">
                             <button type ="submit" class="btn btn-warning btn-lg" role="button">
-                                <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${product.price}" /> &euro;  |  
+                                <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${product.getProductFullPrice(order.appliedVAT)}" /> &euro;  |  
                                 Ajouter au panier </button>
                         </div>
                     </div>
+
+
                 </div>
                 <!-- END CENTRAL PART --> 
 

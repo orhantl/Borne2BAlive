@@ -7,6 +7,7 @@
 </div>
 
 <div class="centerDisplayContent">
+    
     <div class="card-columns">
         <c:forEach var="p" items="${offer.products}">
             <div class="card" style="width:250px; text-align: center;">

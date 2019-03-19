@@ -166,4 +166,10 @@ public class Menu implements Serializable {
         return "Product.Menu[ id=" + id + " ]";
     }
     
+    
+    public float getMenuFullPrice (float f){
+        float fullPrice = this.price * (100 + f) /100;
+        return fullPrice;
+    }
+    
 }

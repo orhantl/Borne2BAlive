@@ -184,7 +184,6 @@ public class Product implements Serializable {
     
     
     
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -209,5 +208,11 @@ public class Product implements Serializable {
     public String toString() {
         return name;
     }
+    
+    public float getProductFullPrice (float f){
+        float fullPrice = this.price * (100 + f) /100;
+        return fullPrice;
+    }
+    
     
 }

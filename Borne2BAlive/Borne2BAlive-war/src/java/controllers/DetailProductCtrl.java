@@ -45,6 +45,7 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
             request.setAttribute("product", catalogManager.getProduct(idProduct));
             request.setAttribute("option", menuManager.getOptionsExcSize(idProduct));
             request.setAttribute("size", menuManager.getSizeOptionsFromProduct(idProduct));
+            session.setAttribute("order", order);
         }
 
         if ("2".equals(step)) {
