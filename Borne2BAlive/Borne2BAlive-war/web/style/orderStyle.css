@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "hamburgerHeaven";
+    src: url('hamburgerHeaven.woff');
+}
+
+.globalContent{
+    width: 70%;
+    height: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    padding-bottom: 0.5%;
+    border-style: solid;
+    border-radius: 40px;
+    border-color: #660000;
+    background-color: white;
+    box-shadow: 5px 10px 18px #666666;
+}
+
+.pageHead {
+    font-family: "hamburgerHeaven";
+    background-color: #660000; 
+    text-align: center; 
+    color: cornsilk;  
+    margin: 0%; 
+    padding: 5px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+}
+
+body {
+    background: rgba(224, 224, 224, 0.8);
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.orderFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    float: left;
+    padding-left: 30%;
+    padding-top: 10%;
+    padding-bottom : 2%;
+}
