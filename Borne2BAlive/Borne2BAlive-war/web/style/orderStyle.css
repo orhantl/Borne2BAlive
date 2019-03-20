@@ -45,9 +45,21 @@ body {
 .orderFooter {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-items : center;
     float: left;
     padding-left: 30%;
     padding-top: 10%;
     padding-bottom : 2%;
+}
+
+.checkOutButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: auto;
+    padding-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
