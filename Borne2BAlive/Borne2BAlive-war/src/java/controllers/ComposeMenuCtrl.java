@@ -25,7 +25,6 @@ import order.OrderInfo;
 public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
 
     BasketManagerLocal basketManager = lookupBasketManagerLocal();
-
     CatalogManagerLocal catalogManager = lookupCatalogManagerLocal();
     OrderManagerLocal orderManager = lookupOrderManagerLocal();
     MenuManagerLocal menuManager = lookupMenuManagerLocal();
@@ -39,7 +38,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
         String option = request.getParameter("option");
 
         OrderInfo currentOrder = (OrderInfo) session.getAttribute("order");
-
         Line currentLine = (Line) session.getAttribute("currentLine");
 
         /*
@@ -137,7 +135,6 @@ public class ComposeMenuCtrl implements Serializable, SubControllerInterface {
          */
         if ("4".equals(step)) {
             url = "/WEB-INF/composeMenu/4sideOpt.jsp";
-
             MenuItem itemSide = (MenuItem) session.getAttribute("currentItemSide");
 
             if (request.getParameter("side") != null) {
