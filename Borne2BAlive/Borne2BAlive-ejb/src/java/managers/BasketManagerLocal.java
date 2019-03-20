@@ -20,8 +20,6 @@ public interface BasketManagerLocal {
 
     public float getVATTotal(OrderInfo o);
 
-    //public float getPreTaxeTotal(OrderInfo o);
-
     public int getItemNumber(OrderInfo o);
 
     public OrderInfo emptyBasket(OrderInfo o);
@@ -38,9 +36,7 @@ public interface BasketManagerLocal {
 
     public OrderInfo minusItem(OrderInfo o, int index);
 
-    public ArrayList<Optional> mergeOptionList(ArrayList<Optional> a, ArrayList<Optional> b);
-
-    public float mergeOptionPriceApplied(float a, float b);
+    public Line setPriceOption(float f, float g, Line l, ArrayList<Optional> a, ArrayList<Optional> b);
 
     
 }

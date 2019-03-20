@@ -44,7 +44,6 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
         
         if ("cart".equals(zone)) {
             url = "/WEB-INF/catalog/cart.jsp";
-
         }
 
         return url;

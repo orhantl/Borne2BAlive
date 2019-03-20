@@ -39,6 +39,24 @@ public class BasketManager implements BasketManagerLocal {
         return l;
     }
 
+    @Override
+    public Line setPriceOption (float f, float g, Line l, ArrayList <Optional> a, ArrayList <Optional> b){
+        l.setOptionPriceApplied(f + g);
+        
+        ArrayList<Optional> options = new ArrayList();
+        if (! a.isEmpty() ) {
+            for (Optional o : a) {
+                options.add(o);
+            }
+        }
+        if (! b.isEmpty() ) {
+            for (Optional o : b) {
+                options.add(o);
+            }
+        }
+        l.setOptionList(options);
+    return l;
+}
     // retourne le prix des options choisies pour une ligne, pour un achat au détail
     @Override
     public float getOptionPriceApplied(String optionId[]) {
@@ -51,12 +69,6 @@ public class BasketManager implements BasketManagerLocal {
         }
         return f;
     }
-    
-    @Override
-    public float mergeOptionPriceApplied (float a, float b){
-        float f = a + b;
-        return f;
-    }
 
     // retourne un tableau d'option pour un achat au détail
     @Override
@@ -65,22 +77,6 @@ public class BasketManager implements BasketManagerLocal {
         if (optionId != null) {
             for (String s : optionId) {
                 options.add(menuManager.getOptional(Integer.valueOf(s)));
-            }
-        }
-        return options;
-    }
-    
-    @Override
-    public ArrayList<Optional> mergeOptionList(ArrayList <Optional> a, ArrayList <Optional> b) {
-        ArrayList<Optional> options = new ArrayList();
-        if (! a.isEmpty() ) {
-            for (Optional o : a) {
-                options.add(o);
-            }
-        }
-        if (! b.isEmpty() ) {
-            for (Optional o : b) {
-                options.add(o);
             }
         }
         return options;

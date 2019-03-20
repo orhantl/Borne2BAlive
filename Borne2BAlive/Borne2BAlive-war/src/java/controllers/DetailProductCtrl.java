@@ -33,14 +33,10 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
         Long idProduct = Long.valueOf(request.getParameter("product"));
         OrderInfo order = (OrderInfo) session.getAttribute("order");
         String step = request.getParameter("step");
-
         String url = "/WEB-INF/catalog/productDetail.jsp";
-
         Product p = catalogManager.getProduct(idProduct);
 
-
         if ("1".equals(step)) {
-
             request.setAttribute("allergens", menuManager.getAllergens(idProduct));
             request.setAttribute("product", catalogManager.getProduct(idProduct));
             request.setAttribute("option", menuManager.getOptionsExcSize(idProduct));
@@ -50,21 +46,12 @@ public class DetailProductCtrl implements Serializable, SubControllerInterface {
 
         if ("2".equals(step)) {
             Line l = basketManager.getLine(idProduct, 0);
-            
-            float f = basketManager.getOptionPriceApplied(request.getParameterValues("size")) 
-                    + basketManager.getOptionPriceApplied(request.getParameterValues("options"));
-            
+            float f = basketManager.getOptionPriceApplied(request.getParameterValues("size"));
+            float g = basketManager.getOptionPriceApplied(request.getParameterValues("options"));                        
             ArrayList <Optional> a = basketManager.getOptionList(request.getParameterValues("size"));
-            ArrayList <Optional> b = basketManager.getOptionList(request.getParameterValues("options"));
-            
-            // options + size
-            l.setOptionList(basketManager.mergeOptionList(a, b));
-            l.setOptionPriceApplied(f);
-
-            order.getLineList().add(l);
-
-            System.out.println("lines" + order.getLineList().toString());
-
+            ArrayList <Optional> b = basketManager.getOptionList(request.getParameterValues("options"));            
+            Line l2 = basketManager.setPriceOption(f, g, l, a, b);            
+            orderManager.addLineToOrder(l2, order);           
             url = "/WEB-INF/catalog/catalog.jsp";
         }
 
