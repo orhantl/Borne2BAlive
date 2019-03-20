@@ -5,24 +5,85 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style/orderStyle.css">
+        <link rel="stylesheet" href="style/catalog.css">
         <title>Choix du paiement</title>
     </head>
     <body>
-        <h1>Choix du paiement</h1>
-        <br>
-        <br>
-        <a href="MainController?section=cashCheckOut">Espèces</a>
-        <br>
-        <a href="MainController?section=cashCheckOut">Tickets restaurant</a>
-        <br>
-        <a href="MainController?section=creditCardCheckOut">Carte bancaire, paiement sans contact</a>
-        <br>
-        <br>
-        <a href="MainController?section=kill">Abandonner</a>
-        <br>
-        <a href="MainController?section=orderSummary">Retour</a>
-        
-        
+
+        <c:url var="pageHead" value="MainController?section=catalog&zone=pageHead" />
+        <c:import url="${pageHead}" />
+
+        <div class="globalContent">
+
+            <div class="pageHead">
+                <div class="col-md-12">
+                    <h1>Choix du paiement</h1>
+                </div>
+            </div>
+
+            <div class="mainContent">
+                <div class="col-md-4 "></div>
+                <div class="col-md-4 ">
+                <div class="checkOutButtons">    
+                    <table>
+                        <tbody>
+                            <tr>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                            <td>
+                                <a href="MainController?section=cashCheckOut" class="btn btn-success btn-lg">Espèces</a>
+                            </td>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <td>
+                                <a href="MainController?section=cashCheckOut" class="btn btn-success btn-lg">Tickets restaurant</a>
+                            </td>
+                        </div>
+                        <div class="col-md-2"></div>                                
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                        <a href="MainController?section=creditCardCheckOut" class="btn btn-info btn-lg">Carte bancaire, paiement sans contact</a>
+                        </tr>                          
+                        </tbody>
+                    </table>
+                </div>    
+                </div>
+                <div class="col-md-4 "></div>
+            </div>
+        </div>
+
+
+        <div class="orderFooter">
+
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <table>
+                    <tbody>
+                        <tr align="center">
+                            <td>
+                                <a href="MainController?section=kill" class="btn btn-danger">Abandonner</a>
+                            </td>
+                            <td>
+                                <a href="MainController?section=orderSummary" class="btn btn-info">Retour</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>    
+        </div>
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script type="text/javascript" src="style/idleTimer.js"></script>
     </body>
 </html>
