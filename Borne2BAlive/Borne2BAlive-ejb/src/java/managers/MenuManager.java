@@ -1,15 +1,12 @@
 package managers;
 
 import Product.Allergen;
-import Product.Category;
 import Product.Menu;
 import Product.MenuItem;
 import Product.Optional;
 import Product.Product;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,6 +38,7 @@ public class MenuManager implements MenuManagerLocal {
         return qr.getResultList();
     }
 
+    // get all options 
     @Override
     public List<Optional> getOptionsFromProduct(long productId) {
         TypedQuery<Optional> qr = em.createNamedQuery("Product.Optional.findAllOptionsFromProduct", Optional.class);
@@ -55,7 +53,6 @@ public class MenuManager implements MenuManagerLocal {
         qr.setParameter("idProduct", productId);
         return qr.getResultList();
     }
-
     
     // get all options that are not size related
     @Override
@@ -65,7 +62,7 @@ public class MenuManager implements MenuManagerLocal {
         return qr.getResultList();
     }
     
-    // get all options except size - usefull for retail products (cold drinks)
+    // get options not related to size (mainly for drinks)
     @Override
     public List<Optional> getOptionsExcSize (long productId){
         TypedQuery<Optional> qr = em.createNamedQuery("Product.Optional.findOptionsExcSize", Optional.class);
@@ -143,6 +140,7 @@ public class MenuManager implements MenuManagerLocal {
                 l.add(i);
             }
         }
+        
       //chaque el de l'arraylist de item est mis dans une stream sur laquelle on peut itérer
             //  .mapToDouble on récupère les él au format double ( fonction pour chaque item o, 
             //on prend O.getPrice - le stream est une suite de prix, que l'on additionne

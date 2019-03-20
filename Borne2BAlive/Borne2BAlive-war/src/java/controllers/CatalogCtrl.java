@@ -27,6 +27,7 @@ public class CatalogCtrl implements Serializable, SubControllerInterface {
         String zone = request.getParameter("zone");
         String url = "/WEB-INF/catalog/catalog.jsp";
 
+
         if ("pageHead".equals(zone)) {
             url = "/WEB-INF/catalog/header.jsp";
         }

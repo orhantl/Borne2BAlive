@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -64,7 +65,7 @@
                             </tr>
                             <tr>
                                 <th>Prix toutes taxes comprises :</th>
-                                <td><fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${priceVAT}" /> €</td>
+                                <td><fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${order.getFullPrice()}" /> €</td>
                             </tr>
                         </tbody>
                     </table>
@@ -73,11 +74,27 @@
             </div>
 
             <div class="orderFooter">
-                <a href="MainController?section=cart&order=${order}">Modifier</a>
                 
-                <a href="MainController?section=kill" class="btn btn-outline-danger">Abandonner</a>
-                
-                <a href="MainController?section=orderCheckOut&order=${order}&priceVAT=${priceVAT}&preTaxPrice=${preTaxPrice}">Confirmer</a>                
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <table>
+                        <tbody>
+                            <tr align="center">
+                                <td align="center">
+                                    <a href="MainController?section=cart&order=${order}" class="btn btn-info">Modifier</a>
+                                </td>
+                                <td></td>
+                                <td align="center">
+                                    <a href="MainController?section=kill" class="btn btn-danger">Abandonner</a>
+                                </td>
+                                <td></td>
+                                <td align="center">
+                                    <a href="MainController?section=orderCheckOut&order=${order}&priceVAT=${priceVAT}&preTaxPrice=${preTaxPrice}" class="btn btn-success">Confirmer</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>    
             </div>
 
         </div>

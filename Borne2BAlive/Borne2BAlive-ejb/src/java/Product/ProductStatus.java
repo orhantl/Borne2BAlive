@@ -66,6 +66,14 @@ public class ProductStatus implements Serializable {
         this.description = description;
     }
 
+    public Collection<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Collection<Product> products) {
+        this.products = products;
+    }
+
     
     
     
