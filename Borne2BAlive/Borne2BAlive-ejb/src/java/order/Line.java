@@ -175,7 +175,7 @@ public class Line implements Serializable {
     }
     
     public float getFullPrice(float vat) {
-        return ((preTaxPrice + optionPriceApplied) * (100 + vat) / 100);
+        return ((preTaxPrice + optionPriceApplied) * (100 + vat) / 100) * qty;
     }
     
     public float getOptionsFullPrice(float vat) {
@@ -183,7 +183,7 @@ public class Line implements Serializable {
     }
     
     public float getProductFullPrice(float vat) {
-        return ((preTaxPrice) * (100 + vat) / 100);
+        return ((preTaxPrice) * (100 + vat) / 100) * qty;
     }
     
 }

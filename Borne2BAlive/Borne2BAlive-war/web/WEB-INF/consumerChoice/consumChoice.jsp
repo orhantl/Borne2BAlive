@@ -6,52 +6,50 @@
 --%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Bsp consumChoice</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <style>
- .fondPage {
-   background-color: blue;
-    color: white;
-   }
-   
-    .btn-lg {
- background-color: black;
-  text-align:center;
-  width:550px;
-  height:250px;
-  text-shadow: #444 0 1px 1px;
-}
-</style>
 
-</head>
-<body class="fondPage">
-<header class="site-header">
-<div class=" text-center">
-<br><br><br>
-  <h1>Où souhaitez-vous déguster votre commande?</h1>
-</div>
-<div class="container text-center text-align:">
-<br><br><br>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="style/start.css">
+        <title>Borne2BAlive</title>
+    </head>
 
-<c:url var="choiceURL" value="MainController?section=consumChoice&locationID=" />
-<c:forEach var="l" items="${locations}">
-    <a href="${choiceURL}${l.id}">${l.name}</a> <br>
-</c:forEach>
 
-   
+    <body>
 
-</div>
-</header>
-    
-<script type="text/javascript" src="style/idleTimer.js"></script>
-    
-</body>
+        <c:url var="pageHead" value="MainController?section=catalog&zone=pageHead" />
+        <c:import url="${pageHead}" />
+
+
+        <div class="row">
+            <div class="title">Où souhaitez-vous déguster votre commande?</div>
+        </div>
+
+
+        <div class="row choice">
+
+            <div class="col-md-3"></div>
+
+            <c:url var="choiceURL" value="MainController?section=consumChoice&locationID=" />
+            <c:forEach var="l" items="${locations}">
+                <div class="col-md-2">
+                    <div class="catSquare">
+                        <a href="${choiceURL}${l.id}">
+                            <div class="squareText stretched-link">${l.name}</div>
+                        </a> 
+                    </div>
+                </div>
+                    <div class="col-md-1"></div>
+            </c:forEach>
+
+            <div class="col-md-3"></div>
+        </div>
+
+
+
+        <script type="text/javascript" src="style/idleTimer.js"></script>
+
+    </body>
 </html>
-      

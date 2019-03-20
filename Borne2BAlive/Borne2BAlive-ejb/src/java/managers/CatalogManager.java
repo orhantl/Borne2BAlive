@@ -69,9 +69,7 @@ public class CatalogManager implements CatalogManagerLocal {
     @Override
     public List<Category> getNavBar() {
         TypedQuery<Category> qr = em.createNamedQuery("Product.Category.findAll", Category.class);
-
         return qr.getResultList();
-
     }
 
     @Override

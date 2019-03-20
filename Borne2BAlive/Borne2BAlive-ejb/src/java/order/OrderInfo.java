@@ -185,7 +185,7 @@ public class OrderInfo implements Serializable {
     public float getFullPrice() {
         float sum = 0;
         for (Line l : lineList) {
-            sum += l.getPreTaxPrice() + l.getOptionPriceApplied();
+            sum += (l.getPreTaxPrice() + l.getOptionPriceApplied()) * l.getQty();
         }
         return (sum * (100 + appliedVAT) / 100);
     }
