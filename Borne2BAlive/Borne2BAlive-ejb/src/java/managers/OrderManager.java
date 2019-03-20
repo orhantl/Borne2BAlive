@@ -74,7 +74,7 @@ public class OrderManager implements OrderManagerLocal {
     public float getPreTaxTotal (OrderInfo o) {            
        float preTaxSum = 0;
        for (Line l : o.getLineList()){
-           preTaxSum += (l.getPreTaxPrice() * l.getDiscount() + l.getPreTaxPrice()) + l.getOptionPriceApplied();
+           preTaxSum += ((l.getPreTaxPrice() * l.getDiscount() + l.getPreTaxPrice()) + l.getOptionPriceApplied())*l.getQty();
        }      
        
        return preTaxSum;
