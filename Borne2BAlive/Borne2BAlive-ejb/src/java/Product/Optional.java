@@ -150,7 +150,8 @@ public class Optional implements Serializable {
     
       public float getOptionalFullPrice (float f){
         float fullPrice = this.price * (100 + f) /100;
-        return fullPrice;
+        float b = (float)Math.round(fullPrice * 100) / 100;
+        return b;
     }
     
 }
