@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>${l.menu.name} ${l.product.name}</td>
                                     <td>${l.qty}</td>
-                                    <td>${l.preTaxPrice}</td>
+                                    <td>${l.preTaxPrice} &euro;</td>
                                 </tr>
                             </c:forEach>
 

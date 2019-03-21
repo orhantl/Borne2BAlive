@@ -17,7 +17,7 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries(
         {
-            @NamedQuery(name="Product.Category.findNavBar", 
+            @NamedQuery(name="Product.Category.findAll", 
                     query = "select c from Category c where c.type.name = 'A la carte' order by c.priority")
         }
 )

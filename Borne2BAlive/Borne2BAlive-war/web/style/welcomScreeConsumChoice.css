@@ -1,0 +1,34 @@
+
+
+.bigButton{
+
+    text-align: center;
+    width:100%;
+    height:249px;
+    font-family: "hamburgerHeaven";
+    font-size: 100px;
+/*    padding-left: 20px;
+    margin-left: 0px;
+    margin-bottom: 10px;*/
+/*    border-radius: 30px;*/
+    color: white;
+    background-image: linear-gradient(-0.25turn, #660000, #cc6600, rgb(251, 242, 229));
+    letter-spacing: 10px;
+    padding-top: 50px;
+}  
+
+
+@font-face {
+    font-family: "hamburgerHeaven";
+    src: url('hamburgerHeaven.woff');
+}
+
+.textWelcome {
+    font-family: "hamburgerHeaven";
+    font-size: 50px;
+    letter-spacing: 10px;
+    color: white;
+    font-weight: bold;
+
+    text-shadow: #cc6600 1px 0 10px;
+}
