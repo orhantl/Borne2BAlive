@@ -10,22 +10,21 @@
     margin-right: auto;
     margin-top: 2%;
     padding-bottom: 0.5%;
-    border-style: solid;
     border-radius: 40px;
-    border-color: #660000;
     background-color: white;
     box-shadow: 5px 10px 18px #666666;
 }
 
 .pageHead {
     font-family: "hamburgerHeaven";
-    background-color: #660000; 
+    background-image: linear-gradient(-0.25turn, #660000, #cc6600, rgb(234, 185, 117));
     text-align: center; 
     color: cornsilk;  
     margin: 0%; 
     padding: 5px;
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
+    letter-spacing: 4px;
 }
 
 body {
